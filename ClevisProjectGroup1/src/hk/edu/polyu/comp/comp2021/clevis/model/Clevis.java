@@ -249,8 +249,11 @@ class Circle implements Shape{
 
     /** check Circle is intersected with other Circle */
     public boolean isIntersected(Circle other){
-        if (vectorSubtract(this.getCenter(),other.getCenter()).getDis() - Math.abs(this.getRadius()-other.getRadius()) > 0 + EPS
-                && vectorSubtract(this.getCenter(),other.getCenter()).getDis() - this.getRadius() + other.getRadius() < 0 - EPS){return true;}
+        float d = vectorSubtract(this.getCenter(),other.getCenter()).getDis();
+        float RAddr = this.getRadius() + other.getRadius();
+        float RSubr = Math.abs(this.getRadius() - other.getRadius());
+
+        if (d - RSubr > 0 - EPS && d - RAddr < 0 + EPS){return true;}
         return false;
     }
 
