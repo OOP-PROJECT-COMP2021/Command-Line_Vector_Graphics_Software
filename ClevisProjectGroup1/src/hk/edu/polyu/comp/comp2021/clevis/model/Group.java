@@ -4,12 +4,14 @@ class Group implements Shape {
     private final String name; // store name
     private Shape shapeA;
     private Shape shapeB;
+    private Shape[] shapeList;
 
     /** constructor */
-    Group(String inName, Shape inShapeA, Shape inShapeB){
+    Group(String inName, Shape inShapeA, Shape inShapeB, Shape[] inShapeList){
         name = inName;
         shapeA = inShapeA;
         shapeB = inShapeB;
+        shapeList = inShapeList;
     }
 
     /** method for get the name */
@@ -17,34 +19,56 @@ class Group implements Shape {
 
     /** check Group is intersected with other Line */
     public boolean isIntersected(Line other){
-        if (shapeA.isIntersected(other) || shapeB.isIntersected(other)){return true;}
+        for (Shape s: shapeList){
+            if (s.isIntersected(other)){return true;}
+        }
         return true;
     }
 
     /** check Group is intersected with other Rectangle(and its subclass Square) */
     public boolean isIntersected(Rectangle other){
-        if (shapeA.isIntersected(other) || shapeB.isIntersected(other)){return true;}
+        for (Shape s: shapeList){
+            if (s.isIntersected(other)){return true;}
+        }
         return true;
     }
 
     /** check Group is intersected with other Circle */
     public boolean isIntersected(Circle other){
-        if (shapeA.isIntersected(other) || shapeB.isIntersected(other)){return true;}
+        for (Shape s: shapeList){
+            if (s.isIntersected(other)){return true;}
+        }
         return true;
     }
 
     /** bounding box method */
     public float getLeftBounding(){ // get the Left Bounding of a Group
-        return (Math.min(shapeA.getLeftBounding(), shapeB.getLeftBounding()));
+        float minLeft = shapeList[0].getLeftBounding();
+        for (Shape s: shapeList){
+            minLeft = Math.min(s.getLeftBounding(),minLeft);
+        }
+        return (minLeft);
     }
     public float getRightBounding(){ // get the Right Bounding of a Group
-        return (Math.max(shapeA.getRightBounding(), shapeB.getRightBounding()));
+        float maxRight = shapeList[0].getRightBounding();
+        for (Shape s: shapeList){
+            maxRight = Math.max(s.getRightBounding(),maxRight);
+        }
+        return (maxRight);
     }
     public float getTopBounding(){ // get the Top Bounding of a Group
-        return (Math.max(shapeA.getTopBounding(), shapeB.getTopBounding()));
+        float maxTop = shapeList[0].getTopBounding();
+        for (Shape s: shapeList){
+            maxTop = Math.max(s.getTopBounding(),maxTop);
+        }
+        return (maxTop);
     }
     public float getBottomBounding(){ // get the Bottom Bounding of a Group
-        return (Math.min(shapeA.getBottomBounding(), shapeB.getBottomBounding()));
+        float minBottom = shapeList[0].getBottomBounding();
+        for (Shape s: shapeList){
+            minBottom = Math.min(s.getBottomBounding(),minBottom);
+        }
+        return (minBottom);
     }
 
 
