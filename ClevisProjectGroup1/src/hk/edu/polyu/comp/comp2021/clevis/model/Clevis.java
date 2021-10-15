@@ -139,7 +139,7 @@ class Rectangle implements Shape{
         w = inW;
         h = inH;
         FourLines[0] = new Line(name+"LineLeft", inX,inY,inX,inY-inH);
-        FourLines[1] = new Line(name+"LineBottom", inX,inY+inH,inX+inW,inY-inH);
+        FourLines[1] = new Line(name+"LineBottom", inX,inY-inH,inX+inW,inY-inH);
         FourLines[2] = new Line(name+"LineRight",inX+inW,inY-inH,inX+inW,inY);
         FourLines[3] = new Line(name+"LineTop", inX+inW,inY,inX,inY);
     }
