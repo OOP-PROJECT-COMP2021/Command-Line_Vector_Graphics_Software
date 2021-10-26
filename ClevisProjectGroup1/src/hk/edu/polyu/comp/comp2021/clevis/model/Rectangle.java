@@ -54,6 +54,18 @@ class Rectangle implements Shape{
         return false;
     }
 
+    /** check Rectangle(and its subclass Square) is intersected with other Group*/
+    public boolean isIntersected(Group other){
+        return other.isIntersected(this);
+    }
+
+    /** move a Rectangle(and its subclass Square) method*/
+    public void move(float inDx,float inDy){
+        for (Line i: this.getFourLines()){
+            i.move(inDx,inDy);
+        }
+    }
+
     /** bounding box method */
     public float getLeftBounding(){return getWhichFourLines(0).getA().getX();}
     public float getRightBounding(){return getWhichFourLines(2).getA().getX();}

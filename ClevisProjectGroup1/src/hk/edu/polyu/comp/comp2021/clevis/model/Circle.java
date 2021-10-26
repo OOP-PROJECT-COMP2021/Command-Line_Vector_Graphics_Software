@@ -47,6 +47,18 @@ class Circle implements Shape{
         return false;
     }
 
+    /** check Line is intersected with other Group*/
+    public boolean isIntersected(Group other){
+        return other.isIntersected(this);
+    }
+
+    /** move a Circle method*/
+    public void move(float inDx,float inDy){
+        this.getCenter().setX(this.getCenter().getX()+inDx); // move Center's x by inDx
+        this.getCenter().setY(this.getCenter().getY()+inDy); // move Center's y by inDy
+
+    }
+
     /** bounding box method */
     public float getLeftBounding(){return getCenter().getX() - getRadius();}
     public float getRightBounding(){return getCenter().getX() + getRadius();}

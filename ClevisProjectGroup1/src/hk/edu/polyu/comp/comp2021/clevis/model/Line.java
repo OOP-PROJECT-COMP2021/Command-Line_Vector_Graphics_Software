@@ -95,6 +95,21 @@ class Line implements Shape{
         return false;
     }
 
+    /** check Line is intersected with other Group*/
+    public boolean isIntersected(Group other){
+        return other.isIntersected(this);
+    }
+
+    /** move a Line method*/
+    public void move(float inDx,float inDy){
+        this.getA().setX(this.getA().getX()+inDx); // move end-A's x by inDx
+        this.getA().setY(this.getA().getY()+inDy); // move end-A's y by inDy
+
+        this.getB().setX(this.getB().getX()+inDx); // move end-B's x by inDx
+        this.getB().setY(this.getB().getY()+inDy); // move end-B's y by inDy
+    }
+
+
     /** bounding box method */
     public float getLeftBounding(){return Math.min(getA().getX(),getB().getX());}
     public float getRightBounding(){return Math.max(getA().getX(),getB().getX());}

@@ -23,6 +23,9 @@ public class Vec {
         return y;
     }
 
+    public void setX(float inX){x = inX;}
+    public void setY(float inY){y = inY;}
+
     private float sqrtNewton(float n) {
         final float D = 1E-7f;
         float x = 1;
