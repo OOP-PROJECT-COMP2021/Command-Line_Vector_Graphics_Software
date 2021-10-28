@@ -14,6 +14,7 @@ public class Clevis {
     private ArrayList<String> shapeLevel;
 
     public void addShape(String inName, Shape inShape) {
+        // try catch needed
         if (!containsName(inName)) {
             storage.put(inName,inShape);
             shapeLevel.add(inName);
@@ -29,7 +30,31 @@ public class Clevis {
     }
 
     public void removeShapeWithName(String inName) {
+        if (storage.get(inName) instanceof Group) {
+            Group tmp = (Group) storage.get(inName);
+            Shape[] container = tmp.getShapeList();
+            for (Shape a : container) {
+                storage.remove(a.getName());
+            }
+        }
         storage.remove(inName);
+    }
+
+    public void createGroup(String inName, Shape[] inShapeList) {
+        Group tmp = new Group(inName, inShapeList);
+        addShape(inName, tmp);
+    }
+
+    public void unGroup(String inName) {
+        storage.remove(inName);
+    }
+
+    public void moveShape(String inName, double inDx, double inDy) {
+        storage.get(inName).move(inDx, inDy);
+    }
+
+    public String listShape(String inName) {
+        return storage.get(inName).listInfo();
     }
 
     public int getSize() {

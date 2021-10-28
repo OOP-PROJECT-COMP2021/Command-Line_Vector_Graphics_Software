@@ -11,9 +11,10 @@ class Line implements Shape{
     private final String name; // store name
     private Vec a; // store the vector of end A in the line
     private Vec b; // store the vector of end B in the line
+    private int state = 0;
 
     /** constructor */
-    Line(String inName, double inX1, double inY1, double inX2, double inY2){
+    Line(String inName, double inX1, double inY1, double inX2, double inY2) {
         name = inName; // initialize the name
         this.a = new Vec(inX1, inY1); // initialize the vector of end A in the line
         this.b = new Vec(inX2, inY2); // initialize the vector of end B in the line
@@ -25,11 +26,15 @@ class Line implements Shape{
     public Vec getB() { // get the vector of end B in the line
         return b;
     } // method for get the B end
+    public int getState() { return state; }
+    public void incState() { state++; }
+    public void decState() { state--; }
 
     /** method for get the name */
     public String getName(){ // get the name
         return name;
     }
+
 
     /** check Line is intersected with other Line */
     public boolean isIntersected(Line other) {
@@ -120,5 +125,4 @@ class Line implements Shape{
     public String listInfo(){
         return "[Line]: Name:"+getName()+"; x1, y1:"+a.getX()+","+a.getX()+"; x2, y2:"+b.getX()+","+b.getY();
     }
-
 }

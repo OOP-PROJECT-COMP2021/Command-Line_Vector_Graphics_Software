@@ -56,7 +56,6 @@ class Circle implements Shape{
     public void move(double inDx,double inDy){
         this.getCenter().setX(this.getCenter().getX()+inDx); // move Center's x by inDx
         this.getCenter().setY(this.getCenter().getY()+inDy); // move Center's y by inDy
-
     }
 
     /** bounding box method */
