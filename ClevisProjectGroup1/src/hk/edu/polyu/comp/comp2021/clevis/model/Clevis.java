@@ -15,25 +15,21 @@ public class Clevis {
     /** [REQ2] rectangle n x y w h */
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
         addShape(inName, new Rectangle(inName,inX,inY,inW,inH));
-        shapeLevel.add(inName);
     }
 
     /** [REQ3] line n x1 y1 x2 y2 */
     public void drawLine(String inName, double inX1, double inY1, double inX2, double inY2){
         addShape(inName, new Line(inName,inX1,inY2,inX2,inY2));
-        shapeLevel.add(inName);
     }
 
     /** [REQ4] circle n x y r */
     public void drawCircle(String inName, double inX, double inY, double inR){
         addShape(inName, new Circle(inName,inX,inY,inR));
-        shapeLevel.add(inName);
     }
 
     /** [REQ5] square n x y l */
     public void drawSquare(String inName, double inX, double inY, double inL){
         addShape(inName, new Square(inName, inX, inY, inL));
-        shapeLevel.add(inName);
     }
 
     /** [REQ6] group n n1 n2... */
