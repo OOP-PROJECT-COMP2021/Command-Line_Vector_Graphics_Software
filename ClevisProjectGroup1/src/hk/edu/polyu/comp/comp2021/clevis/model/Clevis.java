@@ -1,5 +1,6 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -10,10 +11,12 @@ public class Clevis {
     public Clevis(){}
 
     private HashMap<String,Shape> storage = new HashMap<String,Shape>();
+    private ArrayList<String> shapeLevel;
 
     public void addShape(String inName, Shape inShape) {
         if (!containsName(inName)) {
             storage.put(inName,inShape);
+            shapeLevel.add(inName);
         }
     }
 
