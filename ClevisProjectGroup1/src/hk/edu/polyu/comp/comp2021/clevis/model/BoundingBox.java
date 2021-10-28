@@ -5,6 +5,10 @@ class BoundingBox extends Rectangle {
         super("bounded" + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(), inShape.getRightBounding() - inShape.getLeftBounding(), inShape.getTopBounding() - inShape.getBottomBounding());
     }
 
+    public String getBoundingBox() {
+        return (this.getLeftBounding()+" "+this.getTopBounding()+" "+ (this.getRightBounding()-this.getLeftBounding())+" "+(this.getTopBounding()-this.getBottomBounding()));
+    }
+
     public String listInfo(){
         return "[BoundingBox]: Name: "+getName()+"; Top-left corner:"+getTopLeftCorner().getX()+","+getTopLeftCorner().getX()+"; Width, Height:"+getWidth()+","+getHeight();
     }
