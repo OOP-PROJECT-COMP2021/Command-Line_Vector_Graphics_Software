@@ -50,36 +50,36 @@ class Group implements Shape {
     }
 
     /** move a Group method*/
-    public void move(float inDx,float inDy){
+    public void move(double inDx,double inDy){
         for (Shape s: this.getShapeList()){
             s.move(inDx,inDy);
         }
     }
 
     /** bounding box method */
-    public float getLeftBounding(){ // get the Left Bounding of a Group
-        float minLeft = this.getShapeList()[0].getLeftBounding();
+    public double getLeftBounding(){ // get the Left Bounding of a Group
+        double minLeft = this.getShapeList()[0].getLeftBounding();
         for (Shape s: this.getShapeList()){
             minLeft = Math.min(s.getLeftBounding(),minLeft);
         }
         return (minLeft);
     }
-    public float getRightBounding(){ // get the Right Bounding of a Group
-        float maxRight = this.getShapeList()[0].getRightBounding();
+    public double getRightBounding(){ // get the Right Bounding of a Group
+        double maxRight = this.getShapeList()[0].getRightBounding();
         for (Shape s: this.getShapeList()){
             maxRight = Math.max(s.getRightBounding(),maxRight);
         }
         return (maxRight);
     }
-    public float getTopBounding(){ // get the Top Bounding of a Group
-        float maxTop = this.getShapeList()[0].getTopBounding();
+    public double getTopBounding(){ // get the Top Bounding of a Group
+        double maxTop = this.getShapeList()[0].getTopBounding();
         for (Shape s: this.getShapeList()){
             maxTop = Math.max(s.getTopBounding(),maxTop);
         }
         return (maxTop);
     }
-    public float getBottomBounding(){ // get the Bottom Bounding of a Group
-        float minBottom = this.getShapeList()[0].getBottomBounding();
+    public double getBottomBounding(){ // get the Bottom Bounding of a Group
+        double minBottom = this.getShapeList()[0].getBottomBounding();
         for (Shape s: this.getShapeList()){
             minBottom = Math.min(s.getBottomBounding(),minBottom);
         }

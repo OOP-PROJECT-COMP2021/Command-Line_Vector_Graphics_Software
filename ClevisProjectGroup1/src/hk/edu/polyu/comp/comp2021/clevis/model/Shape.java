@@ -1,7 +1,7 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
 interface Shape{
-    public static final float EPS = 1E-5f;
+    public static final double EPS = 1E-6;
 
     /** get the name */
     String getName();
@@ -13,13 +13,13 @@ interface Shape{
     boolean isIntersected(Group other); // check Shape is intersected with other Group
 
     /** bounding box method */
-    float getLeftBounding(); // get the Left Bounding of a shape
-    float getRightBounding(); // get the Right Bounding of a shape
-    float getTopBounding(); // get the Top Bounding of a shape
-    float getBottomBounding(); // get the Bottom Bounding of a shape
+    double getLeftBounding(); // get the Left Bounding of a shape
+    double getRightBounding(); // get the Right Bounding of a shape
+    double getTopBounding(); // get the Top Bounding of a shape
+    double getBottomBounding(); // get the Bottom Bounding of a shape
 
     /** move a shape method*/
-    void move(float dX, float dY);
+    void move(double dX, double dY);
 
     /** list out information of a shape */
     String listInfo();

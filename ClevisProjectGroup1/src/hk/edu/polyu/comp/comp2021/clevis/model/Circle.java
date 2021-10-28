@@ -5,11 +5,11 @@ import static hk.edu.polyu.comp.comp2021.clevis.model.Calculate.vectorSubtract;
 /** Shape of Circle*/
 class Circle implements Shape{
     private final String name; // store name
-    private float radius; // store radius
+    private double radius; // store radius
     private Vec center; // store the center vector
 
     /** constructor */
-    Circle (String inName, float inX, float inY, float inR){
+    Circle (String inName, double inX, double inY, double inR){
         name = inName;
         center = new Vec(inX, inY);
         radius = inR;
@@ -18,7 +18,7 @@ class Circle implements Shape{
     public Vec getCenter() { // get the center vector
         return center;
     } // method for get the center
-    public float getRadius() { // get the radius
+    public double getRadius() { // get the radius
         return radius;
     } // method for get the radius
 
@@ -39,9 +39,9 @@ class Circle implements Shape{
 
     /** check Circle is intersected with other Circle */
     public boolean isIntersected(Circle other){
-        float d = vectorSubtract(this.getCenter(),other.getCenter()).getDis();
-        float RAddr = this.getRadius() + other.getRadius();
-        float RSubr = Math.abs(this.getRadius() - other.getRadius());
+        double d = vectorSubtract(this.getCenter(),other.getCenter()).getDis();
+        double RAddr = this.getRadius() + other.getRadius();
+        double RSubr = Math.abs(this.getRadius() - other.getRadius());
 
         if (d - RSubr > 0 - EPS && d - RAddr < 0 + EPS){return true;}
         return false;
@@ -53,17 +53,17 @@ class Circle implements Shape{
     }
 
     /** move a Circle method*/
-    public void move(float inDx,float inDy){
+    public void move(double inDx,double inDy){
         this.getCenter().setX(this.getCenter().getX()+inDx); // move Center's x by inDx
         this.getCenter().setY(this.getCenter().getY()+inDy); // move Center's y by inDy
 
     }
 
     /** bounding box method */
-    public float getLeftBounding(){return getCenter().getX() - getRadius();}
-    public float getRightBounding(){return getCenter().getX() + getRadius();}
-    public float getTopBounding(){return getCenter().getY() + getRadius();}
-    public float getBottomBounding(){return getCenter().getY() - getRadius();}
+    public double getLeftBounding(){return getCenter().getX() - getRadius();}
+    public double getRightBounding(){return getCenter().getX() + getRadius();}
+    public double getTopBounding(){return getCenter().getY() + getRadius();}
+    public double getBottomBounding(){return getCenter().getY() - getRadius();}
 
     /** list out information of a shape*/
     public String listInfo(){

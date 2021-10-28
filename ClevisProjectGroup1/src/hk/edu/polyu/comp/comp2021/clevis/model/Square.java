@@ -4,7 +4,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 class Square extends Rectangle{
 
     /** constructor */
-    Square (String inName ,float inX, float inY, float inL){
+    Square (String inName ,double inX, double inY, double inL){
         super(inName, inX,inY, inL, inL);
     }
 

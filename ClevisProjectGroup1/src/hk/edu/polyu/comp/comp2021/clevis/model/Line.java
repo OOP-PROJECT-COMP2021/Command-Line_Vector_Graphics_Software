@@ -13,7 +13,7 @@ class Line implements Shape{
     private Vec b; // store the vector of end B in the line
 
     /** constructor */
-    Line(String inName, float inX1, float inY1, float inX2, float inY2){
+    Line(String inName, double inX1, double inY1, double inX2, double inY2){
         name = inName; // initialize the name
         this.a = new Vec(inX1, inY1); // initialize the vector of end A in the line
         this.b = new Vec(inX2, inY2); // initialize the vector of end B in the line
@@ -101,7 +101,7 @@ class Line implements Shape{
     }
 
     /** move a Line method*/
-    public void move(float inDx,float inDy){
+    public void move(double inDx,double inDy){
         this.getA().setX(this.getA().getX()+inDx); // move end-A's x by inDx
         this.getA().setY(this.getA().getY()+inDy); // move end-A's y by inDy
 
@@ -111,10 +111,10 @@ class Line implements Shape{
 
 
     /** bounding box method */
-    public float getLeftBounding(){return Math.min(getA().getX(),getB().getX());}
-    public float getRightBounding(){return Math.max(getA().getX(),getB().getX());}
-    public float getTopBounding(){return Math.max(getA().getY(),getB().getY());}
-    public float getBottomBounding(){return Math.min(getA().getY(),getB().getY());}
+    public double getLeftBounding(){return Math.min(getA().getX(),getB().getX());}
+    public double getRightBounding(){return Math.max(getA().getX(),getB().getX());}
+    public double getTopBounding(){return Math.max(getA().getY(),getB().getY());}
+    public double getBottomBounding(){return Math.min(getA().getY(),getB().getY());}
 
     /** list out information of a shape*/
     public String listInfo(){

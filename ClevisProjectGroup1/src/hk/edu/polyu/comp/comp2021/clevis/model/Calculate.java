@@ -2,11 +2,11 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 
 public class Calculate {
 
-    public static float innerProduct (Vec i, Vec k) {
+    public static double innerProduct (Vec i, Vec k) {
         return (i.x * k.x) + (i.y * k.y);
     }
 
-    public static float outerProduct (Vec i, Vec k) {
+    public static double outerProduct (Vec i, Vec k) {
         return (i.x * k.y) - (i.y * k.x);
     }
 
