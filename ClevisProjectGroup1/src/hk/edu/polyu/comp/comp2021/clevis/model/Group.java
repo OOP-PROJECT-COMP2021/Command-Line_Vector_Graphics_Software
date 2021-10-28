@@ -3,6 +3,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 class Group implements Shape {
     private final String name; // store name
     private Shape[] shapeList;
+    private int groupState = 0;
 
     /** constructor */
     Group(String inName, Shape[] inShapeList){
@@ -13,6 +14,10 @@ class Group implements Shape {
     public Shape[] getShapeList(){ // get the shapeList
         return shapeList;
     }
+
+    public int getGroupState() { return groupState; }
+    public void incGroupState() { groupState++; }
+    public void decGroupState() { groupState--; }
 
     /** method for get the name */
     public String getName(){return name;} // get the name

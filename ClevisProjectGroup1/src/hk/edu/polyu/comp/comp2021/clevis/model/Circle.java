@@ -7,6 +7,7 @@ class Circle implements Shape{
     private final String name; // store name
     private double radius; // store radius
     private Vec center; // store the center vector
+    private int groupState = 0;
 
     /** constructor */
     Circle (String inName, double inX, double inY, double inR){
@@ -21,6 +22,10 @@ class Circle implements Shape{
     public double getRadius() { // get the radius
         return radius;
     } // method for get the radius
+
+    public int getGroupState() { return groupState; }
+    public void incGroupState() { groupState++; }
+    public void decGroupState() { groupState--; }
 
     /** method for get the name */
     public String getName(){return name;} // get the name

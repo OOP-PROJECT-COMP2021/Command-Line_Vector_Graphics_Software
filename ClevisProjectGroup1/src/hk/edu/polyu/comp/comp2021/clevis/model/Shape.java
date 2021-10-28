@@ -21,6 +21,11 @@ interface Shape{
     /** move a shape method*/
     void move(double dX, double dY);
 
+    /** get group state*/
+    public int getGroupState();
+    public void incGroupState();
+    public void decGroupState();
+
     /** list out information of a shape */
     String listInfo();
 

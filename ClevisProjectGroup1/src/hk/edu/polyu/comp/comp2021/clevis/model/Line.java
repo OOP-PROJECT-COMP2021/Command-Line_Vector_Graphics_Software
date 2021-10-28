@@ -11,7 +11,7 @@ class Line implements Shape{
     private final String name; // store name
     private Vec a; // store the vector of end A in the line
     private Vec b; // store the vector of end B in the line
-    private int state = 0;
+    private int groupState = 0;
 
     /** constructor */
     Line(String inName, double inX1, double inY1, double inX2, double inY2) {
@@ -26,9 +26,9 @@ class Line implements Shape{
     public Vec getB() { // get the vector of end B in the line
         return b;
     } // method for get the B end
-    public int getState() { return state; }
-    public void incState() { state++; }
-    public void decState() { state--; }
+    public int getGroupState() { return groupState; }
+    public void incGroupState() { groupState++; }
+    public void decGroupState() { groupState--; }
 
     /** method for get the name */
     public String getName(){ // get the name
