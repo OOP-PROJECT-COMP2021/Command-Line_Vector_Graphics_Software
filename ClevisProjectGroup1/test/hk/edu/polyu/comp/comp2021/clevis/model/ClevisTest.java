@@ -28,7 +28,7 @@ public class ClevisTest {
         Shape[] shapeList3 = {g1,g2,g3};
         Group g4 = new Group("GroupTest4", shapeList3);
 
-        System.out.println(clevis.isIntersected(g1,b));
+        //System.out.println(clevis.isIntersected(g1,b));
         //assert true;
     }
 

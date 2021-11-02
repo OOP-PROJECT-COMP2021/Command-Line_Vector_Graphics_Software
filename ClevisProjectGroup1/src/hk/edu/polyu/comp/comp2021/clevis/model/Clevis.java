@@ -46,11 +46,11 @@ public class Clevis {
 
     /** [REQ6] group n n1 n2... */
     public void createGroup(String inName, String[] inShapeString) {
-        if (!containsName(inName)) {
-            throw new IllegalArgumentException();
-        }
         Shape[] inShapeList = new Shape[inShapeString.length];
-        for (int i = 0; i < inShapeString.length; i ++) {
+        for (int i = 0; i < inShapeString.length; i++) {
+            if (!containsName(inShapeString[i])||containsName(inName)||(i<=inShapeString.length-1 && inShapeString[i]==inShapeString[i+1])) {
+                throw new IllegalArgumentException();
+            }
             inShapeList[i] = storage.get(inShapeString[i]);
         }
         Group tmp = new Group(inName, inShapeList);
@@ -172,4 +172,5 @@ public class Clevis {
     public int getSize() {
         return storage.size();
     }
+
 }
