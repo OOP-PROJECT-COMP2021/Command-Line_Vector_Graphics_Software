@@ -1,6 +1,7 @@
 package hk.edu.polyu.comp.comp2021.clevis;
 
 import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
+import org.w3c.dom.DOMImplementation;
 
 import java.awt.*;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 import static java.rmi.activation.ActivationGroup.createGroup;
 import static java.time.Clock.system;
 
-public class Application {
+public class Application{
 
     public static void main(String[] args) throws Exception {
         Clevis clevis = new Clevis();
@@ -96,22 +97,20 @@ public class Application {
                     }
                 }
 
-                else if (str.equals("intersect")){
-
-                }
-
                 /** [Group]*/
                 else if (str.equals("group")) {
                     String name = scan.next();
-                    /*String[] str1 =scan.nextLine().split("");
-                    int l= 0;
-                    while(l<=str1.length){
-                        s.append(s1 + " ");
-                        l++;
-                        if (l == str1.length){
-                            clevis.createGroup(name,str1);
-                        }
-                    }*/
+                    String[] str1 =scan.nextLine().split(" ");
+//                    Shape[] shapeList = str1;
+//                    clevis.createGroup(name,str1);
+//                    int l= 0;
+//                    while(l<=str1.length){
+//                        s.append(s1 + " ");
+//                        l++;
+//                        if (l == str1.length){
+//                            clevis.createGroup(name,shape);
+//                        }
+//                    }
                     System.out.println("Successfully create a new group called " +name + " which contains " + s);
                 }
 
@@ -127,6 +126,37 @@ public class Application {
                     }
                 }
 
+                /** [boudningbox]*/
+                else if (str.equals("boundingbox")){
+                    String name = scan.next();
+                    clevis.createBoundingBox(name);
+                    System.out.println("Successfully create boundingbox of "+name+"!");
+                }
+
+                /** [move]*/
+                else if (str.equals("move")){
+                    String name = scan.next();
+                    double inX = Double.parseDouble(scan.next());
+                    double inY = Double.parseDouble(scan.next());
+                    clevis.moveShape(name,inX,inY);
+                    System.out.println("Successfully move to point ("+inX+","+inY+")");
+                }
+
+                /** [pick-and-move]*/
+                else if (str.equals("pick-and-move")){
+                    double inX = Double.parseDouble(scan.next());
+                    double inY = Double.parseDouble(scan.next());
+                    double inDx = Double.parseDouble(scan.next());
+                    double inDy = Double.parseDouble(scan.next());
+                    clevis.pickAndMoveShape(inX,inY,inDx,inDy);
+                    System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+inDx+","+inDy+")");
+                }
+
+                /** [intersect]*/
+                else if (str.equals("intersect")){
+                    String shape1 = scan.next();
+                    //clevis.isIntersected(shape1);
+                }
                 if (str.equalsIgnoreCase("quit")){
                     break;
                 }

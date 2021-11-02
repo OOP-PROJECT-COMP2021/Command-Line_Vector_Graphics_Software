@@ -33,7 +33,7 @@ public class Clevis {
     }
 
     /** [REQ6] group n n1 n2... */
-    public void createGroup(String inName, Shape[] inShapeList) {
+    public void createGroup(String inName, String[] inShapeList) {
         Group tmp = new Group(inName, inShapeList);
         addShape(inName, tmp);
         for (Shape tmpShape : inShapeList) {
@@ -66,9 +66,10 @@ public class Clevis {
     }
 
     /** [REQ9] boundingbox n */
-    public String createBoundingBox (String inName){
+    public void createBoundingBox (String inName){
         BoundingBox inBoundingBox = new BoundingBox(storage.get(inName));
-        return inBoundingBox.getBoundingBox();
+        inBoundingBox.getBoundingBox();
+        System.out.println(inBoundingBox.listInfo());
     }
 
     /** [REQ10] move n dx dy */

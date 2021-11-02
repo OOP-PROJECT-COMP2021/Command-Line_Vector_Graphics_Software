@@ -10,6 +10,6 @@ class BoundingBox extends Rectangle {
     }
 
     public String listInfo(){
-        return "[BoundingBox]: Name: "+getName()+"; Top-left corner:"+getTopLeftCorner().getX()+","+getTopLeftCorner().getX()+"; Width, Height:"+getWidth()+","+getHeight();
+        return "[BoundingBox]: Name: "+getName()+"; Top-left corner:"+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+"; Width, Height:"+getWidth()+","+getHeight();
     }
 }
