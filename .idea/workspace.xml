@@ -7,11 +7,7 @@
     <list default="true" id="33cc1b99-3c1c-4ff7-9404-451082c0ee9c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

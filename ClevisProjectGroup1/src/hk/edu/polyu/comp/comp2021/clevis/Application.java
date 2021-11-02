@@ -169,7 +169,10 @@ public class Application{
                         System.out.println("Error for: "+e);
                     }
                     if (clevis.isIntersected(shape1,shape2)==true){
-                        System.out.println("");
+                        System.out.println("They are intersected!");
+                    }
+                    else{
+                        System.out.println("They are not intersected");
                     }
                 }
 
