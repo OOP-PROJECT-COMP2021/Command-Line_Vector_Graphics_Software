@@ -14,26 +14,41 @@ public class Clevis {
 
     /** [REQ2] rectangle n x y w h */
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
+        if (containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         addShape(inName, new Rectangle(inName,inX,inY,inW,inH));
     }
 
     /** [REQ3] line n x1 y1 x2 y2 */
     public void drawLine(String inName, double inX1, double inY1, double inX2, double inY2){
+        if (containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         addShape(inName, new Line(inName,inX1,inY2,inX2,inY2));
     }
 
     /** [REQ4] circle n x y r */
     public void drawCircle(String inName, double inX, double inY, double inR){
+        if (containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         addShape(inName, new Circle(inName,inX,inY,inR));
     }
 
     /** [REQ5] square n x y l */
     public void drawSquare(String inName, double inX, double inY, double inL){
+        if (containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         addShape(inName, new Square(inName, inX, inY, inL));
     }
 
     /** [REQ6] group n n1 n2... */
     public void createGroup(String inName, String[] inShapeString) {
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         Shape[] inShapeList = new Shape[inShapeString.length];
         for (int i = 0; i < inShapeString.length; i ++) {
             inShapeList[i] = storage.get(inShapeString[i]);
@@ -47,7 +62,9 @@ public class Clevis {
 
     /** [REQ7] ungroup n */
     public void unGroup(String inName) {
-        // try catch needed
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         for (Shape tmp : ((Group)storage.get(inName)).getShapeList()){
             tmp.decGroupState();
         }
@@ -57,6 +74,9 @@ public class Clevis {
 
     /** [REQ8] delete n*/
     public void deleteShapeWithName(String inName) {
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         if (storage.get(inName) instanceof Group) {
             Group tmp = (Group) storage.get(inName);
             Shape[] container = tmp.getShapeList();
@@ -71,6 +91,9 @@ public class Clevis {
 
     /** [REQ9] boundingbox n */
     public void createBoundingBox (String inName){
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         BoundingBox inBoundingBox = new BoundingBox(storage.get(inName));
         inBoundingBox.getBoundingBox();
         System.out.println(inBoundingBox.listInfo());
@@ -78,6 +101,9 @@ public class Clevis {
 
     /** [REQ10] move n dx dy */
     public void moveShape(String inName, double inDx, double inDy) {
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         storage.get(inName).move(inDx, inDy);
     }
 
@@ -94,6 +120,9 @@ public class Clevis {
     /** [REQ12] intersect n1 n2 */
     public boolean isIntersected (String inString1, String inString2) {
         // try catch needed
+        if (!containsName(inString1) || !containsName(inString2)) {
+            throw new IllegalArgumentException();
+        }
         Shape inShape1 = storage.get(inString1);
         Shape inShape2 = storage.get(inString2);
         if (inShape2 instanceof Rectangle) {return inShape1.isIntersected((Rectangle)inShape2);}
@@ -105,6 +134,9 @@ public class Clevis {
 
     /** [REQ13] list n */
     public String listShape(String inName) {
+        if (!containsName(inName)) {
+            throw new IllegalArgumentException();
+        }
         return storage.get(inName).listInfo();
     }
 
