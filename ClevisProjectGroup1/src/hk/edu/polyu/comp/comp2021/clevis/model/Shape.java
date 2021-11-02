@@ -14,9 +14,8 @@ interface Shape{
     Shape getRight();
     void setLeft(Shape l);
     void setRight(Shape r);
-    void removeRefer();
     void pointToMe();
-
+    void removeRefer();
     /** isIntersected() method */
     boolean isIntersected(Line other); // check Shape is intersected with other Line
     boolean isIntersected(Rectangle other); // check Shape is intersected with other Rectangle(and its subclass Square)
@@ -32,12 +31,6 @@ interface Shape{
     /** move a shape method*/
     void move(double dX, double dY);
 
-    /** get group state*/
-    public int getGroupState();
-    public void incGroupState();
-    public void decGroupState();
-
     /** list out information of a shape */
     String listInfo();
-
 }

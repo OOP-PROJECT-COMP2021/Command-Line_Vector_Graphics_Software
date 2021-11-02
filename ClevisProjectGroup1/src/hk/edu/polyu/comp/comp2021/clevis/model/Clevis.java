@@ -10,7 +10,8 @@ import static java.lang.Math.*;
 public class Clevis {
     public Clevis(){}
     private HashMap<String,Shape> storage = new HashMap<String,Shape>();
-    private ArrayList<String> shapeLevel = new ArrayList<String>();
+    //private ArrayList<String> shapeLevel = new ArrayList<String>();
+    LinkedListDeque<Shape> shapeLevel = new LinkedListDeque<>();
 
     /** [REQ2] rectangle n x y w h */
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
@@ -25,7 +26,7 @@ public class Clevis {
         if (containsName(inName)) {
             throw new IllegalArgumentException();
         }
-        addShape(inName, new Line(inName,inX1,inY2,inX2,inY2));
+        addShape(inName, new Line(inName,inX1,inY1,inX2,inY2));
     }
 
     /** [REQ4] circle n x y r */
@@ -47,29 +48,25 @@ public class Clevis {
     /** [REQ6] group n n1 n2... */
     public void createGroup(String inName, String[] inShapeString) {
         Shape[] inShapeList = new Shape[inShapeString.length];
+        HashSet<String> exist = new HashSet<>();
         for (int i = 0; i < inShapeString.length; i++) {
-            if (!containsName(inShapeString[i])||containsName(inName)||(i<=inShapeString.length-1 && inShapeString[i]==inShapeString[i+1])) {
-                throw new IllegalArgumentException();
-            }
+            if (exist.contains(inShapeString[i]) || (!containsName(inShapeString[i]))
+                    || (containsName(inName)) || (!(((storage.get(inShapeString[i])).getParent()).getName())
+                    .equals((storage.get(inShapeString[i])).getName()))) throw new IllegalArgumentException();
+            exist.add(inShapeString[i]);
             inShapeList[i] = storage.get(inShapeString[i]);
         }
         Group tmp = new Group(inName, inShapeList);
         addShape(inName, tmp);
-        for (Shape tmpShape : inShapeList) {
-            tmpShape.incGroupState();
-        }
+        for (Shape s : inShapeList) { s.setParent(tmp);}
     }
 
     /** [REQ7] ungroup n */
     public void unGroup(String inName) {
-        if (!containsName(inName)) {
-            throw new IllegalArgumentException();
-        }
-        for (Shape tmp : ((Group)storage.get(inName)).getShapeList()){
-            tmp.decGroupState();
-        }
+        if ((!containsName(inName)) || (!(storage.get(inName) instanceof Group)) || (!(((storage.get(inName)).getParent()).getName())
+                .equals((storage.get(inName)).getName()))) { throw new IllegalArgumentException(); }
+        ((Group)(storage.get(inName))).ungroup();
         storage.remove(inName);
-        shapeLevel.remove(inName);
     }
 
     /** [REQ8] delete n*/
@@ -77,16 +74,21 @@ public class Clevis {
         if (!containsName(inName)) {
             throw new IllegalArgumentException();
         }
+        if (!(((storage.get(inName)).getParent()).getName())
+                .equals((storage.get(inName)).getName())) {
+            throw new IllegalArgumentException();
+        }
+
+        (storage.get(inName)).removeRefer();
+
         if (storage.get(inName) instanceof Group) {
             Group tmp = (Group) storage.get(inName);
             Shape[] container = tmp.getShapeList();
             for (Shape a : container) {
                 storage.remove(a.getName());
-                shapeLevel.remove(a.getName());
             }
         }
         storage.remove(inName);
-        shapeLevel.remove(inName);
     }
 
     /** [REQ9] boundingbox n */
@@ -101,7 +103,7 @@ public class Clevis {
 
     /** [REQ10] move n dx dy */
     public void moveShape(String inName, double inDx, double inDy) {
-        if (!containsName(inName)) {
+        if (!(storage.get(inName).getParent().getName().equals(storage.get(inName).getName()) || (!containsName(inName)))) {
             throw new IllegalArgumentException();
         }
         storage.get(inName).move(inDx, inDy);
@@ -110,16 +112,25 @@ public class Clevis {
     /** [REQ11] pick-and-move x y dx dy */
     public void pickAndMoveShape (double inX, double inY, double inDx, double inDy){
         Circle xyPoint = new Circle("xyPoint",inX,inY,0.05d);
-        for (int i = shapeLevel.size()-1; i>0; i--) {
-            if(storage.get(shapeLevel.get(i)).isIntersected(xyPoint)) {
-                moveShape(shapeLevel.get(i),inDx,inDy); break;
-            }
+        Shape finalShape = xyPoint;
+
+        for (Shape s : shapeLevel) {
+            if (s instanceof Group) {continue;}
+
+            if (s.isIntersected(xyPoint)) { finalShape = s.getAncester();}
+        }
+
+        /** picked nothing, throw exception*/
+        if (finalShape == xyPoint) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            moveShape(finalShape.getName(),inDx,inDy);
         }
     }
 
     /** [REQ12] intersect n1 n2 */
     public boolean isIntersected (String inString1, String inString2) {
-        // try catch needed
         if (!containsName(inString1) || !containsName(inString2)) {
             throw new IllegalArgumentException();
         }
@@ -141,26 +152,26 @@ public class Clevis {
     }
 
     /** [REQ14] listAll */
-    public String listAllShape() {
-        StringBuilder outStr = new StringBuilder();
-        for (String inName : shapeLevel) {
-            outStr.append(storage.get(inName).listInfo()).append("\n");
+    public void listAllShape() {
+        for (Shape inShape : shapeLevel) {
+            if (inShape instanceof Group) {
+                System.out.printf("%s%n", inShape.listInfo());
+                for (Shape item : ((Group) inShape).getShapeList()) {
+                    // try to use recursion
+                }
+                continue;
+            }
+            if (inShape.getParent().getName().equals(inShape.getName())) { continue; }
+
         }
-        return outStr.toString();
     }
 
     /** add a shape to storage */
     public void addShape(String inName, Shape inShape) {
-        // try catch needed
         if (!containsName(inName)) {
             storage.put(inName,inShape);
-            shapeLevel.add(inName);
+            shapeLevel.addLast(inShape);
         }
-    }
-
-    /** check if the storage contains the Shape(value) */
-    public boolean containsShape(Shape inShape) {
-        return storage.containsValue(inShape);
     }
 
     /** check if the storage contains the Name(key) */

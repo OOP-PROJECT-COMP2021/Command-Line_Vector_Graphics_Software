@@ -2,7 +2,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 class BoundingBox extends Rectangle {
 
     BoundingBox(Shape inShape) {
-        super("bounded" + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(), inShape.getRightBounding() - inShape.getLeftBounding(), inShape.getTopBounding() - inShape.getBottomBounding());
+        super("Bounded " + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(), inShape.getRightBounding() - inShape.getLeftBounding(), inShape.getTopBounding() - inShape.getBottomBounding());
     }
 
     public String getBoundingBox() {

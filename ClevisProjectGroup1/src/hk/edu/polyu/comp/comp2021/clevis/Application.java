@@ -194,7 +194,9 @@ public class Application{
                         System.out.println("Unsuccessfully listAll because can't find the name in storage!");
                     }
                     else{
-                        System.out.println(clevis.listAllShape());
+                        //System.out.println(
+                                clevis.listAllShape();
+                        //);
                     }
                 }
 

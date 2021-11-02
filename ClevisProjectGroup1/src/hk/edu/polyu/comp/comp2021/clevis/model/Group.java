@@ -3,7 +3,6 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 class Group implements Shape {
     private final String name; // store name
     private Shape[] shapeList;
-    private int groupState = 0;
 
     /** LinkedListDeque methods*/
     private Shape parent = this;
@@ -19,10 +18,6 @@ class Group implements Shape {
     public Shape[] getShapeList(){ // get the shapeList
         return shapeList;
     }
-
-    public int getGroupState() { return groupState; }
-    public void incGroupState() { groupState++; }
-    public void decGroupState() { groupState--; }
 
     /** LinkedListDeque methods*/
     public Shape getParent() { return parent; }
@@ -47,7 +42,12 @@ class Group implements Shape {
 
     public void setRight(Shape r) { right = r; }
 
+    /** to ungroup */
+    @Override
     public void removeRefer() {
+        for (Shape item : shapeList) {
+            item.removeRefer();
+        }
         Group ptr = this;
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
@@ -64,16 +64,11 @@ class Group implements Shape {
         for (Shape item : shapeList) {
             item.pointToMe();
         }
-        removeRefer();
-    }
-
-    public void deleteElements() {
-        for (Shape item : shapeList) {
-            if (item instanceof Group) ((Group) item).deleteElements();
-            // if is an individual shape
-            item.removeRefer();
-        }
-        removeRefer();
+        Group ptr = this;
+        ptr.left.setRight(ptr.right);
+        ptr.right.setLeft(ptr.left);
+        parent = this;
+        shapeList = null;
     }
 
     /** method for get the name */

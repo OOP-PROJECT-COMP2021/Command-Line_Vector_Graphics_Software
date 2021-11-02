@@ -8,26 +8,19 @@ public class ClevisTest {
     public void testClevisConstructor(){
         Clevis clevis = new Clevis();
 
-        Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
-        Line b = new Line("LineTestB", 4f,5f,6f,2f);
-        Circle c = new Circle("CircleTestC",2f,5f,1f);
-        Square d = new Square("SquareTestD",6f,4f,1f);
-        Line e = new Line("LineTestE", 5f,5f,7f,5f);
-        Circle f = new Circle("CirclrTestF",5f,0f,2);
-        Rectangle g = new Rectangle("RectTestG", 6f,1f,2f,1f);
 
-        Shape[] shapeList = {a,b,c,d};
-        Group g1 = new Group("GroupTest", shapeList);
+        clevis.drawLine("LineTestA", 0f,4f,4f,0f);
+        clevis.drawLine("LineTestB", 0f,2f,2f,4f);
+        String[] shapeList = {"LineTestA","LineTestB"};
+        clevis.createGroup("GroupTestC",shapeList);
+        clevis.drawSquare("SquareTestD",1f,4f,2f);
+        clevis.drawCircle("CircleTestE",0f,0f,1);
 
-        Shape[] shapeList1 = {e,f};
-        Group g2 = new Group("GroupTest2", shapeList1);
+        System.out.println(clevis.listShape("SquareTestD"));
+        clevis.pickAndMoveShape(1,3,1,1);
+        System.out.println(clevis.listShape("SquareTestD"));
 
-        Shape[] shapeList2 = {g1,g2};
-        Group g3 = new Group("GroupTest3", shapeList2);
-
-        Shape[] shapeList3 = {g1,g2,g3};
-        Group g4 = new Group("GroupTest4", shapeList3);
-
+        clevis.listAllShape();
         //System.out.println(clevis.isIntersected(g1,b));
         //assert true;
     }

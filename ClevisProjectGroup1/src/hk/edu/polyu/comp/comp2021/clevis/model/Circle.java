@@ -7,7 +7,6 @@ class Circle implements Shape{
     private final String name; // store name
     private double radius; // store radius
     private Vec center; // store the center vector
-    private int groupState = 0;
 
     /** LinkedListDeque methods*/
     private Shape parent = this; // parent is itself
@@ -27,10 +26,6 @@ class Circle implements Shape{
     public double getRadius() { // get the radius
         return radius;
     } // method for get the radius
-
-    public int getGroupState() { return groupState; }
-    public void incGroupState() { groupState++; }
-    public void decGroupState() { groupState--; }
 
     /** LinkedListDeque methods*/
     public Shape getParent() { return parent; }

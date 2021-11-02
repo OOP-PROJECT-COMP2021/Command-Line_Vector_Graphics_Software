@@ -11,7 +11,6 @@ class Line implements Shape{
     private final String name; // store name
     private Vec a; // store the vector of end A in the line
     private Vec b; // store the vector of end B in the line
-    private int groupState = 0;
 
     /** LinkedListDeque methods*/
     private Shape parent = this;
@@ -31,9 +30,6 @@ class Line implements Shape{
     public Vec getB() { // get the vector of end B in the line
         return b;
     } // method for get the B end
-    public int getGroupState() { return groupState; }
-    public void incGroupState() { groupState++; }
-    public void decGroupState() { groupState--; }
 
     /** LinkedListDeque methods*/
     public Shape getParent() { return parent; }
@@ -160,6 +156,6 @@ class Line implements Shape{
 
     /** list out information of a shape*/
     public String listInfo(){
-        return "[Line]: Name:"+getName()+"; x1, y1:"+a.getX()+","+a.getX()+"; x2, y2:"+b.getX()+","+b.getY();
+        return "[Line]: Name:"+getName()+"; x1, y1:"+a.getX()+","+a.getY()+"; x2, y2:"+b.getX()+","+b.getY();
     }
 }

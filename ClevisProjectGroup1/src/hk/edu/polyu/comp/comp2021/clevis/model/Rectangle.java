@@ -5,7 +5,7 @@ class Rectangle implements Shape{
     private final String name; // store name
     private double w,h; // store the width and height
     private Line[] FourLines = new Line[4]; // LineArray to store 4 line of the rectangle (0: lineLeft, 1: lineBottom, 2: lineRight, 3: lineTop)
-    private int groupState = 0;
+
 
     /** LinkedListDeque methods*/
     private Shape parent = this;
@@ -32,10 +32,6 @@ class Rectangle implements Shape{
     public Vec getTopLeftCorner(){ // get the vector of the TopLeftCorner
         return getWhichFourLines(0).getA();
     }
-
-    public int getGroupState() { return groupState; }
-    public void incGroupState() { groupState++; }
-    public void decGroupState() { groupState--; }
 
     /** LinkedListDeque methods*/
     public Shape getParent() { return parent; }
