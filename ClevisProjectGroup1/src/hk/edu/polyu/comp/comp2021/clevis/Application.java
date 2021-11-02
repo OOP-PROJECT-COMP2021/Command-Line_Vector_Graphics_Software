@@ -135,8 +135,12 @@ public class Application{
                     String name = scan.next();
                     double inX = Double.parseDouble(scan.next());
                     double inY = Double.parseDouble(scan.next());
+                    System.out.println(inX);
+                    System.out.println(inY);
                     try{
                         clevis.moveShape(name,inX,inY);
+                        System.out.println(inX);
+                        System.out.println(inY);
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
