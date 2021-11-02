@@ -6,6 +6,17 @@ interface Shape{
     /** get the name */
     String getName();
 
+    /** LinkedListDeque methods*/
+    Shape getParent();
+    void setParent(Shape father);
+    Shape getAncester();
+    Shape getLeft();
+    Shape getRight();
+    void setLeft(Shape l);
+    void setRight(Shape r);
+    void removeRefer();
+    void pointToMe();
+
     /** isIntersected() method */
     boolean isIntersected(Line other); // check Shape is intersected with other Line
     boolean isIntersected(Rectangle other); // check Shape is intersected with other Rectangle(and its subclass Square)

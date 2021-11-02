@@ -13,6 +13,11 @@ class Line implements Shape{
     private Vec b; // store the vector of end B in the line
     private int groupState = 0;
 
+    /** LinkedListDeque methods*/
+    private Shape parent = this;
+    private Shape left;
+    private Shape right;
+
     /** constructor */
     Line(String inName, double inX1, double inY1, double inX2, double inY2) {
         name = inName; // initialize the name
@@ -29,6 +34,38 @@ class Line implements Shape{
     public int getGroupState() { return groupState; }
     public void incGroupState() { groupState++; }
     public void decGroupState() { groupState--; }
+
+    /** LinkedListDeque methods*/
+    public Shape getParent() { return parent; }
+
+    public void setParent(Shape father) {
+        // try catch needed
+        if (!(father instanceof Group)) return;
+        parent = father;
+    }
+
+    public Shape getAncester() {
+        Shape ptr = this;
+        while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
+        return ptr;
+    }
+
+    public Shape getLeft() { return left; }
+
+    public Shape getRight() { return right; }
+
+    public void setLeft(Shape l) { left = l; }
+
+    public void setRight(Shape r) { right = r; }
+
+    public void removeRefer() {
+        Line ptr = this;
+        ptr.left.setRight(ptr.right);
+        ptr.right.setLeft(ptr.left);
+        parent = this;
+    }
+
+    public void pointToMe() { this.parent = this; }
 
     /** method for get the name */
     public String getName(){ // get the name

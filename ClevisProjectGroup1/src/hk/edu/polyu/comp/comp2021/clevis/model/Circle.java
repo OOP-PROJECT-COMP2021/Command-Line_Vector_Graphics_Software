@@ -9,6 +9,11 @@ class Circle implements Shape{
     private Vec center; // store the center vector
     private int groupState = 0;
 
+    /** LinkedListDeque methods*/
+    private Shape parent = this; // parent is itself
+    private Shape left;
+    private Shape right;
+
     /** constructor */
     Circle (String inName, double inX, double inY, double inR){
         name = inName;
@@ -26,6 +31,42 @@ class Circle implements Shape{
     public int getGroupState() { return groupState; }
     public void incGroupState() { groupState++; }
     public void decGroupState() { groupState--; }
+
+    /** LinkedListDeque methods*/
+    public Shape getParent() { return parent; }
+
+    public void setParent(Shape father) {
+        // try catch needed
+        if (!(father instanceof Group)) return;
+        parent = father;
+    }
+
+    public Shape getAncester() {
+        Shape ptr = this;
+        while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
+        return ptr;
+    }
+
+    public Shape getLeft() { return left; }
+
+    public Shape getRight() { return right; }
+
+    public void setLeft(Shape l) { left = l; }
+
+    public void setRight(Shape r) { right = r; }
+
+    /** Removes the left reference and right reference. */
+
+    public void removeRefer() {
+        Circle ptr = this;
+        ptr.left.setRight(ptr.right);
+        ptr.right.setLeft(ptr.left);
+        parent = this;
+    }
+
+    public void pointToMe() {
+        this.parent = this;
+    }
 
     /** method for get the name */
     public String getName(){return name;} // get the name

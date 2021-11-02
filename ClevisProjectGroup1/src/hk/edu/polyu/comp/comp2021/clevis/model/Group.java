@@ -5,6 +5,11 @@ class Group implements Shape {
     private Shape[] shapeList;
     private int groupState = 0;
 
+    /** LinkedListDeque methods*/
+    private Shape parent = this;
+    private Shape left;
+    private Shape right;
+
     /** constructor */
     Group(String inName, Shape[] inShapeList){
         name = inName;
@@ -18,6 +23,58 @@ class Group implements Shape {
     public int getGroupState() { return groupState; }
     public void incGroupState() { groupState++; }
     public void decGroupState() { groupState--; }
+
+    /** LinkedListDeque methods*/
+    public Shape getParent() { return parent; }
+
+    public void setParent(Shape father) {
+        // try catch needed
+        if (!(father instanceof Group)) return;
+        parent = father;
+    }
+
+    public Shape getAncester() {
+        Shape ptr = this;
+        while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
+        return ptr;
+    }
+
+    public Shape getLeft() { return left; }
+
+    public Shape getRight() { return right; }
+
+    public void setLeft(Shape l) { left = l; }
+
+    public void setRight(Shape r) { right = r; }
+
+    public void removeRefer() {
+        Group ptr = this;
+        ptr.left.setRight(ptr.right);
+        ptr.right.setLeft(ptr.left);
+        parent = this;
+        shapeList = null;
+    }
+
+    public void pointToMe() {
+        this.parent = this;
+    }
+
+    // check the state before ungroup
+    public void ungroup() {
+        for (Shape item : shapeList) {
+            item.pointToMe();
+        }
+        removeRefer();
+    }
+
+    public void deleteElements() {
+        for (Shape item : shapeList) {
+            if (item instanceof Group) ((Group) item).deleteElements();
+            // if is an individual shape
+            item.removeRefer();
+        }
+        removeRefer();
+    }
 
     /** method for get the name */
     public String getName(){return name;} // get the name
