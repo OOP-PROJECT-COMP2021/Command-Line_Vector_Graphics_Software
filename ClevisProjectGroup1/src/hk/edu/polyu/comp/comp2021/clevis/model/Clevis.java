@@ -33,7 +33,11 @@ public class Clevis {
     }
 
     /** [REQ6] group n n1 n2... */
-    public void createGroup(String inName, String[] inShapeList) {
+    public void createGroup(String inName, String[] inShapeString) {
+        Shape[] inShapeList = new Shape[inShapeString.length];
+        for (int i = 0; i < inShapeString.length; i ++) {
+            inShapeList[i] = storage.get(inShapeString[i]);
+        }
         Group tmp = new Group(inName, inShapeList);
         addShape(inName, tmp);
         for (Shape tmpShape : inShapeList) {
@@ -88,8 +92,10 @@ public class Clevis {
     }
 
     /** [REQ12] intersect n1 n2 */
-    public boolean isIntersected (Shape inShape1, Shape inShape2) {
+    public boolean isIntersected (String inString1, String inString2) {
         // try catch needed
+        Shape inShape1 = storage.get(inString1);
+        Shape inShape2 = storage.get(inString2);
         if (inShape2 instanceof Rectangle) {return inShape1.isIntersected((Rectangle)inShape2);}
         if (inShape2 instanceof Line) {return inShape1.isIntersected((Line)inShape2);}
         if (inShape2 instanceof Circle) {return inShape1.isIntersected((Circle) inShape2);}
