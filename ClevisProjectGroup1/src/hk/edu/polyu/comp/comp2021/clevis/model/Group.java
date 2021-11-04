@@ -153,6 +153,7 @@ class Group implements Shape {
         for (int i = 0; i < this.getShapeList().length; i++){
             outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo()+", ");
         }
+        levelCount = 0; // reset levelCount to 0
         return ("[Group] Name: "+getName()+"; Contained shapes: {"+ outInfo+"\n"+spaceGen(levelCount-4)+"}");
     }
 

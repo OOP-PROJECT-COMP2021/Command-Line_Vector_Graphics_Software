@@ -11,6 +11,10 @@ public class LinkedListDeque<Item> implements Iterable<Item>, Deque<Item> {
         sentinel.setLeft(sentinel);
     }
 
+    public Circle getSentinel() {
+        return sentinel;
+    }
+
     /**
      * Adds an item of type Item to the back of the deque.
      * Assumption: item is never null.

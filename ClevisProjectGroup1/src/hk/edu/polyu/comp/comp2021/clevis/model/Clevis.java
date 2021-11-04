@@ -113,12 +113,16 @@ public class Clevis {
     public void pickAndMoveShape (double inX, double inY, double inDx, double inDy){
         Circle xyPoint = new Circle("xyPoint",inX,inY,0.05d);
         Shape finalShape = xyPoint;
+        Shape inShape = shapeLevel.getSentinel().getRight();
 
-        for (Shape s : shapeLevel) {
-            //if (s instanceof Group) {continue;}
-
-            //if (s.isIntersected(xyPoint)) { finalShape = s.getAncester();}
-            if (s.isIntersected(xyPoint)) { finalShape = s;}
+        while (inShape != shapeLevel.getSentinel()) {
+            if (inShape.isIntersected(xyPoint) && ! (inShape instanceof Group)) {
+                finalShape = inShape.getAncester();
+                inShape = inShape.getAncester().getRight();
+            }
+            else {
+                inShape = inShape.getRight();
+            }
         }
 
         /** picked nothing, throw exception*/
