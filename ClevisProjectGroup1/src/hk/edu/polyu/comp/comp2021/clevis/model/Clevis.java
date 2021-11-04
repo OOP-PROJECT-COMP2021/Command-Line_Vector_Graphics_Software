@@ -115,9 +115,10 @@ public class Clevis {
         Shape finalShape = xyPoint;
 
         for (Shape s : shapeLevel) {
-            if (s instanceof Group) {continue;}
+            //if (s instanceof Group) {continue;}
 
-            if (s.isIntersected(xyPoint)) { finalShape = s.getAncester();}
+            //if (s.isIntersected(xyPoint)) { finalShape = s.getAncester();}
+            if (s.isIntersected(xyPoint)) { finalShape = s;}
         }
 
         /** picked nothing, throw exception*/
