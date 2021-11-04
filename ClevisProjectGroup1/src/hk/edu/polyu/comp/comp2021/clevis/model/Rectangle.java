@@ -110,7 +110,7 @@ class Rectangle implements Shape{
 
     /** list out information of a shape*/
     public String listInfo(){
-        return "[Rectangle]: Name:"+getName()+"; Top-left corner:"+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+"; Width, Height:"+getWidth()+","+getHeight();
+        return "[Rectangle] Name:"+getName()+"; Top-left corner:"+"("+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+")"+"; Width, Height:"+getWidth()+","+getHeight();
     }
 
 }

@@ -155,15 +155,7 @@ public class Clevis {
     /** [REQ14] listAll */
     public void listAllShape() {
         for (Shape inShape : shapeLevel) {
-            if (inShape instanceof Group) {
-                System.out.printf("%s%n", inShape.listInfo());
-                for (Shape item : ((Group) inShape).getShapeList()) {
-                    // try to use recursion
-                }
-                continue;
-            }
-            if (inShape.getParent().getName().equals(inShape.getName())) { continue; }
-
+            System.out.println(inShape.listInfo());
         }
     }
 

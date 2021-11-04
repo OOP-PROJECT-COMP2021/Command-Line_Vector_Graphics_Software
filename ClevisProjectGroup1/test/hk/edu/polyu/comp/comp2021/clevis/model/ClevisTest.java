@@ -15,10 +15,12 @@ public class ClevisTest {
         clevis.createGroup("GroupTestC",shapeList);
         clevis.drawSquare("SquareTestD",1f,4f,2f);
         clevis.drawCircle("CircleTestE",0f,0f,1);
+        String[] shapeList2 = {"GroupTestC","SquareTestD","CircleTestE"};
+        clevis.createGroup("GroupTestF",shapeList2);
 
-        System.out.println(clevis.listShape("SquareTestD"));
-        clevis.pickAndMoveShape(1,3,1,1);
-        System.out.println(clevis.listShape("SquareTestD"));
+        //System.out.println(clevis.listShape("SquareTestD"));
+        //clevis.pickAndMoveShape(1,3,1,1);
+        //System.out.println(clevis.listAllShape());
 
         clevis.listAllShape();
         //System.out.println(clevis.isIntersected(g1,b));

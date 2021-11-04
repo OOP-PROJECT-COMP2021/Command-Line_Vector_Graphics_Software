@@ -156,6 +156,6 @@ class Line implements Shape{
 
     /** list out information of a shape*/
     public String listInfo(){
-        return "[Line]: Name:"+getName()+"; x1, y1:"+a.getX()+","+a.getY()+"; x2, y2:"+b.getX()+","+b.getY();
+        return "[Line] Name:"+getName()+"; x1, y1:"+"("+a.getX()+","+a.getY()+")"+"; x2, y2:"+"("+b.getX()+","+b.getY()+")";
     }
 }

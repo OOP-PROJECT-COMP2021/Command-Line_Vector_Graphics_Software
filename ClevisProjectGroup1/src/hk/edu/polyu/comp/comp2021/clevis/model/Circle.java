@@ -107,6 +107,6 @@ class Circle implements Shape{
 
     /** list out information of a shape*/
     public String listInfo(){
-        return "[Circle]: Name:"+getName()+"; Center:"+getCenter().getX()+","+getCenter().getY()+"; Radius:"+getRadius();
+        return "[Circle] Name:"+getName()+"; Center:"+"("+getCenter().getX()+","+getCenter().getY()+")"+"; Radius:"+getRadius();
     }
 }

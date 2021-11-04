@@ -143,19 +143,24 @@ class Group implements Shape {
         return (minBottom);
     }
 
-
     /** list out information of a shape */
-    public String listInfo(){
-        StringBuilder outStr = new StringBuilder();
-        StringBuilder outInfo = new StringBuilder();
-        StringBuilder outIndex = new StringBuilder("");
-        for (int i = 0; i < this.getShapeList().length; i++){
-            //outStr.append(this.getShapeList()[i].getName()+", ");
-            if (this.getShapeList()[i] instanceof Group){outInfo.append("\n"+(this.getShapeList()[i].listInfo()+", "));}
-            else {outInfo.append(this.getShapeList()[i].listInfo()+", ");}
-        }
-        outInfo.delete(outInfo.length()-2,outInfo.length());
+    public int levelCount = 0;
 
-        return ("[Group]: Name: "+getName()+"; Contained shapes: {"+ outInfo+"\n}");
+        /** recursion for listInfo */
+    public String listInfo(){
+        StringBuilder outInfo = new StringBuilder();
+        levelCount+=4;
+        for (int i = 0; i < this.getShapeList().length; i++){
+            outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo()+", ");
+        }
+        return ("[Group] Name: "+getName()+"; Contained shapes: {"+ outInfo+"\n"+spaceGen(levelCount-4)+"}");
+    }
+
+    private String spaceGen(int inNum) {
+        StringBuilder outStr = new StringBuilder();
+        for (int i = 0; i < inNum; i++) {
+            outStr.append(" ");
+        }
+        return outStr.toString();
     }
 }
