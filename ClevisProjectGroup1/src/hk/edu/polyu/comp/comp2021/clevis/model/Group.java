@@ -52,7 +52,7 @@ class Group implements Shape {
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
         parent = this;
-        shapeList = null;
+        //shapeList = null;
     }
 
     public void pointToMe() {
@@ -144,17 +144,19 @@ class Group implements Shape {
     }
 
     /** list out information of a shape */
-    public int levelCount = 0;
+    private static int levelCount = 0;
+    public static void resetLevelCount() {
+        levelCount = 0;
+    }
 
         /** recursion for listInfo */
     public String listInfo(){
         StringBuilder outInfo = new StringBuilder();
         levelCount+=4;
         for (int i = 0; i < this.getShapeList().length; i++){
-            outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo()+", ");
+            outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo());
         }
-        levelCount = 0; // reset levelCount to 0
-        return ("[Group] Name: "+getName()+"; Contained shapes: {"+ outInfo+"\n"+spaceGen(levelCount-4)+"}");
+        return ("[Group] Name: "+getName()+"; Contained shapes: "+ outInfo);
     }
 
     private String spaceGen(int inNum) {
