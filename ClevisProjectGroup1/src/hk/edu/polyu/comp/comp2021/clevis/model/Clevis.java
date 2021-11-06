@@ -389,6 +389,7 @@ public class Clevis {
             UndoUnGroup(endCmd[1][0],endCmd[2]);
         }
         else if(endCmd[0][0].equals("delete")) {
+            cmdStack.pop();
             UndoDelete(endCmd[1][0]);
             delRedoTargets.push(delTargets.pop());
         }

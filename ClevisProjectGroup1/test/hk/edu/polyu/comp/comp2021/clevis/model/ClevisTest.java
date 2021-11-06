@@ -108,7 +108,7 @@ public class ClevisTest {
 
         clevis.drawSquare("SquTestE", 0f,2f,4f);
 
-        String[] shapeList2 = {"SquTestE","C"};
+        String[] shapeList2 = {"SquTestE","CircleTestD"};
         clevis.createGroup("F",shapeList2);
 
         clevis.drawLine("LineTestG", 3f,2f,4f,2f);
@@ -119,7 +119,15 @@ public class ClevisTest {
         System.out.println("-------after delete F --------");
         System.out.println(clevis.listAllShape());
 
-        System.out.println("-------after undo--------");
+        clevis.deleteShapeWithName("C");
+        System.out.println("-------after delete C --------");
+        System.out.println(clevis.listAllShape());
+
+        System.out.println("-------after undo1--------");
+        clevis.UndoControl();
+        System.out.println(clevis.listAllShape());
+
+        System.out.println("-------after undo2--------");
         clevis.UndoControl();
         System.out.println(clevis.listAllShape());
     }
