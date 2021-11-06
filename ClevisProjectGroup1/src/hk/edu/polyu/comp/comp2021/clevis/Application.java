@@ -4,6 +4,8 @@ import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
 import org.w3c.dom.DOMImplementation;
 
 import java.awt.*;
+import java.io.*;
+import java.util.Random;
 import java.util.Scanner;
 
 import static java.rmi.activation.ActivationGroup.createGroup;
@@ -15,9 +17,26 @@ public class Application{
         Clevis clevis = new Clevis();
         // Initialize and utilize the system
         System.out.println("Welcome to use our graphics function");
+        Random rand = new Random();
+        int nameRand = rand.nextInt(100);
+        File writeF = new File("record"+nameRand+".txt");
+        writeF.createNewFile();
+        BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
+        File readF = new File("record"+nameRand+".txt");
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF)); // 建立一个输入流对象reader
+        BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
         while (true) {
             System.out.println("Please type your code:");
-            Scanner scan = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
+            int times = 0;
+            out.write(scanner.nextLine()+"\n");
+            out.flush();
+            String line = br.readLine();
+            for(int i = 0;i<times;i++)  {
+                line = br.readLine(); // 一次读入一行数据
+            }
+            times++;
+            Scanner scan = new Scanner(line);
             if (scan.hasNext()) {
                 String str = scan.next();
                 /** [Rectangle]*/
@@ -44,10 +63,10 @@ public class Application{
                     Double Y2 = Double.parseDouble(scan.next());
                     try{
                         clevis.drawLine(name,X1,Y1,X2,Y2);
+                        System.out.println("Successfully add new "+str+" called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2+")");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully add new "+str+" called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2+")");
                 }
 
                 /** [Circle]*/
@@ -58,10 +77,10 @@ public class Application{
                     Double inR = Double.parseDouble(scan.next());
                     try{
                         clevis.drawCircle(name,inX,inY,inR);
+                        System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
                 }
 
                 /** [Square]*/
@@ -72,10 +91,10 @@ public class Application{
                     Double inL = Double.parseDouble(scan.next());
                     try{
                         clevis.drawSquare(name,inX,inY,inL);
+                        System.out.println("Successfully add new "+str+" called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully add new "+str+" called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
                 }
 
                 /** [Group]*/
@@ -88,10 +107,10 @@ public class Application{
                     }
                         try {
                             clevis.createGroup(name, strList);
+                            System.out.println("Successfully create a new group called " + name + " which contains " + sb);
                         } catch (IllegalArgumentException e) {
                             System.out.println("Error for " + e);
                         }
-                    System.out.println("Successfully create a new group called " + name + " which contains " + sb);
                 }
 
                 /** [Ungroup]*/
