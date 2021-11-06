@@ -17,6 +17,8 @@ class Line implements Shape{
     private Shape left;
     private Shape right;
 
+    /** visually */
+
     /** constructor */
     Line(String inName, double inX1, double inY1, double inX2, double inY2) {
         name = inName; // initialize the name

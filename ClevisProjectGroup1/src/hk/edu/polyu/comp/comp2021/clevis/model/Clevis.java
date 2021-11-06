@@ -157,10 +157,12 @@ public class Clevis {
     }
 
     /** [REQ14] listAll */
-    public void listAllShape() {
+    public String listAllShape() {
+        StringBuilder outStr = new StringBuilder();
         for (Shape inShape : shapeLevel) {
-            System.out.println(inShape.listInfo());
+            outStr.append(inShape.listInfo()).append("\n");
         }
+        return outStr.toString();
     }
 
     /** add a shape to storage */
