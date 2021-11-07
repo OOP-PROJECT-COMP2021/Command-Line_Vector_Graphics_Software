@@ -1,16 +1,9 @@
 package hk.edu.polyu.comp.comp2021.clevis;
 
 import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
-import org.w3c.dom.DOMImplementation;
-
-import java.awt.*;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
-
-import static java.rmi.activation.ActivationGroup.createGroup;
-import static java.time.Clock.system;
-
 public class Application{
 
     public static void main(String[] args) throws Exception {
@@ -25,6 +18,7 @@ public class Application{
         File readF = new File("record"+nameRand+".txt");
         InputStreamReader reader = new InputStreamReader(new FileInputStream(readF)); // 建立一个输入流对象reader
         BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+        System.out.println("Input record store in the \"record"+nameRand+".txt\"");
         while (true) {
             System.out.println("Please type your code:");
             Scanner scanner = new Scanner(System.in);
@@ -116,24 +110,22 @@ public class Application{
                 /** [Ungroup]*/
                 else if (str.equals("ungroup")){
                     String name = scan.next();
-                    if (!clevis.containsName(name)){
-                        System.out.println("Unsuccessfully ungroup "+name+" because can't find the name in storage!");
-                    }
-                    else{
+                    try{
                         clevis.unGroup(name);
                         System.out.println("Successfully ungroup the "+name);
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Unsuccessfully ungroup "+name+" because can't find the name in storage!");
                     }
                 }
 
                 /** [Delete]*/
                 else if (str.equals("delete")){
                     String name = scan.next();
-                    if (!clevis.containsName(name)){
-                        System.out.println("Unsuccessfully delete because can't find the name in storage!");
-                    }
-                    else{
+                    try{
                         clevis.deleteShapeWithName(name);
                         System.out.println("Successfully delete the shape called "+name);
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Unsuccessfully delete because can't find the name in storage!");
                     }
                 }
 
@@ -160,11 +152,11 @@ public class Application{
                         clevis.moveShape(name,inX,inY);
                         System.out.println(inX);
                         System.out.println(inY);
+                        System.out.println("Successfully move to point ("+inX+","+inY+")");
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully move to point ("+inX+","+inY+")");
                 }
 
                 /** [pick-and-move]*/
@@ -175,10 +167,10 @@ public class Application{
                     double inDy = Double.parseDouble(scan.next());
                     try{
                         clevis.pickAndMoveShape(inX,inY,inDx,inDy);
+                        System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+inDx+","+inDy+")");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+inDx+","+inDy+")");
                 }
 
                 /** [intersect]*/
@@ -187,37 +179,43 @@ public class Application{
                     String shape2 = scan.next();
                     try{
                         clevis.isIntersected(shape1,shape2);
+                        if (clevis.isIntersected(shape1,shape2)==true){
+                            System.out.println("They are intersected!");
+                        }
+                        else{
+                            System.out.println("They are not intersected");
+                        }
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    if (clevis.isIntersected(shape1,shape2)==true){
-                        System.out.println("They are intersected!");
-                    }
-                    else{
-                        System.out.println("They are not intersected");
-                    }
+
                 }
 
                 /** [List]*/
                 else if (str.equals("list")){
                     String name = scan.next();
-                    if (!clevis.containsName(name)){
-                        System.out.println("Unsuccessfully list "+name+" because can't find the name in storage!");
-                    }
-                    else{
+                    try{
                         System.out.println();
                         System.out.println("Here is the information about "+clevis.listShape(name));
+                    }catch(IllegalArgumentException e){
+                        System.out.println("Unsuccessfully list "+name+" because can't find the name in storage!");
                     }
                 }
 
                 /** [ListAll]*/
                 else if (str.equalsIgnoreCase("listAll")){
-                    if (clevis.getSize()==0){
+                    try{
+                        System.out.println(clevis.listAllShape());
+                    }catch(IllegalArgumentException e){
                         System.out.println("Unsuccessfully listAll because can't find the name in storage!");
                     }
-                    else{
-                        System.out.println(clevis.listAllShape());
+                }
+                else if(str.equals("undo")){
+                    try{
+
+                    }catch (IllegalArgumentException e){
+                        System.out.println("No operation for undo！");
                     }
                 }
 
