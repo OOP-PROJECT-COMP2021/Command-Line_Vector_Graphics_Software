@@ -133,7 +133,7 @@ public class Application{
                 else if (str.equals("boundingbox")){
                     String name = scan.next();
                     try{
-                        clevis.createBoundingBox(name);
+                        System.out.println(clevis.createBoundingBox(name));
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);

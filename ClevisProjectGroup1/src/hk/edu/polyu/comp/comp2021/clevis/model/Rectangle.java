@@ -56,7 +56,7 @@ class Rectangle implements Shape{
         Rectangle ptr = this;
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
-        parent = this;
+        //parent = this;
     }
 
     public void pointToMe() {

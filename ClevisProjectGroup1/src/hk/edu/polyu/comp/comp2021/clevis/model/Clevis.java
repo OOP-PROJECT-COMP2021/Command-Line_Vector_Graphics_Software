@@ -261,13 +261,13 @@ public class Clevis {
     }
 
     /** [REQ9] boundingbox n */
-    public void createBoundingBox (String inName){
+    public String createBoundingBox (String inName){
         if (!containsName(inName)) {
             throw new IllegalArgumentException();
         }
         BoundingBox inBoundingBox = new BoundingBox(storage.get(inName));
         inBoundingBox.getBoundingBox();
-        System.out.println(inBoundingBox.listInfo());
+        return inBoundingBox.listInfo();
     }
 
     /** [REQ10] move n dx dy */
@@ -342,7 +342,8 @@ public class Clevis {
             }
             /** ---------------*/
 
-            moveShape(finalShape.getName(),inDx,inDy);
+            storage.get(finalShape.getName()).move(inDx, inDy);
+
         }
     }
 
@@ -371,9 +372,12 @@ public class Clevis {
     /** [REQ14] listAll */
     public String listAllShape() {
         StringBuilder outStr = new StringBuilder();
-        Group.resetLevelCount();
+
         for (Shape inShape : shapeLevel) {
-            outStr.append(inShape.listInfo()).append("\n");
+            if (inShape.getParent()==inShape) {
+                outStr.append(inShape.listInfo()).append("\n");
+                Group.resetLevelCount();
+            }
         }
         return outStr.toString();
     }
@@ -399,6 +403,9 @@ public class Clevis {
     /** -----------Undo-----------*/
         /** Undo Control methods: */
     public void UndoControl() {
+        if (cmdStack.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         undoFlag = true;
         String[][] cmdStr = new String[1][1];
         cmdStr[0][0] = "undo";

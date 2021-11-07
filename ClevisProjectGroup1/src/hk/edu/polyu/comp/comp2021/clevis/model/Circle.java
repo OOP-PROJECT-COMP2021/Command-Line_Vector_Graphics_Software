@@ -56,7 +56,7 @@ class Circle implements Shape{
         Circle ptr = this;
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
-        parent = this;
+        //parent = this;
     }
 
     public void pointToMe() {

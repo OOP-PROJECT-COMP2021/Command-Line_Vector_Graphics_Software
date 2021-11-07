@@ -51,7 +51,7 @@ class Group implements Shape {
         Group ptr = this;
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
-        parent = this;
+        //parent = this;
         //shapeList = null;
     }
 
@@ -156,6 +156,7 @@ class Group implements Shape {
         for (int i = 0; i < this.getShapeList().length; i++){
             outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo());
         }
+        levelCount-=4;
         return ("[Group] Name: "+getName()+"; Contained shapes: "+ outInfo);
     }
 
