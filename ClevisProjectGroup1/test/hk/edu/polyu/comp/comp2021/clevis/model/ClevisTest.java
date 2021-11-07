@@ -115,19 +115,49 @@ public class ClevisTest {
         System.out.println("-------original--------");
         System.out.println(clevis.listAllShape());
 
-        clevis.deleteShapeWithName("F");
-        System.out.println("-------after delete F --------");
-        System.out.println(clevis.listAllShape());
+//        clevis.deleteShapeWithName("F");
+//        System.out.println("-------after delete F --------");
+//        System.out.println(clevis.listAllShape());
+//
+//        clevis.deleteShapeWithName("C");
+//        System.out.println("-------after delete C --------");
+//        System.out.println(clevis.listAllShape());
+//
+//        System.out.println("-------after undo1--------");
+//        clevis.UndoControl();
+//        System.out.println(clevis.listAllShape());
 
-        clevis.deleteShapeWithName("C");
-        System.out.println("-------after delete C --------");
-        System.out.println(clevis.listAllShape());
-
-        System.out.println("-------after undo1--------");
-        clevis.UndoControl();
+        System.out.println("-------after move--------");
+        clevis.moveShape("F",1,1);
         System.out.println(clevis.listAllShape());
 
         System.out.println("-------after undo2--------");
+        clevis.UndoControl();
+        System.out.println(clevis.listAllShape());
+    }
+    @Test
+    public void testRedo() {
+        Clevis clevis = new Clevis();
+
+        clevis.drawLine("LineTestA", 1f,2f,2f,2f);
+        clevis.drawRectangle("RecTestB", 0f,2f,2f,4f);
+
+        clevis.deleteShapeWithName("LineTestA");
+        clevis.deleteShapeWithName("RecTestB");
+
+        System.out.println("-------original--------");
+        System.out.println(clevis.listAllShape());
+
+        System.out.println("-------after undo twice--------");
+        clevis.UndoControl();
+        clevis.UndoControl();
+        System.out.println(clevis.listAllShape());
+
+        System.out.println("-------after redo once--------");
+        clevis.RedoControl();
+        System.out.println(clevis.listAllShape());
+
+        System.out.println("-------after undo once--------");
         clevis.UndoControl();
         System.out.println(clevis.listAllShape());
     }

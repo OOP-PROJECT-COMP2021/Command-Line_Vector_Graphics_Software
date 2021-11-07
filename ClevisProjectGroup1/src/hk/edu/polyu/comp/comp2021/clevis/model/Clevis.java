@@ -11,14 +11,14 @@ public class Clevis {
     //private ArrayList<String> shapeLevel = new ArrayList<String>();
     private LinkedListDeque<Shape> shapeLevel = new LinkedListDeque<>();
 
-
-    /** for Undo*/
+    /** for Undo & Redo*/
     private Stack<String[][]> cmdStack = new Stack<>();
     private Stack<String[][]> cmdRedoStack = new Stack<>();
     private boolean undoFlag = false;
-
+    private boolean redoFlag = false;
     private Stack<Shape> delTargets = new Stack<>();
     private Stack<Shape> delRedoTargets = new Stack<>();
+    /** ---------------*/
 
     /** [REQ2] rectangle n x y w h */
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
@@ -26,14 +26,14 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
 
-        /** for Undo*/
-
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
-//            cmdStack.clear();cmdRedoStack.clear();
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[6][1];
             cmdStr[0][0] = "rectangle";
             cmdStr[1][0] = inName;
@@ -42,11 +42,11 @@ public class Clevis {
             cmdStr[4][0] = String.valueOf(inW);
             cmdStr[5][0] = String.valueOf(inH);
             cmdStack.push(cmdStr);
-
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         addShape(inName, new Rectangle(inName,inX,inY,inW,inH));
     }
@@ -57,12 +57,14 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
 
-        /** for Undo*/
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[6][1];
             cmdStr[0][0] = "line";
             cmdStr[1][0] = inName;
@@ -71,11 +73,11 @@ public class Clevis {
             cmdStr[4][0] = String.valueOf(inX2);
             cmdStr[5][0] = String.valueOf(inX2);
             cmdStack.push(cmdStr);
-
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         addShape(inName, new Line(inName,inX1,inY1,inX2,inY2));
     }
@@ -86,12 +88,14 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
 
-        /** for Undo*/
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[5][1];
             cmdStr[0][0] = "circle";
             cmdStr[1][0] = inName;
@@ -99,11 +103,11 @@ public class Clevis {
             cmdStr[3][0] = String.valueOf(inY);
             cmdStr[4][0] = String.valueOf(inR);
             cmdStack.push(cmdStr);
-
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         addShape(inName, new Circle(inName,inX,inY,inR));
     }
@@ -114,12 +118,14 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
 
-        /** for Undo*/
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[5][1];
             cmdStr[0][0] = "square";
             cmdStr[1][0] = inName;
@@ -127,11 +133,11 @@ public class Clevis {
             cmdStr[3][0] = String.valueOf(inY);
             cmdStr[4][0] = String.valueOf(inL);
             cmdStack.push(cmdStr);
-
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         addShape(inName, new Square(inName, inX, inY, inL));
     }
@@ -148,22 +154,26 @@ public class Clevis {
             inShapeList[i] = storage.get(inShapeString[i]);
         }
 
-        /** for Undo*/
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
 
             String[][] cmdStr = new String[3][1];
             cmdStr[0][0] = "group";
             cmdStr[1][0] = inName;
-            cmdStr[2][0] = Arrays.toString(inShapeString);
+            cmdStr[2] = inShapeString;
             cmdStack.push(cmdStr);
 
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         Group tmp = new Group(inName, inShapeList);
         addShape(inName, tmp);
@@ -172,32 +182,32 @@ public class Clevis {
 
     /** [REQ7] ungroup n */
     public void unGroup(String inName) {
-        if ((!containsName(inName)) || (!(storage.get(inName) instanceof Group)) || (!(((storage.get(inName)).getParent()).getName())
+        if ((!containsName(inName)) || (!(storage.get(inName) instanceof Group)) ||
+                (!(((storage.get(inName)).getParent()).getName())
                 .equals((storage.get(inName)).getName()))) { throw new IllegalArgumentException(); }
 
-
-        /** for Undo*/
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[3][1];
             cmdStr[0][0] = "ungroup";
             cmdStr[1][0] = inName;
-
             String [] shapeList = new String[((Group) storage.get(inName)).getShapeList().length];
             for (int i=0;i<((Group) storage.get(inName)).getShapeList().length;i++) {
                 shapeList[i] = ((Group) storage.get(inName)).getShapeList()[i].getName();
             }
-
             cmdStr[2] = shapeList;
             cmdStack.push(cmdStr);
-
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
+        /** ---------------*/
 
         ((Group)(storage.get(inName))).ungroup();
         storage.remove(inName);
@@ -213,13 +223,14 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
 
-        /** for Undo*/
-
-        if (undoFlag == true && !cmdStack.peek()[0][0].equals("undo")) {
+        /** for Undo & Redo*/
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear(); delRedoTargets.clear();
+            undoFlag = false;
+            redoFlag = false;
         }
-        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo")) {
-
+        if  (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
             String[][] cmdStr = new String[3][1];
             cmdStr[0][0] = "delete";
             cmdStr[1][0] = inName;
@@ -229,17 +240,15 @@ public class Clevis {
                 for (int i=0;i<((Group) storage.get(inName)).getShapeList().length;i++) {
                     shapeList[i] = ((Group) storage.get(inName)).getShapeList()[i].getName();
                 }
-
                 cmdStr[2] = shapeList;
             }
             cmdStack.push(cmdStr);
         }
-        else if(cmdStack.peek()[0][0].equals("undo")) {
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
             cmdStack.pop();
         }
-
         delTargets.push(storage.get(inName));
-        /** for Undo*/
+        /** ---------------*/
 
         (storage.get(inName)).removeRefer();
 
@@ -248,7 +257,6 @@ public class Clevis {
             Shape[] container = tmp.getShapeList();
             int i = container.length;
             for (Shape a : container) {
-
                 storage.remove(a.getName());
             }
         }
@@ -267,19 +275,33 @@ public class Clevis {
 
     /** [REQ10] move n dx dy */
     public void moveShape(String inName, double inDx, double inDy) {
-        if (!(storage.get(inName).getParent().getName().equals(storage.get(inName).getName()) || (!containsName(inName)))) {
+        if ((!containsName(inName)) ||
+                !(storage.get(inName).getParent().getName().equals(storage.get(inName).getName()) )) {
             throw new IllegalArgumentException();
         }
-        storage.get(inName).move(inDx, inDy);
 
-        /** for Undo*/
-        if (undoFlag) {cmdStack.clear();cmdRedoStack.clear();}
-        String[][] cmdStr = new String[4][1];
-        cmdStr[0][0] = "move";
-        cmdStr[1][0] = inName;
-        cmdStr[2][0] = String.valueOf(inDx);
-        cmdStr[3][0] = String.valueOf(inDy);
-        cmdStack.push(cmdStr);
+        /** for Undo & Redo*/
+
+        if ((undoFlag == true || redoFlag == true) &&
+                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+            cmdRedoStack.clear();
+            undoFlag = false;
+            redoFlag = false;
+        }
+        if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
+            String[][] cmdStr = new String[4][1];
+            cmdStr[0][0] = "move";
+            cmdStr[1][0] = inName;
+            cmdStr[2][0] = String.valueOf(inDx);
+            cmdStr[3][0] = String.valueOf(inDy);
+            cmdStack.push(cmdStr);
+        }
+        else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
+            cmdStack.pop();
+        }
+        /** ---------------*/
+
+        storage.get(inName).move(inDx, inDy);
     }
 
     /** [REQ11] pick-and-move x y dx dy */
@@ -303,17 +325,28 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
         else {
+            /** for Undo & Redo*/
+            if ((undoFlag == true || redoFlag == true) &&
+                    (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                cmdRedoStack.clear();
+                undoFlag = false;
+                redoFlag = false;
+            }
+            if (cmdStack.isEmpty() || !cmdStack.peek()[0][0].equals("undo") && !cmdStack.peek()[0][0].equals("redo")) {
+                String[][] cmdStr = new String[4][1];
+                cmdStr[0][0] = "pick-and-move";
+                cmdStr[1][0] = finalShape.getName();
+                cmdStr[2][0] = String.valueOf(inDx);
+                cmdStr[3][0] = String.valueOf(inDy);
+                cmdStack.push(cmdStr);
+            }
+            else if(cmdStack.peek()[0][0].equals("undo")||cmdStack.peek()[0][0].equals("redo")) {
+                cmdStack.pop();
+            }
+            /** ---------------*/
+
             moveShape(finalShape.getName(),inDx,inDy);
         }
-
-        /** for Undo*/
-        if (undoFlag) {cmdStack.clear();cmdRedoStack.clear();}
-        String[][] cmdStr = new String[4][1];
-        cmdStr[0][0] = "pick-and-move";
-        cmdStr[1][0] = finalShape.getName();
-        cmdStr[2][0] = String.valueOf(inDx);
-        cmdStr[3][0] = String.valueOf(inDy);
-        cmdStack.push(cmdStr);
     }
 
     /** [REQ12] intersect n1 n2 */
@@ -345,8 +378,6 @@ public class Clevis {
         for (Shape inShape : shapeLevel) {
             outStr.append(inShape.listInfo()).append("\n");
         }
-
-
         return outStr.toString();
     }
 
@@ -368,18 +399,17 @@ public class Clevis {
         return storage.size();
     }
 
-    /** Undo methods: */
+    /** -----------Undo-----------*/
+        /** Undo Control methods: */
     public void UndoControl() {
         undoFlag = true;
-
-
         String[][] cmdStr = new String[1][1];
         cmdStr[0][0] = "undo";
         cmdStack.push(cmdStr);
-
         String[][] endCmd = cmdStack.elementAt(cmdStack.size()-2);
 
-        if (endCmd[0][0].equals("rectangle")||endCmd[0][0].equals("line")||endCmd[0][0].equals("circle")||endCmd[0][0].equals("square")) {
+        if (endCmd[0][0].equals("rectangle")||endCmd[0][0].equals("line")||
+                endCmd[0][0].equals("circle")||endCmd[0][0].equals("square")) {
             UndoDraw(endCmd[1][0]);
         }
         else if(endCmd[0][0].equals("group")) {
@@ -396,31 +426,30 @@ public class Clevis {
         else if(endCmd[0][0].equals("move")||endCmd[0][0].equals("pick-and-move")) {
             UndoMove(endCmd[1][0],Double.parseDouble(endCmd[2][0]),Double.parseDouble(endCmd[3][0]));
         }
-
         cmdRedoStack.push(cmdStack.pop());
     }
 
-    /** Undo drawing = deleteShapeWithName */
+        /** Undo drawing = deleteShapeWithName */
     public void UndoDraw(String inName) {
         deleteShapeWithName(inName);
     }
 
-    /** Undo group = unGroup */
+        /** Undo group = unGroup */
     public void UndoGroup(String inName) {
         unGroup(inName);
     }
 
-    /** Undo ungroup = Group */
+        /** Undo ungroup = Group */
     public void UndoUnGroup(String inName, String[] inShapeString) {
        createGroup(inName,inShapeString);
     }
 
-    /** Undo move = move back*/
+        /** Undo move = move back*/
     public void UndoMove(String inName, double inDx, double inDy){
         moveShape(inName,-inDx,-inDy);
     }
 
-    /** Undo delete = add back*/
+        /** Undo delete = add back*/
     public void UndoDelete(String inName) {
         Shape inShape = delTargets.peek();
         if (inShape.getName().equals(inName)) {
@@ -448,4 +477,52 @@ public class Clevis {
             }
         }
     }
+    /** ---------------*/
+
+    /** -----------Redo----------*/
+        /** Undo Control methods: */
+    public void RedoControl() {
+        if (cmdRedoStack.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            redoFlag = true;
+            String[][] cmdStr = new String[1][1];
+            cmdStr[0][0] = "redo";
+            cmdStack.push(cmdStr);
+
+            String[][] endRedoCmd = cmdRedoStack.peek();
+
+            if (endRedoCmd[0][0].equals("rectangle")) {
+                drawRectangle(endRedoCmd[1][0],Double.parseDouble(endRedoCmd[2][0]),Double.parseDouble(endRedoCmd[3][0]),
+                        Double.parseDouble(endRedoCmd[4][0]),Double.parseDouble(endRedoCmd[5][0]));
+            }
+            else if (endRedoCmd[0][0].equals("line")) {
+                drawLine(endRedoCmd[1][0],Double.parseDouble(endRedoCmd[2][0]),Double.parseDouble(endRedoCmd[3][0]),
+                        Double.parseDouble(endRedoCmd[4][0]),Double.parseDouble(endRedoCmd[5][0]));
+            }
+            else if (endRedoCmd[0][0].equals("circle")) {
+                drawCircle(endRedoCmd[1][0],Double.parseDouble(endRedoCmd[2][0]),
+                        Double.parseDouble(endRedoCmd[3][0]),Double.parseDouble(endRedoCmd[4][0]));
+            }
+            else if (endRedoCmd[0][0].equals("square")) {
+                drawSquare(endRedoCmd[1][0],Double.parseDouble(endRedoCmd[2][0]),
+                        Double.parseDouble(endRedoCmd[3][0]),Double.parseDouble(endRedoCmd[4][0]));
+            }
+            else if(endRedoCmd[0][0].equals("group")) {
+                createGroup(endRedoCmd[1][0],endRedoCmd[2]);
+            }
+            else if(endRedoCmd[0][0].equals("ungroup")) {
+                unGroup(endRedoCmd[1][0]);
+            }
+            else if(endRedoCmd[0][0].equals("delete")) {
+                deleteShapeWithName(endRedoCmd[1][0]);
+            }
+            else if(endRedoCmd[0][0].equals("move")||endRedoCmd[0][0].equals("pick-and-move")) {
+                moveShape(endRedoCmd[1][0],Double.parseDouble(endRedoCmd[2][0]),Double.parseDouble(endRedoCmd[3][0]));
+            }
+            cmdStack.push(cmdRedoStack.pop());
+        }
+    }
+    /** ---------------*/
 }
