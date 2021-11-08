@@ -115,6 +115,10 @@ public class ClevisTest {
         System.out.println(clevis.listAllShape());
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.drawRectangle("RecTestC",0.0d,2.0d,4d,2d);
+        System.out.println(clevis.listShape("RecTestC"));
+
+
     }
 
     @Test
@@ -129,6 +133,8 @@ public class ClevisTest {
         System.out.println(clevis.listAllShape());
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.drawLine("LineTestE",0.0d,2.0d,4d,5d);
+
     }
 
     @Test
@@ -143,6 +149,8 @@ public class ClevisTest {
         System.out.println(clevis.listAllShape());
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.drawCircle("CircleTestG",0.0d,2.0d,4d);
+
     }
 
     @Test
@@ -157,6 +165,8 @@ public class ClevisTest {
         System.out.println(clevis.listAllShape());
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.drawSquare("SquareTestI",1.0d,2.0d,4d);
+
     }
 
     @Test
@@ -209,11 +219,19 @@ public class ClevisTest {
         clevis.RedoControl();
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        String[] shapeListEFGABCD = {"G_EFG","G_GAB_CD"};
+        clevis.createGroup("shapeListEFGABCD",shapeListEFGABCD);
     }
 
     @Test
     public void unGroupTest() {
         Clevis clevis = new Clevis();
+
+        clevis.drawRectangle("RecTestA2",0.0d,2.0d,4d,2d);
+        clevis.drawRectangle("RecTestB2",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
+        String[] shapeListAB2 = {"RecTestA2","RecTestB2"};
+        clevis.createGroup("GAB2",shapeListAB2);
+
         clevis.drawRectangle("RecTestA",0.0d,2.0d,4d,2d);
         clevis.drawRectangle("RecTestB",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
         String[] shapeListAB = {"RecTestA","RecTestB"};
@@ -235,6 +253,9 @@ public class ClevisTest {
         clevis.RedoControl();
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.unGroup("GAB2");
+
+
     }
 
     @Test
@@ -269,6 +290,7 @@ public class ClevisTest {
         clevis.RedoControl();
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.deleteShapeWithName("G_EFG");
 
 
     }
@@ -331,6 +353,8 @@ public class ClevisTest {
         clevis.RedoControl();
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+        clevis.moveShape("SquareTestH",1d,1d);
+
     }
 
     @Test
@@ -366,6 +390,69 @@ public class ClevisTest {
         clevis.RedoControl();
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
+
+        clevis.pickAndMoveShape(4,5,1,1);
+
+        clevis.pickAndMoveShape(1,2,1,1);
+        clevis.pickAndMoveShape(1,7,1,1);
+
+
+    }
+
+    @Test
+    public void intersectTest() {
+        Clevis clevis = new Clevis();
+        clevis.drawRectangle("RecTestA",0.0d,2.0d,4d,2d);
+        clevis.drawRectangle("RecTestB",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
+
+        clevis.drawLine("LineTestC",0.0d,2.0d,4d,5d);
+
+        clevis.drawLine("LineTestD",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
+
+        clevis.drawSquare("SquareTestH",4.344563454234696d,2.324738463657d,10.3472384987652397d);
+
+        clevis.drawCircle("CircleTestE",0.0d,2.0d,4d);
+        clevis.drawCircle("CircleTestF",4.344563454234696d,3.324738463657d,10.3472384987652397d);
+
+        clevis.drawSquare("SquareTestG",1.0d,2.0d,4d);
+
+        System.out.println(clevis.isIntersected("RecTestA","RecTestB"));
+        System.out.println(clevis.isIntersected("RecTestA","LineTestC"));
+        System.out.println(clevis.isIntersected("RecTestB","CircleTestE"));
+        System.out.println(clevis.isIntersected("RecTestB","SquareTestG"));
+
+        System.out.println(clevis.isIntersected("LineTestC","RecTestB"));
+        System.out.println(clevis.isIntersected("LineTestC","LineTestD"));
+        System.out.println(clevis.isIntersected("LineTestC","SquareTestH"));
+        System.out.println(clevis.isIntersected("LineTestC","CircleTestF"));
+
+        System.out.println(clevis.isIntersected("CircleTestE","CircleTestF"));
+        System.out.println(clevis.isIntersected("CircleTestE","RecTestA"));
+        System.out.println(clevis.isIntersected("CircleTestF","LineTestD"));
+        System.out.println(clevis.isIntersected("CircleTestF","SquareTestG"));
+
+        System.out.println(clevis.isIntersected("SquareTestH","SquareTestG"));
+        System.out.println(clevis.isIntersected("SquareTestH","RecTestB"));
+        System.out.println(clevis.isIntersected("SquareTestG","CircleTestE"));
+        System.out.println(clevis.isIntersected("SquareTestG","LineTestD"));
+
+
+        String[] shapeListAB = {"RecTestA","RecTestB"};
+        clevis.createGroup("GAB",shapeListAB);
+
+        System.out.println(clevis.isIntersected("GAB","LineTestC"));
+        System.out.println(clevis.isIntersected("LineTestC","GAB"));
+
+        System.out.println(clevis.isIntersected("GAB","CircleTestE"));
+        System.out.println(clevis.isIntersected("CircleTestE","GAB"));
+
+        String[] shapeListGAB_CD = {"GAB","LineTestC","LineTestD"};
+        clevis.createGroup("G_GAB_CD",shapeListGAB_CD);
+
+        String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
+        clevis.createGroup("G_EFG",shapeListEFG);
+
+        System.out.println(clevis.isIntersected("G_GAB_CD","G_EFG"));
 
     }
 }

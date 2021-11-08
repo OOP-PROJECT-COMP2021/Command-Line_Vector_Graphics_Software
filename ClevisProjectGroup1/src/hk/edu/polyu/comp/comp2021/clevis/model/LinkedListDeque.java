@@ -47,8 +47,8 @@ public class LinkedListDeque<Item> implements Iterable<Item>, Deque<Item> {
         }
     }
 
-    public boolean isEmpty() {
-        return sentinel.getRight().getName().equals(sentinel.getName());
-    }
+//    public boolean isEmpty() {
+//        return sentinel.getRight().getName().equals(sentinel.getName());
+//    }
 
 }
