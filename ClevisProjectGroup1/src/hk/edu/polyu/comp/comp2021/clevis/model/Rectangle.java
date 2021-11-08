@@ -23,6 +23,11 @@ class Rectangle implements Shape{
         FourLines[3] = new Line(name+"LineTop", inX+inW,inY,inX,inY); // set the top Line DA
     }
 
+    @Override
+    public String getSHAPE_TYPE() {
+        return "REC";
+    }
+
     public double getWidth(){return w;} // get the width
     public double getHeight(){return h;} // get the height
     public Line[] getFourLines(){ return FourLines; } // get 4 Lines of the rectangle
@@ -34,40 +39,68 @@ class Rectangle implements Shape{
     }
 
     /** LinkedListDeque methods*/
+    @Override
     public Shape getParent() { return parent; }
 
+    @Override
     public void setParent(Shape father) { parent = father; }
 
+    @Override
     public Shape getAncester() {
         Shape ptr = this;
         while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
         return ptr;
     }
 
+    @Override
     public Shape getLeft() { return left; }
 
+    @Override
     public Shape getRight() { return right; }
 
+    @Override
     public void setLeft(Shape l) { left = l; }
 
+    @Override
     public void setRight(Shape r) { right = r; }
 
+    @Override
     public void removeRefer() {
         Rectangle ptr = this;
-        ptr.left.setRight(ptr.right);
-        ptr.right.setLeft(ptr.left);
+        ptr.getLeft().setRight(ptr.getRight());
+        ptr.getRight().setLeft(ptr.getLeft());
         //parent = this;
     }
 
+    @Override
     public void pointToMe() {
         this.parent = this;
     }
 
     /** method for get the name */
+    @Override
     public String getName(){return name;} // get the name
 
+    @Override
+    public boolean isIntersected(Shape other) {
+
+        if (other.getSHAPE_TYPE().equals("LINE")) {
+            return Intersected((Line) other);
+        }
+        if (other.getSHAPE_TYPE().equals("REC")) {
+            return Intersected((Rectangle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("CIR")) {
+            return Intersected((Circle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("GRP")) {
+            return Intersected((Group) other);
+        }
+        return false;
+    }
+
     /** check Rectangle(and its subclass Square) is intersected with other Line */
-    public boolean isIntersected(Line other){
+    public boolean Intersected(Line other){
         for (Line i: this.getFourLines()){
             if(i.isIntersected(other)){return true;}
         }
@@ -75,7 +108,7 @@ class Rectangle implements Shape{
     }
 
     /** check Rectangle(and its subclass Square) is intersected with other Circle */
-    public boolean isIntersected(Circle other){
+    public boolean Intersected(Circle other){
         for (Line i: this.getFourLines()){
             if(i.isIntersected(other)){return true;}
         }
@@ -83,7 +116,7 @@ class Rectangle implements Shape{
     }
 
     /** check Rectangle(and its subclass Square) is intersected with other Rectangle(and its subclass Square) */
-    public boolean isIntersected(Rectangle other){
+    public boolean Intersected(Rectangle other){
         for (Line i: this.getFourLines()){
             if(i.isIntersected(other)){return true;}
         }
@@ -91,11 +124,12 @@ class Rectangle implements Shape{
     }
 
     /** check Rectangle(and its subclass Square) is intersected with other Group*/
-    public boolean isIntersected(Group other){
+    public boolean Intersected(Group other){
         return other.isIntersected(this);
     }
 
     /** move a Rectangle(and its subclass Square) method*/
+    @Override
     public void move(double inDx,double inDy){
         for (Line i: this.getFourLines()){
             i.move(inDx,inDy);
@@ -103,12 +137,18 @@ class Rectangle implements Shape{
     }
 
     /** bounding box method */
+
+    @Override
     public double getLeftBounding(){return getWhichFourLines(0).getA().getX();}
+    @Override
     public double getRightBounding(){return getWhichFourLines(2).getA().getX();}
+    @Override
     public double getTopBounding(){return getWhichFourLines(3).getA().getY();}
+    @Override
     public double getBottomBounding(){return getWhichFourLines(1).getA().getY();}
 
     /** list out information of a shape*/
+    @Override
     public String listInfo(){
         return "[Rectangle] Name:"+getName()+"; Top-left corner:"+"("+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+")"+"; Width, Height:"+getWidth()+","+getHeight();
     }

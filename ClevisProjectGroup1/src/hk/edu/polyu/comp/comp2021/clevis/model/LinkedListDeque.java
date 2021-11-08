@@ -19,6 +19,7 @@ public class LinkedListDeque<Item> implements Iterable<Item>, Deque<Item> {
      * Adds an item of type Item to the back of the deque.
      * Assumption: item is never null.
      */
+    @Override
     public void addLast(Item item) {
         Shape tmp = (Shape) item;
         sentinel.getLeft().setRight(tmp);
@@ -27,6 +28,7 @@ public class LinkedListDeque<Item> implements Iterable<Item>, Deque<Item> {
         sentinel.getLeft().setRight(sentinel);
     }
 
+    @Override
     public Iterator<Item> iterator() {
         return new DequeIterator();
     }

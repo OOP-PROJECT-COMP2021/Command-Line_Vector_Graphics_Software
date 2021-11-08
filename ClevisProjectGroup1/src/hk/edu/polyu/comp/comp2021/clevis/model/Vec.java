@@ -4,8 +4,8 @@ import static java.lang.Math.abs;
 
 /** create a Vec type for vector object*/
 public class Vec {
-    double x;
-    double y;
+    private double x;
+    private double y;
     Vec (double a, double b) {
         x = a;
         y = b;

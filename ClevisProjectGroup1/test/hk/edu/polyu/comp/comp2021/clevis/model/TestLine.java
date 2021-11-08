@@ -49,7 +49,7 @@ public class TestLine {
         // Test the case 1 in isIntersected (C is inside the circle, while E is on the circle.
         Line m = new Line("testLine_m",1.58108f, 0.52904f, 1.81107f, 0.58522f);// // C=(1.5810852441577,0.529044492787), E=(1.8110792856131,0.5852268110847)
         Circle n = new Circle("testLine_n",1.4f, 0.6f, 0.41134f); // r = 0.4113446561837, r^2 = 0.1692044261709
-        assertTrue(m.isIntersected(n)); // should return true. EPS = E-5 -> return true, EPS = E-6 return false.
+        assertFalse(m.isIntersected(n)); // should return true. EPS = E-5 -> return true, EPS = E-6 return false.
     }
 
     @Test

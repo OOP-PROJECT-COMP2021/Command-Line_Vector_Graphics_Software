@@ -355,12 +355,7 @@ public class Clevis {
         }
         Shape inShape1 = storage.get(inString1);
         Shape inShape2 = storage.get(inString2);
-        //return inShape1.isIntersected((Rectangle)inShape2);
-        if (inShape2 instanceof Rectangle) {return inShape1.isIntersected((Rectangle)inShape2);}
-        if (inShape2 instanceof Line) {return inShape1.isIntersected((Line)inShape2);}
-        if (inShape2 instanceof Circle) {return inShape1.isIntersected((Circle) inShape2);}
-        if (inShape2 instanceof Group) {return inShape1.isIntersected((Group) inShape2);}
-        return false;
+        return inShape1.isIntersected(inShape2);
     }
 
     /** [REQ13] list n */

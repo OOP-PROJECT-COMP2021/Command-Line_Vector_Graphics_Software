@@ -15,31 +15,44 @@ class Group implements Shape {
         shapeList = inShapeList;
     }
 
+    @Override
+    public String getSHAPE_TYPE() {
+        return "GRP";
+    }
+
     public Shape[] getShapeList(){ // get the shapeList
         return shapeList;
     }
 
     /** LinkedListDeque methods*/
+
+    @Override
     public Shape getParent() { return parent; }
 
+    @Override
     public void setParent(Shape father) {
         // try catch needed
         if (!(father instanceof Group)) return;
         parent = father;
     }
 
+    @Override
     public Shape getAncester() {
         Shape ptr = this;
         while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
         return ptr;
     }
 
+    @Override
     public Shape getLeft() { return left; }
 
+    @Override
     public Shape getRight() { return right; }
 
+    @Override
     public void setLeft(Shape l) { left = l; }
 
+    @Override
     public void setRight(Shape r) { right = r; }
 
     /** to ungroup */
@@ -49,12 +62,13 @@ class Group implements Shape {
             item.removeRefer();
         }
         Group ptr = this;
-        ptr.left.setRight(ptr.right);
-        ptr.right.setLeft(ptr.left);
+        ptr.getLeft().setRight(ptr.getRight());
+        ptr.getRight().setLeft(ptr.getLeft());
         //parent = this;
         //shapeList = null;
     }
 
+    @Override
     public void pointToMe() {
         this.parent = this;
     }
@@ -65,17 +79,36 @@ class Group implements Shape {
             item.pointToMe();
         }
         Group ptr = this;
-        ptr.left.setRight(ptr.right);
-        ptr.right.setLeft(ptr.left);
+        ptr.getLeft().setRight(ptr.getRight());
+        ptr.getRight().setLeft(ptr.getLeft());
         parent = this;
         //shapeList = null;
     }
 
     /** method for get the name */
+    @Override
     public String getName(){return name;} // get the name
 
+    @Override
+    public boolean isIntersected(Shape other) {
+
+        if (other.getSHAPE_TYPE().equals("LINE")) {
+            return Intersected((Line) other);
+        }
+        if (other.getSHAPE_TYPE().equals("REC")) {
+            return Intersected((Rectangle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("CIR")) {
+            return Intersected((Circle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("GRP")) {
+            return Intersected((Group) other);
+        }
+        return false;
+    }
+
     /** check Group is intersected with other Line */
-    public boolean isIntersected(Line other){
+    public boolean Intersected(Line other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
         }
@@ -83,7 +116,7 @@ class Group implements Shape {
     }
 
     /** check Group is intersected with other Rectangle(and its subclass Square) */
-    public boolean isIntersected(Rectangle other){
+    public boolean Intersected(Rectangle other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
         }
@@ -91,7 +124,7 @@ class Group implements Shape {
     }
 
     /** check Group is intersected with other Circle */
-    public boolean isIntersected(Circle other){
+    public boolean Intersected(Circle other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
         }
@@ -99,7 +132,7 @@ class Group implements Shape {
     }
 
     /** check Group is intersected with other Group*/
-    public boolean isIntersected(Group other){
+    public boolean Intersected(Group other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
         }
@@ -107,6 +140,7 @@ class Group implements Shape {
     }
 
     /** move a Group method*/
+    @Override
     public void move(double inDx,double inDy){
         for (Shape s: this.getShapeList()){
             s.move(inDx,inDy);
@@ -114,6 +148,7 @@ class Group implements Shape {
     }
 
     /** bounding box method */
+    @Override
     public double getLeftBounding(){ // get the Left Bounding of a Group
         double minLeft = this.getShapeList()[0].getLeftBounding();
         for (Shape s: this.getShapeList()){
@@ -121,6 +156,8 @@ class Group implements Shape {
         }
         return (minLeft);
     }
+
+    @Override
     public double getRightBounding(){ // get the Right Bounding of a Group
         double maxRight = this.getShapeList()[0].getRightBounding();
         for (Shape s: this.getShapeList()){
@@ -128,6 +165,8 @@ class Group implements Shape {
         }
         return (maxRight);
     }
+
+    @Override
     public double getTopBounding(){ // get the Top Bounding of a Group
         double maxTop = this.getShapeList()[0].getTopBounding();
         for (Shape s: this.getShapeList()){
@@ -135,6 +174,8 @@ class Group implements Shape {
         }
         return (maxTop);
     }
+
+    @Override
     public double getBottomBounding(){ // get the Bottom Bounding of a Group
         double minBottom = this.getShapeList()[0].getBottomBounding();
         for (Shape s: this.getShapeList()){
@@ -155,6 +196,8 @@ class Group implements Shape {
         levelCount-=4;
     }
         /** recursion for listInfo */
+
+    @Override
     public String listInfo(){
         StringBuilder outInfo = new StringBuilder();
         inFour();

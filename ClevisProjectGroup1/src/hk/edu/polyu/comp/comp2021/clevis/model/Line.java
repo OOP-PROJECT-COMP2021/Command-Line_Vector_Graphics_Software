@@ -17,7 +17,10 @@ class Line implements Shape{
     private Shape left;
     private Shape right;
 
-    /** visually */
+    @Override
+    public String getSHAPE_TYPE() {
+        return "LINE";
+    }
 
     /** constructor */
     Line(String inName, double inX1, double inY1, double inX2, double inY2) {
@@ -34,51 +37,73 @@ class Line implements Shape{
     } // method for get the B end
 
     /** LinkedListDeque methods*/
+    @Override
     public Shape getParent() { return parent; }
-
+    @Override
     public void setParent(Shape father) {
         // try catch needed
         if (!(father instanceof Group)) return;
         parent = father;
     }
 
+    @Override
     public Shape getAncester() {
         Shape ptr = this;
         while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
         return ptr;
     }
-
+    @Override
     public Shape getLeft() { return left; }
 
+    @Override
     public Shape getRight() { return right; }
 
+    @Override
     public void setLeft(Shape l) { left = l; }
 
+    @Override
     public void setRight(Shape r) { right = r; }
 
+    @Override
     public void removeRefer() {
         Line ptr = this;
-        ptr.left.setRight(ptr.right);
-        ptr.right.setLeft(ptr.left);
+        ptr.getLeft().setRight(ptr.getRight());
+        ptr.getRight().setLeft(ptr.getLeft());
         //parent = this;
     }
 
+    @Override
     public void pointToMe() { this.parent = this; }
 
     /** method for get the name */
+    @Override
     public String getName(){ // get the name
         return name;
     }
 
-//    public boolean isIntersected(Shape other) {
-//        return false;
-//    }
+    @Override
+    public boolean isIntersected(Shape other) {
+
+        if (other.getSHAPE_TYPE().equals("LINE")) {
+            return Intersected((Line) other);
+        }
+        if (other.getSHAPE_TYPE().equals("REC")) {
+            return Intersected((Rectangle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("CIR")) {
+            return Intersected((Circle) other);
+        }
+        if (other.getSHAPE_TYPE().equals("GRP")) {
+            return Intersected((Group) other);
+        }
+        return false;
+    }
 
     /** check Line is intersected with other Line */
-    public boolean isIntersected(Line other) {
+    public boolean Intersected(Line other) {
         // rapid exclusion
-        if (max(a.x, b.x) < min(other.getA().x, other.getB().x) || max(a.y, b.y) < min(other.getA().y, other.getB().y)
-                || max(other.getA().x, other.getB().x) < min(a.x, b.x) || max(other.getA().y, other.getB().y) < min(a.y, b.y)) {
+        if (max(a.getX(), b.getX()) < min(other.getA().getX(), other.getB().getX()) || max(a.getY(), b.getY()) < min(other.getA().getY(), other.getB().getY())
+                || max(other.getA().getX(), other.getB().getX()) < min(a.getX(), b.getX()) || max(other.getA().getY(), other.getB().getY()) < min(a.getY(), b.getY())) {
             return false;
         }
         if (outerProduct(vectorSubtract(b, a), vectorSubtract(other.getA(),a))
@@ -91,7 +116,7 @@ class Line implements Shape{
     }
 
     /** check Line is intersected with other Circle */
-    public boolean isIntersected(Circle c) {
+    public boolean Intersected(Circle c) {
         // case 1: if l_oa = r or l_ob = r, then intersect
         if (abs(vectorSubtract(a, c.getCenter()).getDis() - c.getRadius()) < EPS
                 || abs(vectorSubtract(b, c.getCenter()).getDis() - c.getRadius()) < EPS) {
@@ -131,7 +156,7 @@ class Line implements Shape{
     }
 
     /** check Line is intersected with other Rectangle(and its subclass Square) */
-    public boolean isIntersected(Rectangle other){
+    public boolean Intersected(Rectangle other){
         for (Line i : other.getFourLines()){
             if (this.isIntersected(i)){return true;}
         }
@@ -139,11 +164,12 @@ class Line implements Shape{
     }
 
     /** check Line is intersected with other Group*/
-    public boolean isIntersected(Group other){
+    public boolean Intersected(Group other){
         return other.isIntersected(this);
     }
 
     /** move a Line method*/
+    @Override
     public void move(double inDx,double inDy){
         this.getA().setX(this.getA().getX()+inDx); // move end-A's x by inDx
         this.getA().setY(this.getA().getY()+inDy); // move end-A's y by inDy
@@ -154,12 +180,17 @@ class Line implements Shape{
 
 
     /** bounding box method */
+    @Override
     public double getLeftBounding(){return Math.min(getA().getX(),getB().getX());}
+    @Override
     public double getRightBounding(){return Math.max(getA().getX(),getB().getX());}
+    @Override
     public double getTopBounding(){return Math.max(getA().getY(),getB().getY());}
+    @Override
     public double getBottomBounding(){return Math.min(getA().getY(),getB().getY());}
 
     /** list out information of a shape*/
+    @Override
     public String listInfo(){
         return "[Line] Name:"+getName()+"; x1, y1:"+"("+a.getX()+","+a.getY()+")"+"; x2, y2:"+"("+b.getX()+","+b.getY()+")";
     }

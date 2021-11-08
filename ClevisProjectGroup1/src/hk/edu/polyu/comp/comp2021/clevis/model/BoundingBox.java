@@ -9,6 +9,7 @@ class BoundingBox extends Rectangle {
         return (this.getLeftBounding()+" "+this.getTopBounding()+" "+ (this.getRightBounding()-this.getLeftBounding())+" "+(this.getTopBounding()-this.getBottomBounding()));
     }
 
+    @Override
     public String listInfo(){
         return "[BoundingBox] Name: "+getName()+"; Top-left corner:"+"("+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+")"+"; Width, Height:"+getWidth()+","+getHeight();
     }
