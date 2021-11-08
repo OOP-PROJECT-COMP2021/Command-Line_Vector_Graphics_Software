@@ -1,4 +1,0 @@
-rectangle n 1 2 3 4
-circle m 1 2 3
-undo'
-undo
