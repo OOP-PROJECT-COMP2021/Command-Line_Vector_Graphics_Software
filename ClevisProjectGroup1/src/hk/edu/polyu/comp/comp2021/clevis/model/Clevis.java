@@ -302,8 +302,9 @@ public class Clevis {
     }
 
     /** [REQ11] pick-and-move x y dx dy */
+    private final double POINT_XY = 0.05d;
     public void pickAndMoveShape (double inX, double inY, double inDx, double inDy){
-        Circle xyPoint = new Circle("xyPoint",inX,inY,0.05d);
+        Circle xyPoint = new Circle("xyPoint",inX,inY,POINT_XY);
         Shape finalShape = xyPoint;
         Shape inShape = shapeLevel.getSentinel().getRight();
 
@@ -354,6 +355,7 @@ public class Clevis {
         }
         Shape inShape1 = storage.get(inString1);
         Shape inShape2 = storage.get(inString2);
+        //return inShape1.isIntersected((Rectangle)inShape2);
         if (inShape2 instanceof Rectangle) {return inShape1.isIntersected((Rectangle)inShape2);}
         if (inShape2 instanceof Line) {return inShape1.isIntersected((Line)inShape2);}
         if (inShape2 instanceof Circle) {return inShape1.isIntersected((Circle) inShape2);}

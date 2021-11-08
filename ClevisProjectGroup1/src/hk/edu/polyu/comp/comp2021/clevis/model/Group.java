@@ -68,7 +68,7 @@ class Group implements Shape {
         ptr.left.setRight(ptr.right);
         ptr.right.setLeft(ptr.left);
         parent = this;
-        shapeList = null;
+        //shapeList = null;
     }
 
     /** method for get the name */
@@ -148,15 +148,20 @@ class Group implements Shape {
     public static void resetLevelCount() {
         levelCount = 0;
     }
-
+    private static void inFour() {
+        levelCount+=4;
+    }
+    private static void deFour() {
+        levelCount-=4;
+    }
         /** recursion for listInfo */
     public String listInfo(){
         StringBuilder outInfo = new StringBuilder();
-        levelCount+=4;
+        inFour();
         for (int i = 0; i < this.getShapeList().length; i++){
             outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo());
         }
-        levelCount-=4;
+        deFour();
         return ("[Group] Name: "+getName()+"; Contained shapes: "+ outInfo);
     }
 

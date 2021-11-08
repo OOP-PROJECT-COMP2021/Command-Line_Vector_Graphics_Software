@@ -70,6 +70,9 @@ class Line implements Shape{
         return name;
     }
 
+//    public boolean isIntersected(Shape other) {
+//        return false;
+//    }
 
     /** check Line is intersected with other Line */
     public boolean isIntersected(Line other) {
