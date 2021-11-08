@@ -4,11 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.text.AttributedCharacterIterator;
 
 public class ClevisView extends JFrame{
-    //主线程
+    //all component' parameters
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
+    private final int LocationX = 0;
+
+    private final int BUTTON_WIDTH = 100;
+    private final int BUTTON_HEIGHT = 50;
+
+    private final int DRAW_BTN_LOCATION_Y = 400;
+    private final int QUIT_BTN_LOCATION_Y = 400;
+    private final int QUIT_BTN_LOCATION_X = 400;
+
     public static void main(String[] args) {
         new ClevisView();
     }
@@ -17,7 +26,7 @@ public class ClevisView extends JFrame{
         //主界面
         //JFrame mainGUI = new JFrame();
         this.setVisible(true);
-        this.setBounds(100,100,500,500);
+        this.setBounds(0,0,WIDTH,HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //container
         Container container = this.getContentPane();
@@ -27,7 +36,7 @@ public class ClevisView extends JFrame{
         container.setBackground(Color.gray);
         //按钮draw实现
         JButton drawButton = new JButton("Draw");
-        drawButton.setBounds(0,400,100,50);
+        drawButton.setBounds(LocationX,DRAW_BTN_LOCATION_Y,BUTTON_WIDTH,BUTTON_HEIGHT);
         container.add(drawButton);
         drawButton.addActionListener(new ActionListener() {
             @Override
@@ -39,7 +48,7 @@ public class ClevisView extends JFrame{
 
         // 按钮quit的响应事件
         JButton quitButton = new JButton("Quit");
-        quitButton.setBounds(400,400,100,50);
+        quitButton.setBounds(QUIT_BTN_LOCATION_X,QUIT_BTN_LOCATION_Y,BUTTON_WIDTH,BUTTON_HEIGHT);
         container.add(quitButton);
         quitButton.addActionListener(new ActionListener() {
             @Override

@@ -6,12 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class drawDialog extends JDialog {
+
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
+
+    private final int BUTTON_WIDTH = 100;
+    private final int BUTTON_HEIGHT = 50;
+
+    private final int DRAW_REC_BTN_LOCATION_X = 125;
+    private final int DRAW_REC_BTN_LOCATION_Y = 400;
+    private final int BACK_BTN_LOCATION_Y = 400;
+    private final int BACK_BTN_LOCATION_X = 400;
+    private final int DRAW_CIRCLE_BTN_LOCATION_Y = 400;
+
     //弹窗
     public drawDialog() {
         //整体框架
         JFrame dialog = new JFrame("Draw 弹窗");
         dialog.setVisible(true);
-        dialog.setBounds(100, 100, 500, 500);
+        dialog.setBounds(0, 0, WIDTH, HEIGHT);
         dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 内容窗格
         Container drawContainer = this.getContentPane();
@@ -20,7 +33,7 @@ class drawDialog extends JDialog {
 
         // 按钮back的响应事件
         JButton backButton = new JButton("Back");
-        backButton.setBounds(400, 400, 100, 50);
+        backButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
         drawContainer.add(backButton);
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -33,7 +46,7 @@ class drawDialog extends JDialog {
         // 画圆按键
         JButton circleButton = new JButton("Circle");
         drawContainer.add(circleButton);
-        circleButton.setBounds(0, 400, 100, 50);
+        circleButton.setBounds(0, DRAW_CIRCLE_BTN_LOCATION_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
         circleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +58,7 @@ class drawDialog extends JDialog {
         // 画矩形按键
         JButton recButton = new JButton("Rectangle");
         drawContainer.add(recButton);
-        recButton.setBounds(125, 400, 100, 50);
+        recButton.setBounds(DRAW_REC_BTN_LOCATION_X, DRAW_REC_BTN_LOCATION_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
         recButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
