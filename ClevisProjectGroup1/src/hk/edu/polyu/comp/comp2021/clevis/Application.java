@@ -8,7 +8,6 @@ public class Application{
 
     public static void main(String[] args) throws Exception {
         Clevis clevis = new Clevis();
-        // Initialize and utilize the system
         System.out.println("Welcome to use our graphics function");
         Random rand = new Random();
         int nameRand = rand.nextInt(100);
@@ -16,8 +15,8 @@ public class Application{
         writeF.createNewFile();
         BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
         File readF = new File("record"+nameRand+".txt");
-        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF)); // 建立一个输入流对象reader
-        BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
+        BufferedReader br = new BufferedReader(reader);
         System.out.println("Input record store in the \"record"+nameRand+".txt\"");
         while (true) {
             System.out.println("Please type your code:");
@@ -27,7 +26,7 @@ public class Application{
             out.flush();
             String line = br.readLine();
             for(int i = 0;i<times;i++)  {
-                line = br.readLine(); // 一次读入一行数据
+                line = br.readLine();
             }
             times++;
             Scanner scan = new Scanner(line);
@@ -211,9 +210,35 @@ public class Application{
                         System.out.println("Unsuccessfully listAll because can't find the name in storage!");
                     }
                 }
+
+                /** [Undo]*/
                 else if(str.equals("undo")){
                     try{
+//                        LineNumberReader lineNumberR = new LineNumberReader(in);
+//                        int lineNumber = 0;
+//                        int totalLine = 0;
+//                        String targetLine = "";
+//                        while (line!=null){
+//                            totalLine++;
+//                            line = lineNumberR.readLine();
+//                        }
+//                        while (line!=null){
+//                            if (lineNumber==totalLine-1){
+//                                targetLine = lineNumberR.readLine();
+//                            }
+//                        }
+                        System.out.println("Already undo!");
+                        clevis.UndoControl();
+                    }catch (IllegalArgumentException e){
+                        System.out.println("No operation for undo！");
+                    }
+                }
 
+                /** [Redo]*/
+                else if (str.equals("redo")){
+                    try{
+                        clevis.RedoControl();
+                        System.out.println("Already redo!");
                     }catch (IllegalArgumentException e){
                         System.out.println("No operation for undo！");
                     }

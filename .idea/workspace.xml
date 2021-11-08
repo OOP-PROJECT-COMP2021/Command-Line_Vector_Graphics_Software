@@ -5,15 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33cc1b99-3c1c-4ff7-9404-451082c0ee9c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/record21.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record24.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record38.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record47.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record49.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record52.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record62.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record66.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record67.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record72.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record80.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record87.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record91.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record94.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/record99.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/record19.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/record46.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +74,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="JUnit.HTMLTest">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.Application" />
       <module name="Clevis_Project_Group1" />
@@ -103,8 +120,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HTMLTest" />
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.HTMLTest" />
         <item itemvalue="JUnit.TestCircle" />
       </list>
     </recent_temporary>
@@ -139,9 +156,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="25" />
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/IllegalArgumentException.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
