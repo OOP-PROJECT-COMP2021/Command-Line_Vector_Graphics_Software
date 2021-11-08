@@ -39,9 +39,7 @@ public class circleDialog extends JDialog {
 
 
     //弹窗
-    @SuppressWarnings("MagicNumber")
-
-    /** constructor of circleDialog */
+    /**constructor of circleDialog */
     public circleDialog() {
         // 整体框架
         JFrame dialog = new JFrame("DrawCircle弹窗");
@@ -50,7 +48,7 @@ public class circleDialog extends JDialog {
         dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //内容窗格
         Container dialogContainer = this.getContentPane();
-        dialogContainer.setBounds(0, 0, 500, 500);
+        dialogContainer.setBounds(0, 0, DIALOG_WIDTH, DIALOG_HEIGHT);
         dialogContainer.setLayout(null);
         dialog.add(dialogContainer);
 

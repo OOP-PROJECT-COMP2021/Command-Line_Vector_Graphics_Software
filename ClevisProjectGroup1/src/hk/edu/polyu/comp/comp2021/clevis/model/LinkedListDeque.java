@@ -1,16 +1,20 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
 import java.util.Iterator;
+/** linked list deque implements Iterable */
 public class LinkedListDeque<Item> implements Iterable<Item>, Deque<Item> {
 
     private Circle sentinel;
 
+    /** linked list deque */
     public LinkedListDeque() {
         sentinel = new Circle("sentinel", 0.0, 0.0, 0.0);
         sentinel.setRight(sentinel);
         sentinel.setLeft(sentinel);
     }
 
+    /** get sentinel
+     * @return sentinel */
     public Circle getSentinel() {
         return sentinel;
     }

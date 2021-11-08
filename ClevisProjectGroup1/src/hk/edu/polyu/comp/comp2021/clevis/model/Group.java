@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
-
+/** group implements shape */
 class Group implements Shape {
     private final String name; // store name
     private Shape[] shapeList;
@@ -9,7 +9,9 @@ class Group implements Shape {
     private Shape left;
     private Shape right;
 
-    /** constructor */
+    /** constructor
+     * @param inName: the name of Group
+     * @param inShapeList: the shapeList of Group */
     Group(String inName, Shape[] inShapeList){
         name = inName;
         shapeList = inShapeList;
@@ -20,6 +22,8 @@ class Group implements Shape {
         return "GRP";
     }
 
+    /** get shape list
+     * @return shape list*/
     public Shape[] getShapeList(){ // get the shapeList
         return shapeList;
     }
@@ -74,6 +78,7 @@ class Group implements Shape {
     }
 
     // check the state before ungroup
+    /** ungroup */
     public void ungroup() {
         for (Shape item : shapeList) {
             item.pointToMe();
@@ -107,7 +112,9 @@ class Group implements Shape {
         return false;
     }
 
-    /** check Group is intersected with other Line */
+    /** check Group is intersected with other Line
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Line other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
@@ -115,7 +122,9 @@ class Group implements Shape {
         return false;
     }
 
-    /** check Group is intersected with other Rectangle(and its subclass Square) */
+    /** check Group is intersected with other Rectangle(and its subclass Square)
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Rectangle other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
@@ -123,7 +132,9 @@ class Group implements Shape {
         return false;
     }
 
-    /** check Group is intersected with other Circle */
+    /** check Group is intersected with other Circle
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Circle other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
@@ -131,7 +142,9 @@ class Group implements Shape {
         return false;
     }
 
-    /** check Group is intersected with other Group*/
+    /** check Group is intersected with other Group
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Group other){
         for (Shape s: this.getShapeList()){
             if (s.isIntersected(other)){return true;}
@@ -186,6 +199,8 @@ class Group implements Shape {
 
     /** list out information of a shape */
     private static int levelCount = 0;
+
+    /** reset level count */
     public static void resetLevelCount() {
         levelCount = 0;
     }

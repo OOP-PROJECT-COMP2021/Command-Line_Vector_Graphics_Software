@@ -3,7 +3,11 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 /** Square inherited the Shape of Rectangle*/
 class Square extends Rectangle{
 
-    /** constructor */
+    /** constructor
+     * @param inName: name
+     * @param inX: x
+     * @param inY: y
+     * @param inL: l */
     Square (String inName ,double inX, double inY, double inL){
         super(inName, inX,inY, inL, inL);
     }

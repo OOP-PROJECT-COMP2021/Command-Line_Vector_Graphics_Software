@@ -22,16 +22,23 @@ class Line implements Shape{
         return "LINE";
     }
 
-    /** constructor */
+    /** constructor
+     * @param inName: Line name
+     * @param inX1: x1
+     * @param inY1: y1
+     * @param inX2: x2
+     * @param inY2: y2 */
     Line(String inName, double inX1, double inY1, double inX2, double inY2) {
         name = inName; // initialize the name
         this.a = new Vec(inX1, inY1); // initialize the vector of end A in the line
         this.b = new Vec(inX2, inY2); // initialize the vector of end B in the line
     }
-
+    /** @return a */
     public Vec getA() { // get the vector of end A in the line
         return a;
     } // method for get the A end
+
+    /** @return b */
     public Vec getB() { // get the vector of end B in the line
         return b;
     } // method for get the B end
@@ -99,7 +106,9 @@ class Line implements Shape{
         return false;
     }
 
-    /** check Line is intersected with other Line */
+    /** check Line is intersected with other Line
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Line other) {
         // rapid exclusion
         if (max(a.getX(), b.getX()) < min(other.getA().getX(), other.getB().getX()) || max(a.getY(), b.getY()) < min(other.getA().getY(), other.getB().getY())
@@ -115,7 +124,9 @@ class Line implements Shape{
         return true;
     }
 
-    /** check Line is intersected with other Circle */
+    /** check Line is intersected with other Circle
+     * @param c:c
+     * @return is intersected or not */
     public boolean Intersected(Circle c) {
         // case 1: if l_oa = r or l_ob = r, then intersect
         if (abs(vectorSubtract(a, c.getCenter()).getDis() - c.getRadius()) < EPS
@@ -155,7 +166,9 @@ class Line implements Shape{
         }
     }
 
-    /** check Line is intersected with other Rectangle(and its subclass Square) */
+    /** check Line is intersected with other Rectangle(and its subclass Square)
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Rectangle other){
         for (Line i : other.getFourLines()){
             if (this.isIntersected(i)){return true;}
@@ -163,7 +176,9 @@ class Line implements Shape{
         return false;
     }
 
-    /** check Line is intersected with other Group*/
+    /** check Line is intersected with other Group
+     * @param other:other
+     * @return is intersected or not */
     public boolean Intersected(Group other){
         return other.isIntersected(this);
     }

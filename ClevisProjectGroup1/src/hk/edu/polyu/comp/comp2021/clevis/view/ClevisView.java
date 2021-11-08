@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** the main GUI */
 public class ClevisView extends JFrame{
     //all component' parameters
     private final int WIDTH = 500;
@@ -18,10 +19,14 @@ public class ClevisView extends JFrame{
     private final int QUIT_BTN_LOCATION_Y = 400;
     private final int QUIT_BTN_LOCATION_X = 400;
 
+    /** main function
+     * @param args : args*/
     public static void main(String[] args) {
         new ClevisView();
     }
     // 初始化
+
+    /** constructor */
     public ClevisView(){
         //主界面
         //JFrame mainGUI = new JFrame();
