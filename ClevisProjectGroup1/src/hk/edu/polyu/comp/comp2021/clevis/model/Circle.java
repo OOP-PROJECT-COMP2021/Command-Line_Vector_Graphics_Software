@@ -106,14 +106,16 @@ class Circle implements Shape{
      * @param other
      * @return*/
     public boolean Intersected(Line other){
-        return other.isIntersected(this);
+        if (other.isIntersected(this)){return true;}
+        return false;
     }
 
     /** check Circle is intersected with other Rectangle(and its subclass Square)
      * @param other
      * @return*/
     public boolean Intersected(Rectangle other){
-        return other.isIntersected(this);
+        if (other.isIntersected(this)){return true;}
+        return false;
     }
 
     /** check Circle is intersected with other Circle */
@@ -122,7 +124,8 @@ class Circle implements Shape{
         double RAddr = this.getRadius() + other.getRadius();
         double RSubr = Math.abs(this.getRadius() - other.getRadius());
 
-        return d - RSubr > 0 - EPS && d - RAddr < 0 + EPS;
+        if (d - RSubr > 0 - EPS && d - RAddr < 0 + EPS){return true;}
+        return false;
     }
 
     /** check Line is intersected with other Group*/

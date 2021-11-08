@@ -2,9 +2,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 
 import java.util.*;
 
-/**Clevis Class*/
 public class Clevis {
-    /**Clevis Constructor with empty body*/
     public Clevis(){}
     private HashMap<String,Shape> storage = new HashMap<String,Shape>();
     //private ArrayList<String> shapeLevel = new ArrayList<String>();
@@ -19,19 +17,14 @@ public class Clevis {
     private Stack<Shape> delRedoTargets = new Stack<>();
     /** ---------------*/
 
-    /** [REQ2] rectangle n x y w h
-     * @param inName: rectangle name n
-     * @param inX: x
-     * @param inY: y
-     * @param inW: width
-     * @param inH: height*/
+    /** [REQ2] rectangle n x y w h */
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
         if (containsName(inName)) {
             throw new IllegalArgumentException();
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -55,19 +48,14 @@ public class Clevis {
         addShape(inName, new Rectangle(inName,inX,inY,inW,inH));
     }
 
-    /** [REQ3] line n x1 y1 x2 y2
-     * @param inName: line name n
-     * @param inX1: x1
-     * @param inY1: y1
-     * @param inX2: x2
-     * @param inY2: y2*/
+    /** [REQ3] line n x1 y1 x2 y2 */
     public void drawLine(String inName, double inX1, double inY1, double inX2, double inY2){
         if (containsName(inName)) {
             throw new IllegalArgumentException();
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -91,18 +79,14 @@ public class Clevis {
         addShape(inName, new Line(inName,inX1,inY1,inX2,inY2));
     }
 
-    /** [REQ4] circle n x y r
-     * @param inName: circle name n
-     * @param inX: x
-     * @param inY: y
-     * @param inR: radius*/
+    /** [REQ4] circle n x y r */
     public void drawCircle(String inName, double inX, double inY, double inR){
         if (containsName(inName)) {
             throw new IllegalArgumentException();
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -125,18 +109,14 @@ public class Clevis {
         addShape(inName, new Circle(inName,inX,inY,inR));
     }
 
-    /** [REQ5] square n x y l
-     * @param inName: square name n
-     * @param inX: x
-     * @param inY: y
-     * @param inL: l*/
+    /** [REQ5] square n x y l */
     public void drawSquare(String inName, double inX, double inY, double inL){
         if (containsName(inName)) {
             throw new IllegalArgumentException();
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -159,9 +139,7 @@ public class Clevis {
         addShape(inName, new Square(inName, inX, inY, inL));
     }
 
-    /** [REQ6] group n n1 n2...
-     * @param inName: group name n
-     * @param inShapeString: list of shapes contained in the group*/
+    /** [REQ6] group n n1 n2... */
     public void createGroup(String inName, String[] inShapeString) {
         Shape[] inShapeList = new Shape[inShapeString.length];
         HashSet<String> exist = new HashSet<>();
@@ -174,7 +152,7 @@ public class Clevis {
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -199,15 +177,14 @@ public class Clevis {
         for (Shape s : inShapeList) { s.setParent(tmp);}
     }
 
-    /** [REQ7] ungroup n
-     * @param inName: the name of group to be ungrouped*/
+    /** [REQ7] ungroup n */
     public void unGroup(String inName) {
         if ((!containsName(inName)) || (!(storage.get(inName) instanceof Group)) ||
                 (!(((storage.get(inName)).getParent()).getName())
                 .equals((storage.get(inName)).getName()))) { throw new IllegalArgumentException(); }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -233,8 +210,7 @@ public class Clevis {
         storage.remove(inName);
     }
 
-    /** [REQ8] delete n
-     * @param inName: the name of the shape to be deleted*/
+    /** [REQ8] delete n*/
     public void deleteShapeWithName(String inName) {
         if (!containsName(inName)) {
             throw new IllegalArgumentException();
@@ -245,7 +221,7 @@ public class Clevis {
         }
 
         /** for Undo & Redo*/
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear(); delRedoTargets.clear();
             undoFlag = false;
@@ -276,6 +252,7 @@ public class Clevis {
         if (storage.get(inName) instanceof Group) {
             Group tmp = (Group) storage.get(inName);
             Shape[] container = tmp.getShapeList();
+            int i = container.length;
             for (Shape a : container) {
                 storage.remove(a.getName());
             }
@@ -283,9 +260,7 @@ public class Clevis {
         storage.remove(inName);
     }
 
-    /** [REQ9] boundingbox n
-     * @param inName: the name of the shape
-     * @return : the information of the bounding box*/
+    /** [REQ9] boundingbox n */
     public String createBoundingBox (String inName){
         if (!containsName(inName)) {
             throw new IllegalArgumentException();
@@ -295,10 +270,7 @@ public class Clevis {
         return inBoundingBox.listInfo();
     }
 
-    /** [REQ10] move n dx dy
-     * @param inName : the shape name
-     * @param inDx: moved x distance
-     * @param inDy: moved y distance*/
+    /** [REQ10] move n dx dy */
     public void moveShape(String inName, double inDx, double inDy) {
         if ((!containsName(inName)) ||
                 !(storage.get(inName).getParent().getName().equals(storage.get(inName).getName()) )) {
@@ -307,7 +279,7 @@ public class Clevis {
 
         /** for Undo & Redo*/
 
-        if ((undoFlag || redoFlag) &&
+        if ((undoFlag == true || redoFlag == true) &&
                 (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
             cmdRedoStack.clear();
             undoFlag = false;
@@ -329,12 +301,8 @@ public class Clevis {
         storage.get(inName).move(inDx, inDy);
     }
 
+    /** [REQ11] pick-and-move x y dx dy */
     private final double POINT_XY = 0.05d;
-    /** [REQ11] pick-and-move x y dx dy
-     * @param inX: x of the point
-     * @param inY: y of the point
-     * @param inDx: moved x distance
-     * @param inDy: moved y distance*/
     public void pickAndMoveShape (double inX, double inY, double inDx, double inDy){
         Circle xyPoint = new Circle("xyPoint",inX,inY,POINT_XY);
         Shape finalShape = xyPoint;
@@ -356,7 +324,7 @@ public class Clevis {
         }
         else {
             /** for Undo & Redo*/
-            if ((undoFlag || redoFlag) &&
+            if ((undoFlag == true || redoFlag == true) &&
                     (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
                 cmdRedoStack.clear();
                 undoFlag = false;
@@ -380,10 +348,7 @@ public class Clevis {
         }
     }
 
-    /** [REQ12] intersect n1 n2
-     * @param inString1: the first shape
-     * @param inString2: the second shape
-     * @return : true-intersected, false-not intersected*/
+    /** [REQ12] intersect n1 n2 */
     public boolean isIntersected (String inString1, String inString2) {
         if (!containsName(inString1) || !containsName(inString2)) {
             throw new IllegalArgumentException();
@@ -393,9 +358,7 @@ public class Clevis {
         return inShape1.isIntersected(inShape2);
     }
 
-    /** [REQ13] list n
-     * @param inName: the shape name
-     * @return : the String of the shape information*/
+    /** [REQ13] list n */
     public String listShape(String inName) {
         if (!containsName(inName)) {
             throw new IllegalArgumentException();
@@ -403,8 +366,7 @@ public class Clevis {
         return storage.get(inName).listInfo();
     }
 
-    /** [REQ14] listAll
-     * @return : the String of the all shapes information*/
+    /** [REQ14] listAll */
     public String listAllShape() {
         StringBuilder outStr = new StringBuilder();
 
@@ -417,9 +379,7 @@ public class Clevis {
         return outStr.toString();
     }
 
-    /** add a shape to storage
-     * @param inName: shape name
-     * @param inShape: the shape*/
+    /** add a shape to storage */
     public void addShape(String inName, Shape inShape) {
         if (!containsName(inName)) {
             storage.put(inName,inShape);
@@ -427,13 +387,15 @@ public class Clevis {
         }
     }
 
-    /** check if the storage contains the Name(key)
-     * @param inName: shape name
-     * @return : true-contained, false-not contained*/
+    /** check if the storage contains the Name(key) */
     public boolean containsName(String inName) {
         return storage.containsKey(inName);
     }
 
+    /** get the size of storage */
+    public int getSize() {
+        return storage.size();
+    }
 
     /** -----------Undo-----------*/
         /** Undo Control methods: */
@@ -468,35 +430,27 @@ public class Clevis {
         cmdRedoStack.push(cmdStack.pop());
     }
 
-        /** Undo drawing = deleteShapeWithName
-         * @param inName: shape name*/
+        /** Undo drawing = deleteShapeWithName */
     public void UndoDraw(String inName) {
         deleteShapeWithName(inName);
     }
 
-        /** Undo group = unGroup
-         * @param inName: shape name*/
+        /** Undo group = unGroup */
     public void UndoGroup(String inName) {
         unGroup(inName);
     }
 
-        /** Undo ungroup = Group
-         * @param inName : shape name
-         * @param inShapeString: the list of shapes contained in the group*/
+        /** Undo ungroup = Group */
     public void UndoUnGroup(String inName, String[] inShapeString) {
        createGroup(inName,inShapeString);
     }
 
-        /** Undo move = move back
-         * @param inName : shape name
-         * @param inDx : shape moved by x
-         * @param inDy : shape moved by y*/
+        /** Undo move = move back*/
     public void UndoMove(String inName, double inDx, double inDy){
         moveShape(inName,-inDx,-inDy);
     }
 
-        /** Undo delete = add back
-         * @param inName : shape name*/
+        /** Undo delete = add back*/
     public void UndoDelete(String inName) {
         Shape inShape = delTargets.peek();
         if (inShape.getName().equals(inName)) {

@@ -1,5 +1,7 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
+import static java.lang.Math.abs;
+
 /** create a Vec type for vector object*/
 public class Vec {
     private double x;

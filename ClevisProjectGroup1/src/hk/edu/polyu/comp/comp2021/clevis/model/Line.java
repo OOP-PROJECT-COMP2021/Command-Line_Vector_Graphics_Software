@@ -1,7 +1,9 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
 import static hk.edu.polyu.comp.comp2021.clevis.model.Calculate.*;
+import static hk.edu.polyu.comp.comp2021.clevis.model.Calculate.vectorSubtract;
 import static java.lang.Math.*;
+import static java.lang.Math.abs;
 
 /** Shape of Line*/
 class Line implements Shape{
