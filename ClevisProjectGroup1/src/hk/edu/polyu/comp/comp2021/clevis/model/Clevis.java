@@ -10,6 +10,10 @@ public class Clevis {
     //private ArrayList<String> shapeLevel = new ArrayList<String>();
     private LinkedListDeque<Shape> shapeLevel = new LinkedListDeque<>();
 
+    public LinkedListDeque<Shape> getShapeLevel() {
+        return shapeLevel;
+    }
+
     /** for Undo & Redo*/
     private Stack<String[][]> cmdStack = new Stack<>();
     private Stack<String[][]> cmdRedoStack = new Stack<>();

@@ -4,8 +4,12 @@ import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
+/** Application Class to run the CLI*/
 public class Application{
 
+    /** main() method
+     * @param args : intake parameter
+     * @throws Exception : exception thrown from main()*/
     public static void main(String[] args) throws Exception {
         Clevis clevis = new Clevis();
         System.out.println("Welcome to use our graphics function");

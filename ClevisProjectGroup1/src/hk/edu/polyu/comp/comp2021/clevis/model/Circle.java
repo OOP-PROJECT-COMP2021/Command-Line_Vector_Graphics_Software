@@ -3,7 +3,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 import static hk.edu.polyu.comp.comp2021.clevis.model.Calculate.vectorSubtract;
 
 /** Shape of Circle*/
-class Circle implements Shape{
+public class Circle implements Shape{
     private final String name; // store name
     private double radius; // store radius
     private Vec center; // store the center vector
