@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Dialog of drawing rectangle */
 public class recDialog extends JDialog {
     private JTextField locationX,locationY,Width,Height;
     private MyCanvas drawArea;
@@ -36,6 +37,7 @@ public class recDialog extends JDialog {
     private final int BTN_DRAW_Y = 400;
 
     //弹窗
+    /** constructor of recDialog */
     public recDialog() {
         //整体框架
         JFrame dialog = new JFrame("DrawCircle弹窗");

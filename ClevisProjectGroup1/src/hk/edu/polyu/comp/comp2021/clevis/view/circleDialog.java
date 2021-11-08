@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Dialog of drawing circle */
 public class circleDialog extends JDialog {
     private JTextField locationX,locationY,Radius;
     private MyCanvas drawArea;
@@ -39,6 +40,8 @@ public class circleDialog extends JDialog {
 
     //弹窗
     @SuppressWarnings("MagicNumber")
+
+    /** constructor of circleDialog */
     public circleDialog() {
         // 整体框架
         JFrame dialog = new JFrame("DrawCircle弹窗");

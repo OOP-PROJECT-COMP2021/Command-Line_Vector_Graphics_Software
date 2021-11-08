@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Dialog of draw each graphic */
 class drawDialog extends JDialog {
 
     private final int WIDTH = 500;
@@ -20,6 +21,7 @@ class drawDialog extends JDialog {
     private final int DRAW_CIRCLE_BTN_LOCATION_Y = 400;
 
     //弹窗
+    /** constructor of drawDialog */
     public drawDialog() {
         //整体框架
         JFrame dialog = new JFrame("Draw 弹窗");
