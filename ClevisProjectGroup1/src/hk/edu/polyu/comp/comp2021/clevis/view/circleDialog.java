@@ -1,5 +1,7 @@
 package hk.edu.polyu.comp.comp2021.clevis.view;
 
+import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,8 @@ public class circleDialog extends JDialog {
 
     private final int DIALOG_WIDTH = 500;
     private final int DIALOG_HEIGHT = 500;
+    private final int DIALOG_X = 100;
+    private final int DIALOG_Y = 100;
 
     private final int DRAW_AREA = 300;
 
@@ -31,12 +35,11 @@ public class circleDialog extends JDialog {
     private final int BTN_WIDTH = 100;
     private final int BTN_HEIGHT = 25;
     private final int BTN_BACK_X = 400;
-    private final int BTN_BACK_Y = 450;
+    private final int BTN_BACK_Y = 425;
     private final int BTN_DRAW_X = 400;
-    private final int BTN_DRAW_Y = 400;
+    private final int BTN_DRAW_Y = 375;
     private final int BTN_DELETE_X = 400;
-    private final int BTN_DELETE_Y = 425;
-
+    private final int BTN_DELETE_Y = 400;
 
     //弹窗
     /**constructor of circleDialog */
@@ -44,7 +47,7 @@ public class circleDialog extends JDialog {
         // 整体框架
         JFrame dialog = new JFrame("DrawCircle弹窗");
         dialog.setVisible(true);
-        dialog.setBounds(0, 0, DIALOG_WIDTH, DIALOG_HEIGHT);
+        dialog.setBounds(DIALOG_X, DIALOG_Y, DIALOG_WIDTH, DIALOG_HEIGHT);
         dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //内容窗格
         Container dialogContainer = this.getContentPane();
@@ -96,7 +99,9 @@ public class circleDialog extends JDialog {
         backButton.setBounds(BTN_BACK_X, BTN_BACK_Y, BTN_WIDTH,BTN_HEIGHT);
         backButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {new drawDialog();}
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(false);
+                new drawDialog();}
         });
 
         //创建画布对象
@@ -145,7 +150,7 @@ public class circleDialog extends JDialog {
     }
     //将所有的参数全部存进currentElement以便全部重绘
     private void currentCircle(int x,int y,int z){
-        for(int i = 0;i <= numOfButtonClick;i++){//i应该对应按钮响应的次数
+        for(int i = 0;i <= numOfButtonClick;i++){ //i应该对应按钮响应的次数
             if(i == numOfButtonClick){
                 currentElement[i][0] = x;
                 currentElement[i][1] = y;

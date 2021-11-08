@@ -12,6 +12,9 @@ public class recDialog extends JDialog {
     private int[][] currentElement;//int型嵌套数组，用来储存所有参数，使得可以repaint所有图形
     private int numOfButtonClick = 0;//点击按钮的次数
 
+    private final int DIALOG_X = 100;
+    private final int DIALOG_Y = 100;
+
     private final int DIALOG_WIDTH = 500;
     private final int DIALOG_HEIGHT = 500;
 
@@ -40,10 +43,10 @@ public class recDialog extends JDialog {
     /** constructor of recDialog */
     public recDialog() {
         //整体框架
-        JFrame dialog = new JFrame("DrawCircle弹窗");
+        JFrame dialog = new JFrame("DrawRectangle弹窗");
         dialog.setVisible(true);
         dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        dialog.setBounds(0, 0, DIALOG_WIDTH, DIALOG_HEIGHT);
+        dialog.setBounds(DIALOG_X, DIALOG_Y, DIALOG_WIDTH, DIALOG_HEIGHT);
         dialog.setLayout(null);
         //内容窗格
         Container dialogContainer = this.getContentPane();
@@ -105,6 +108,7 @@ public class recDialog extends JDialog {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(false);
                 new drawDialog();
             }
         });
@@ -124,6 +128,7 @@ public class recDialog extends JDialog {
         circleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 drawArea.setVisible(true);
                 currentRectangle(Integer.parseInt(locationX.getText()),Integer.parseInt(locationY.getText()),Integer.parseInt(Width.getText()),Integer.parseInt(Height.getText()));
                 numOfButtonClick++;

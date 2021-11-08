@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 /** Dialog of draw each graphic */
 class drawDialog extends JDialog {
+    private final int DIALOG_X = 100;
+    private final int DIALOG_Y = 100;
 
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
@@ -26,7 +28,7 @@ class drawDialog extends JDialog {
         //整体框架
         JFrame dialog = new JFrame("Draw 弹窗");
         dialog.setVisible(true);
-        dialog.setBounds(0, 0, WIDTH, HEIGHT);
+        dialog.setBounds(DIALOG_X, DIALOG_Y, WIDTH, HEIGHT);
         dialog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 内容窗格
         Container drawContainer = this.getContentPane();
