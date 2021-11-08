@@ -19,11 +19,7 @@ interface Shape{
     void pointToMe();
     void removeRefer();
     /** isIntersected() method */
-    boolean isIntersected(Shape other); // check Shape is intersected with other Line
-//    boolean isIntersected(Line other); // check Shape is intersected with other Line
-//    boolean isIntersected(Rectangle other); // check Shape is intersected with other Rectangle(and its subclass Square)
-//    boolean isIntersected(Circle other); // check Shape is intersected with other Circle
-//    boolean isIntersected(Group other); // check Shape is intersected with other Group
+    boolean isIntersected(Shape other); // check Shape is intersected with other Shape
 
     /** bounding box method */
     double getLeftBounding(); // get the Left Bounding of a shape
