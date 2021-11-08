@@ -28,23 +28,25 @@ public class ClevisView extends JFrame{
         //按钮draw实现
         JButton drawButton = new JButton("Draw");
         drawButton.setBounds(0,400,100,50);
+        container.add(drawButton);
         drawButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 new drawDialog();
             }
         });
-        container.add(drawButton);
+
         // 按钮quit的响应事件
         JButton quitButton = new JButton("Quit");
         quitButton.setBounds(400,400,100,50);
+        container.add(quitButton);
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        container.add(quitButton);
     }
 }
 
