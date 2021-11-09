@@ -153,9 +153,9 @@ public class Circle implements Shape{
     @Override
     public double getRightBounding(){return getCenter().getX() + getRadius();}
     @Override
-    public double getTopBounding(){return getCenter().getY() + getRadius();}
+    public double getTopBounding(){return getCenter().getY() - getRadius();}
     @Override
-    public double getBottomBounding(){return getCenter().getY() - getRadius();}
+    public double getBottomBounding(){return getCenter().getY() + getRadius();}
 
     /** list out information of a shape*/
     @Override

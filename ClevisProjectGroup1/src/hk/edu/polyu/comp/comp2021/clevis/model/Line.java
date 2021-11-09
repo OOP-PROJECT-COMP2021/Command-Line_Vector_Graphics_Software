@@ -4,7 +4,7 @@ import static hk.edu.polyu.comp.comp2021.clevis.model.Calculate.*;
 import static java.lang.Math.*;
 
 /** Shape of Line*/
-class Line implements Shape{
+public class Line implements Shape{
 
     private final String name; // store name
     private Vec a; // store the vector of end A in the line
@@ -198,9 +198,9 @@ class Line implements Shape{
     @Override
     public double getRightBounding(){return Math.max(getA().getX(),getB().getX());}
     @Override
-    public double getTopBounding(){return Math.max(getA().getY(),getB().getY());}
+    public double getTopBounding(){return Math.min(getA().getY(),getB().getY());}
     @Override
-    public double getBottomBounding(){return Math.min(getA().getY(),getB().getY());}
+    public double getBottomBounding(){return Math.max(getA().getY(),getB().getY());}
 
     /** list out information of a shape*/
     @Override

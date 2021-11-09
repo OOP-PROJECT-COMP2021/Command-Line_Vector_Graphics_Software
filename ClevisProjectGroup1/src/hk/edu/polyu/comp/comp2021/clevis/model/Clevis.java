@@ -438,6 +438,13 @@ public class Clevis {
         return storage.containsKey(inName);
     }
 
+    /** return the shape from name
+     * @param inName: shape name
+     * @return : the shape*/
+    public Shape getShape(String inName) {
+        return storage.get(inName);
+    }
+
 
     /** -----------Undo-----------*/
         /** Undo Control methods: */

@@ -1,7 +1,7 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 
 /** Shape of Rectangle*/
-class Rectangle implements Shape{
+public class Rectangle implements Shape{
     private final String name; // store name
     private double w,h; // store the width and height
     private Line[] FourLines = new Line[4]; // LineArray to store 4 line of the rectangle (0: lineLeft, 1: lineBottom, 2: lineRight, 3: lineTop)

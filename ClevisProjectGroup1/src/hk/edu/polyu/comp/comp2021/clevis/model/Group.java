@@ -183,7 +183,7 @@ class Group implements Shape {
     public double getTopBounding(){ // get the Top Bounding of a Group
         double maxTop = this.getShapeList()[0].getTopBounding();
         for (Shape s: this.getShapeList()){
-            maxTop = Math.max(s.getTopBounding(),maxTop);
+            maxTop = Math.min(s.getTopBounding(),maxTop);
         }
         return (maxTop);
     }
@@ -192,7 +192,7 @@ class Group implements Shape {
     public double getBottomBounding(){ // get the Bottom Bounding of a Group
         double minBottom = this.getShapeList()[0].getBottomBounding();
         for (Shape s: this.getShapeList()){
-            minBottom = Math.min(s.getBottomBounding(),minBottom);
+            minBottom = Math.max(s.getBottomBounding(),minBottom);
         }
         return (minBottom);
     }

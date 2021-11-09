@@ -1,11 +1,12 @@
 package hk.edu.polyu.comp.comp2021.clevis.model;
 /** bounding box extends rectangle*/
-class BoundingBox extends Rectangle {
+public class BoundingBox extends Rectangle {
 
     /** Bounding box constructor
      * @param inShape : shape*/
-    BoundingBox(Shape inShape) {
-        super("Bounded " + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(), inShape.getRightBounding() - inShape.getLeftBounding(), inShape.getTopBounding() - inShape.getBottomBounding());
+    public BoundingBox(Shape inShape) {
+        super("Bounded " + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(),
+                inShape.getRightBounding() - inShape.getLeftBounding(), Math.abs(inShape.getTopBounding() - inShape.getBottomBounding()));
     }
 
     /** get bounding box
