@@ -13,8 +13,6 @@ public class Application{
     public static void main(String[] args) throws Exception {
         Clevis clevis = new Clevis();
         System.out.println("Welcome to use our graphics function");
-        //Random rand = new Random();
-        //int nameRand = rand.nextInt(100);
         File writeF = new File("record.txt");
         writeF.createNewFile();
         BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
@@ -22,20 +20,21 @@ public class Application{
         InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
         BufferedReader br = new BufferedReader(reader);
         System.out.println("Input record store in the \"record.txt\"");
+        int lineCount = 0;
+        int times = 0;
+        int undoCount = 0;
+        String line = br.readLine();
         while (true) {
             System.out.println("Please type your code:");
             Scanner scanner = new Scanner(System.in);
-            int times = 0;
             out.write(scanner.nextLine()+"\n");
             out.flush();
-            String line = br.readLine();
-            for(int i = 0;i<times;i++)  {
-                line = br.readLine();
-            }
-            times++;
+            lineCount++;
+            line = br.readLine();
             Scanner scan = new Scanner(line);
             if (scan.hasNext()) {
                 String str = scan.next();
+
                 /** [Rectangle]*/
                 if (str.equals("rectangle")) {
                     String name = scan.next();
@@ -149,13 +148,9 @@ public class Application{
                     String name = scan.next();
                     double inX = Double.parseDouble(scan.next());
                     double inY = Double.parseDouble(scan.next());
-                    System.out.println(inX);
-                    System.out.println(inY);
                     try{
                         clevis.moveShape(name,inX,inY);
-                        System.out.println(inX);
-                        System.out.println(inY);
-                        System.out.println("Successfully move to point ("+inX+","+inY+")");
+                        System.out.println("Successfully move "+inX+" on X-axis and move "+inY+" on Y-axis");
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
@@ -170,7 +165,7 @@ public class Application{
                     double inDy = Double.parseDouble(scan.next());
                     try{
                         clevis.pickAndMoveShape(inX,inY,inDx,inDy);
-                        System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+inDx+","+inDy+")");
+                        System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+(inDx+inX)+","+(inDy+inY)+")");
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
@@ -218,21 +213,30 @@ public class Application{
                 /** [Undo]*/
                 else if(str.equals("undo")){
                     try{
-//                        LineNumberReader lineNumberR = new LineNumberReader(in);
-//                        int lineNumber = 0;
-//                        int totalLine = 0;
-//                        String targetLine = "";
-//                        while (line!=null){
-//                            totalLine++;
-//                            line = lineNumberR.readLine();
-//                        }
-//                        while (line!=null){
-//                            if (lineNumber==totalLine-1){
-//                                targetLine = lineNumberR.readLine();
-//                            }
-//                        }
-                        System.out.println("Already undo!");
-                        clevis.UndoControl();
+                        lineCount-=undoCount;
+                        FileReader fr = new FileReader("record.txt");
+                        BufferedReader BR = new BufferedReader(fr);
+                        int count= 0;
+                        String targetLine = "";
+                        String Line = "";
+                        while(count < lineCount-1){
+                            if (count >= lineCount-1) {
+                                Line = BR.readLine();
+                            }
+                            else{
+                                targetLine = BR.readLine();
+                                Line = targetLine;
+                            }
+                            count++;
+                        }
+                        undoCount +=2;
+                        if (Line.split(" ")[0].equals("boundingbox")||Line.split(" ")[0].equals("intersect")||Line.split(" ")[0].equals("list")||Line.equals("listAll")||Line.equals("quit")){
+                            System.out.println("Can't undo!");
+                        }
+                        else {
+                            System.out.println("Already undo to the process \"" + targetLine + "\"");
+                            clevis.UndoControl();
+                        }
                     }catch (IllegalArgumentException e){
                         System.out.println("No operation for undo！");
                     }

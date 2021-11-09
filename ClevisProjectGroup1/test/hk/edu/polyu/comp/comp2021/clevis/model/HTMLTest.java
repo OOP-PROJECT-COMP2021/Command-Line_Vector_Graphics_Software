@@ -12,9 +12,8 @@ public class HTMLTest {
         PrintStream printStream = new PrintStream(new FileOutputStream("log.html"));
 
         StringBuilder outStr = new StringBuilder();
-        File file = new File("record.txt");
-        InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
-        BufferedReader br = new BufferedReader(reader);
+        FileReader fr = new FileReader("record.txt");
+        BufferedReader br = new BufferedReader(fr);
         outStr.append("<html>");
         outStr.append("<head>");
         outStr.append("<title>htmlTest</title>");
