@@ -8,10 +8,13 @@ import java.io.*;
 public class HTMLTest {
 
     @Test
-    public void htmlTest1() throws FileNotFoundException {
+    public void htmlTest1() throws FileNotFoundException,IOException {
         PrintStream printStream = new PrintStream(new FileOutputStream("log.html"));
 
         StringBuilder outStr = new StringBuilder();
+        File file = new File("record.txt");
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
+        BufferedReader br = new BufferedReader(reader);
         outStr.append("<html>");
         outStr.append("<head>");
         outStr.append("<title>htmlTest</title>");
@@ -21,10 +24,13 @@ public class HTMLTest {
         outStr.append("<tr>" + "<th>Index</th>" + "<th>cmd</th>" + "</tr>"); // table head
         // insert here
         outStr.append("<table></body></html>");
-
-        outStr.insert(outStr.length()-"<table></body></html>".length(),"<tr>" + "<td>0</td>" + "<td>rectangle A 1 1 2 2</td>" + "</tr>"); // table row 0 (table data:0; table data: rectangle A 1 1 2 2)
-        outStr.insert(outStr.length()-"<table></body></html>".length(),"<tr>" + "<td>1</td>" + "<td>line B 1 2 3 4</td>" + "</tr>"); // table row 1 (table data:1; table data: line B 1 2 3 4)
-
+        String line = br.readLine();
+        int position = 0;
+        while(line!=null) {
+            outStr.insert(outStr.length() - "<table></body></html>".length(), "<tr>" + "<td>" + position + "</td>" + "<td>" +line+ "</td>" + "</tr>"); // table row 0 (table data:0; table data: rectangle A 1 1 2 2)
+            line = br.readLine();
+            position++;
+        }
         printStream.println(outStr.toString());
     }
 

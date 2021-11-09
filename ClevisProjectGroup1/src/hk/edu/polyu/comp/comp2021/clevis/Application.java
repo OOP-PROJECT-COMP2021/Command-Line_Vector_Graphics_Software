@@ -13,15 +13,15 @@ public class Application{
     public static void main(String[] args) throws Exception {
         Clevis clevis = new Clevis();
         System.out.println("Welcome to use our graphics function");
-        Random rand = new Random();
-        int nameRand = rand.nextInt(100);
-        File writeF = new File("record"+nameRand+".txt");
+        //Random rand = new Random();
+        //int nameRand = rand.nextInt(100);
+        File writeF = new File("record.txt");
         writeF.createNewFile();
         BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
-        File readF = new File("record"+nameRand+".txt");
+        File readF = new File("record.txt");
         InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
         BufferedReader br = new BufferedReader(reader);
-        System.out.println("Input record store in the \"record"+nameRand+".txt\"");
+        System.out.println("Input record store in the \"record.txt\"");
         while (true) {
             System.out.println("Please type your code:");
             Scanner scanner = new Scanner(System.in);
