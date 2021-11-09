@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33cc1b99-3c1c-4ff7-9404-451082c0ee9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/record21.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record24.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record38.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record47.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record49.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record52.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record6.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record62.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record66.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record67.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record72.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record80.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record87.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record91.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record94.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/record99.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/record.txt" beforeDir="false" afterPath="$PROJECT_DIR$/record.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +68,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ClevisView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.view.ClevisView" />
+      <module name="Clevis_Project_Group1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HTMLTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Clevis_Project_Group1" />
       <extension name="coverage">
@@ -99,6 +92,22 @@
       <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
       <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.HTMLTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HTMLTest.htmlTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Clevis_Project_Group1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.HTMLTest" />
+      <option name="METHOD_NAME" value="htmlTest1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,6 +131,8 @@
       <list>
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.HTMLTest" />
+        <item itemvalue="Application.ClevisView" />
+        <item itemvalue="JUnit.HTMLTest.htmlTest1" />
         <item itemvalue="JUnit.TestCircle" />
       </list>
     </recent_temporary>
@@ -160,7 +171,27 @@
           <line>51</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ClevisProjectGroup1/test/hk/edu/polyu/comp/comp2021/clevis/model/HTMLTest.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java</url>
+          <line>215</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Clevis_Project_Group1$HTMLTest.ic" NAME="HTMLTest Coverage Results" MODIFIED="1636427605635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
   </component>
 </project>
