@@ -14,48 +14,6 @@ import java.awt.event.ActionListener;
 public class ClevisView extends JFrame{
     Clevis clevis = new Clevis();
 
-    private MyCanvas drawArea;
-    private Rectangle boundingBoxShape;
-    private boolean flag = false;
-
-    private class MyCanvas extends JPanel {
-        //重写paint以绘制图形
-        @Override
-        public void paint(Graphics g) {
-            g.setColor(Color.black);
-            g.drawRect(0,0,600,300);
-            for(Shape shape : clevis.getShapeLevel()){
-
-                g.setColor(Color.red);
-                if (shape.getSHAPE_TYPE().equals("REC")) {
-                    g.drawRect((int) (((Rectangle)shape).getTopLeftCorner().getX()),(int)((Rectangle)shape).getTopLeftCorner().getY(),(int)(((Rectangle)shape).getWidth()),(int)(((Rectangle)shape).getHeight()));
-                    g.drawString(shape.getName(),(int) (((Rectangle)shape).getTopLeftCorner().getX()),(int)((Rectangle)shape).getTopLeftCorner().getY());
-                }
-                else if (shape.getSHAPE_TYPE().equals("LINE")) {
-                    g.drawLine((int) (((Line)shape).getA().getX()),(int)(((Line)shape).getA().getY()),(int)(((Line)shape).getB().getX()),(int)(((Line)shape).getB().getY()));
-                    g.drawString(shape.getName(),(int) (((Line)shape).getA().getX()),(int)(((Line)shape).getA().getY()));
-
-                }
-                else if (shape.getSHAPE_TYPE().equals("CIR")) {
-                    g.drawOval((int) (shape.getLeftBounding()),(int) shape.getTopBounding(),(int)(((Circle)shape).getRadius()*2),(int)(((Circle)shape).getRadius()*2));
-                    g.drawString(shape.getName(),(int) (shape.getLeftBounding()),(int) shape.getTopBounding());
-                }
-
-                else if (shape.getSHAPE_TYPE().equals("GRP")) {
-                    g.setColor(Color.darkGray);
-                    Rectangle grpBound = new BoundingBox(shape);
-                    g.drawRect((int) (grpBound.getTopLeftCorner().getX()),(int) grpBound.getTopLeftCorner().getY(),(int)(grpBound.getWidth()),(int)(grpBound.getHeight()));
-                    g.drawString(shape.getName(),(int) (shape.getRightBounding()),(int) shape.getTopBounding());
-                }
-            }
-            if (flag) {
-                g.setColor(Color.gray);
-                g.drawRect((int) (boundingBoxShape.getTopLeftCorner().getX()),(int) boundingBoxShape.getTopLeftCorner().getY(),(int)(boundingBoxShape.getWidth()),(int)(boundingBoxShape.getHeight()));
-                flag = false;
-            }
-            //绘制所有圆
-        }
-    }
     //all component' parameters
     private final int DIALOG_X = 100;
     private final int DIALOG_Y = 100;
@@ -79,12 +37,18 @@ public class ClevisView extends JFrame{
     private final int DRAW_CIRCLE_BTN_LOCATION_Y = 100;
 
     // for main page buttons
+    private final int TEXT_AREA_X = 100;
+    private final int TEXT_AREA_Y = 10;
+    private final int TEXT_AREA_W = 350;
+    private final int TEXT_AREA_H = 40;
+
+
     private final int FIRST_CO_X = 150;
     private final int SECOND_CO_X = 350;
 
-    private final int FIRST_RO_Y = 10;
-    private final int SECOND_RO_Y = 80;
-    private final int THIRD_RO_Y = 150;
+    private final int FIRST_RO_Y = 70;
+    private final int SECOND_RO_Y = 120;
+    private final int THIRD_RO_Y = 170;
     private final int FOURTH_RO_Y =220;
 
 
@@ -96,6 +60,13 @@ public class ClevisView extends JFrame{
     private final int DRAW_AREA_X = 600;
     private final int DRAW_AREA_Y = 300;
 
+
+    private final int LIST_Y = 105;
+    private final int LIST_WIDTH = 450;
+    private final int LIST_HEIGHT = 150;
+
+
+
     private final int LABEL_WIDTH = 80;
     private final int LABEL_HEIGHT = 30;
     private final int NAME_LOCATION_Y = 75;
@@ -105,7 +76,7 @@ public class ClevisView extends JFrame{
     private final int P4_LOCATION_Y = 215;
 
     private final int LOCATION_X = 50;
-    private final int RADIO_LOCATION_Y = 40;
+    private final int RADIO_LOCATION_Y = 30;
     private final int RADIO_WIDTH = 100;
     private final int RADIO_HEIGHT = 50;
     private final int RADIO_LINE_X = 180;
@@ -113,14 +84,12 @@ public class ClevisView extends JFrame{
     private final int RADIO_SQU_X = 440;
 
 
-
-
-
-
     private final int TEXT_WIDTH = 150;
     private final int SHAPE_LIST_TEXT_WIDTH = 250;
     private final int POINT_XY_TEXT_WIDTH = 75;
     private final int POINT_Y_X = 205;
+    private final int MOVE_NOTICE_Y = 112;
+    private final int MOVE_NOTICE_WIDTH = 350;
 
 
 
@@ -140,6 +109,59 @@ public class ClevisView extends JFrame{
     private final int DRAW_REC_BTN_LOCATION_Y = 400;
     private final int BACK_BTN_LOCATION_Y = 200;
     private final int BACK_BTN_LOCATION_X = 500;
+
+
+    private MyCanvas drawArea;
+    private Rectangle boundingBoxShape;
+    private boolean boundingBoxFlag = false;
+
+    private class MyCanvas extends JPanel {
+        //重写paint以绘制图形
+        @Override
+        public void paint(Graphics g) {
+            g.setColor(Color.black);
+            g.drawRect(0,0,600,300);
+            for(Shape shape : clevis.getShapeLevel()){
+
+                g.setColor(Color.red);
+                if (shape.getSHAPE_TYPE().equals("REC")) {
+                    g.drawRect((int) (((Rectangle)shape).getTopLeftCorner().getX()),
+                            (int)((Rectangle)shape).getTopLeftCorner().getY(),
+                            (int)(((Rectangle)shape).getWidth()),(int)(((Rectangle)shape).getHeight()));
+                    g.drawString(shape.getName(),(int) (((Rectangle)shape).getTopLeftCorner().getX()),
+                            (int)((Rectangle)shape).getTopLeftCorner().getY());
+                }
+                else if (shape.getSHAPE_TYPE().equals("LINE")) {
+                    g.drawLine((int) (((Line)shape).getA().getX()),(int)(((Line)shape).getA().getY()),
+                            (int)(((Line)shape).getB().getX()),(int)(((Line)shape).getB().getY()));
+                    g.drawString(shape.getName(),(int) (((Line)shape).getA().getX()),(int)(((Line)shape).getA().getY()));
+
+                }
+                else if (shape.getSHAPE_TYPE().equals("CIR")) {
+                    g.drawOval((int) (shape.getLeftBounding()),(int) shape.getTopBounding(),
+                            (int)(((Circle)shape).getRadius()*2),(int)(((Circle)shape).getRadius()*2));
+                    g.drawString(shape.getName(),(int) (shape.getLeftBounding()),(int) shape.getTopBounding());
+                }
+
+                else if (shape.getSHAPE_TYPE().equals("GRP")) {
+                    g.setColor(Color.darkGray);
+                    Rectangle grpBound = new BoundingBox(shape);
+                    g.drawRect((int) (grpBound.getTopLeftCorner().getX()),(int) grpBound.getTopLeftCorner().getY(),
+                            (int)(grpBound.getWidth()),(int)(grpBound.getHeight()));
+                    g.drawString(shape.getName(),(int) (shape.getRightBounding()),(int) shape.getTopBounding());
+                }
+            }
+            if (boundingBoxFlag) {
+                g.setColor(Color.gray);
+                g.drawRect((int) (boundingBoxShape.getTopLeftCorner().getX()),
+                        (int) boundingBoxShape.getTopLeftCorner().getY(),(int)(boundingBoxShape.getWidth()),
+                        (int)(boundingBoxShape.getHeight()));
+                boundingBoxFlag = false;
+            }
+            //绘制所有圆
+        }
+    }
+
 
 
     /** main function
@@ -176,10 +198,20 @@ public class ClevisView extends JFrame{
         MainContainer.setVisible(true);
         MainContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
         MainContainer.setLayout(null);
+
+
+        JLabel mainLabel = new JLabel();
+        mainLabel.setBounds(TEXT_AREA_X,TEXT_AREA_Y,TEXT_AREA_W,TEXT_AREA_H);
+        mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        mainLabel.setText("Welcome to Clevis! Click Draw to start!");
+
+        MainContainer.add(mainLabel,BorderLayout.CENTER);
         container.add(MainContainer);
 
         container.add(drawArea);
         drawArea.repaint();
+
+
 
 
         /** Panel for Draw page for all shapes */
@@ -215,6 +247,20 @@ public class ClevisView extends JFrame{
         moveContainer.setVisible(false);
         moveContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
         moveContainer.setLayout(null);
+        //container.add(drawSelectionContainer);
+
+        /** Panel for listContainer page for all shapes */
+        JPanel listContainer = new JPanel();
+        listContainer.setVisible(false);
+        listContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        listContainer.setLayout(null);
+        //container.add(drawSelectionContainer);
+        //
+        // /** Panel for listContainer page for all shapes */
+        JPanel intersectContainer = new JPanel();
+        intersectContainer.setVisible(false);
+        intersectContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        intersectContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
 
@@ -404,6 +450,47 @@ public class ClevisView extends JFrame{
         JTextField pointDYField = new JTextField();
         pointDXField.setBounds(TEXT_LOCATION_X,BACK_BTN_LOCATION_Y,POINT_XY_TEXT_WIDTH,LABEL_HEIGHT);
         pointDYField.setBounds(POINT_Y_X,BACK_BTN_LOCATION_Y,POINT_XY_TEXT_WIDTH,LABEL_HEIGHT);
+        JLabel moveNoticeLabel = new JLabel();
+        moveNoticeLabel.setBounds(LOCATION_X,MOVE_NOTICE_Y,MOVE_NOTICE_WIDTH,TEXT_HEIGHT);
+        moveNoticeLabel.setText("Enter name to move or enter point to pick-and-move");
+
+        //-----listContainer element--
+        JButton listShapeButton = new JButton("List");
+        listShapeButton.setBounds(BTN_DRAW_X, NAME_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
+        listContainer.add(listShapeButton);
+
+        JButton listAllButton = new JButton("ListAll");
+        listAllButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
+        listContainer.add(listAllButton);
+
+        JButton backListButton = new JButton("Back");
+        backListButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
+        listContainer.add(backListButton);
+
+        JTextArea listAllArea = new JTextArea(10,25);
+        JScrollPane jsp = new JScrollPane(listAllArea);
+        jsp.setBounds(LOCATION_X,LIST_Y,LIST_WIDTH,LIST_HEIGHT);
+        jsp.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        listContainer.add(jsp);
+
+        //-----intersectContainer element--
+        JButton intersectButton = new JButton("Check");
+        intersectButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
+        intersectContainer.add(intersectButton);
+
+        JButton backIntersectButton = new JButton("Back");
+        backIntersectButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
+        intersectContainer.add(backIntersectButton);
+
+        JLabel shape2Label = new JLabel("Shape2: ");
+        JTextField shape2Field = new JTextField();
+
+        shape2Label.setBounds(LOCATION_X,BTN_DRAW_Y,LABEL_WIDTH,LABEL_HEIGHT);
+        shape2Field.setBounds(TEXT_LOCATION_X,BTN_DRAW_Y,TEXT_WIDTH,TEXT_HEIGHT);
+
+        intersectContainer.add(shape2Label);
+        intersectContainer.add(shape2Field);
+
 
 
         /** ----------------------------listener---------------------------------------------*/
@@ -412,17 +499,29 @@ public class ClevisView extends JFrame{
         drawShapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (radioButtonRec.isSelected()) {
-                    clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),Double.parseDouble(textFieldP4.getText()));
+                try{
+                    if (radioButtonRec.isSelected()) {
+                        clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
+                                Double.parseDouble(textFieldP4.getText()));
+                    }
+                    else if (radioButtonLine.isSelected()) {
+                        clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
+                                Double.parseDouble(textFieldP4.getText()));
+                    }
+                    else if (radioButtonCircle.isSelected()) {
+                        clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+                    }
+                    else if (radioButtonSquare.isSelected()) {
+                        clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+                    }
+                    mainLabel.setText("Draw successfully!");
                 }
-                else if (radioButtonLine.isSelected()) {
-                    clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),Double.parseDouble(textFieldP4.getText()));
-                }
-                else if (radioButtonCircle.isSelected()) {
-                    clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
-                }
-                else if (radioButtonSquare.isSelected()) {
-                    clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
 
                 drawArea.repaint();
@@ -433,7 +532,14 @@ public class ClevisView extends JFrame{
         deleteShapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText() != "" && clevis.containsName(name.getText())) {clevis.deleteShapeWithName(name.getText());}
+                try{
+                    clevis.deleteShapeWithName(name.getText());
+                    mainLabel.setText("Delete successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
+                }
+
                 drawArea.repaint();
 
                 //new drawDialog();
@@ -444,13 +550,16 @@ public class ClevisView extends JFrame{
         boundingBoxButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText() != "" && clevis.containsName(name.getText())) {
+                try{
                     boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
-                    flag = true;
+                    boundingBoxFlag = true;
+                    mainLabel.setText("Bounding box generated successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
                 drawArea.repaint();
 
-                //new drawDialog();
             }
         });
 
@@ -458,13 +567,15 @@ public class ClevisView extends JFrame{
         createGroupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText() != "" && shapeListField.getText() != "" && !clevis.containsName(name.getText())) {
+                try {
                     String[] shapeList = shapeListField.getText().split(",");
                     clevis.createGroup(name.getText(),shapeList);
+                    mainLabel.setText("Group created successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
                 drawArea.repaint();
-
-                //new drawDialog();
             }
         });
 
@@ -472,8 +583,13 @@ public class ClevisView extends JFrame{
         unGroupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText() != ""  && clevis.containsName(name.getText())) {
+                try{
                     clevis.unGroup(name.getText());
+                    mainLabel.setText("Ungroup successfully!");
+
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
                 drawArea.repaint();
 
@@ -485,8 +601,12 @@ public class ClevisView extends JFrame{
         moveShapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (name.getText() != ""  && clevis.containsName(name.getText())) {
+                try {
                     clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),Double.parseDouble(pointDYField.getText()));
+                    mainLabel.setText("Shape moved successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
                 drawArea.repaint();
 
@@ -497,13 +617,74 @@ public class ClevisView extends JFrame{
         pickMoveShapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pointXField.getText() != ""  && pointYField.getText() != "" && pointDXField.getText() != "" && pointDYField.getText() != "" ) {
-                    clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),Double.parseDouble(pointDYField.getText()));
+                try {
+                    clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
+                            Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
+                            Double.parseDouble(pointDYField.getText()));
+                    mainLabel.setText("Shape moved successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
+                }
+                drawArea.repaint();
+            }
+        });
+
+        // listener for listShapeButton on group page
+        listShapeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    listAllArea.setText(clevis.listShape(name.getText()));
+                    mainLabel.setText("Shape listed successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
                 }
                 drawArea.repaint();
 
             }
         });
+
+        // listener for listShapeButton on group page
+        listAllButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    listAllArea.setText(clevis.listAllShape());
+                    mainLabel.setText("All shapes listed successfully!");
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
+                }
+
+                drawArea.repaint();
+
+            }
+        });
+
+        // listener for intersectButton on group page
+        intersectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (clevis.isIntersected(name.getText(),shape2Field.getText())) {
+                        mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is intersected!");
+                    }
+                    else {
+                        mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is NOT intersected!");
+                    }
+
+                }
+                catch (Exception e1) {
+                    mainLabel.setText("Illegal input, please try again!");
+                }
+                drawArea.repaint();
+
+            }
+        });
+
+
 
 
         // listener for drawButton on main page
@@ -515,6 +696,9 @@ public class ClevisView extends JFrame{
 
                 drawContainer.add(labelName);
                 drawContainer.add(name);
+
+                mainLabel.setText("Please select the shape to draw!");
+                drawContainer.add(mainLabel);
 
                 container.add(drawContainer);
                 drawContainer.setVisible(true);
@@ -531,6 +715,9 @@ public class ClevisView extends JFrame{
 
                 deleteContainer.add(labelName);
                 deleteContainer.add(name);
+
+                mainLabel.setText("Please enter the name of the shape to delete!");
+                deleteContainer.add(mainLabel);
 
                 container.add(deleteContainer);
                 deleteContainer.setVisible(true);
@@ -549,6 +736,9 @@ public class ClevisView extends JFrame{
 
                 boundingBoxContainer.add(labelName);
                 boundingBoxContainer.add(name);
+
+                mainLabel.setText("Please enter the name of the shape to bound!");
+                boundingBoxContainer.add(mainLabel);
 
                 container.add(boundingBoxContainer);
                 boundingBoxContainer.setVisible(true);
@@ -572,13 +762,16 @@ public class ClevisView extends JFrame{
                 groupContainer.add(shapeListField);
                 groupContainer.add(shapeListNoteLabel);
 
+                mainLabel.setText("Please enter the Group name to group or ungroup!");
+                groupContainer.add(mainLabel);
+
                 container.add(groupContainer);
                 groupContainer.setVisible(true);
 
             }
         });
 
-        // listener for groupButton on main page
+        // listener for moveButton on main page
         moveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -592,13 +785,60 @@ public class ClevisView extends JFrame{
                 moveContainer.add(pointXField);
                 moveContainer.add(pointYField);
                 moveContainer.add(dXdYLabel);
+                moveContainer.add(moveNoticeLabel);
 
                 moveContainer.add(pointDXField);
                 moveContainer.add(pointDYField);
 
+                mainLabel.setText("Please enter the name of the shape to move!");
+                moveContainer.add(mainLabel);
+
 
                 container.add(moveContainer);
                 moveContainer.setVisible(true);
+
+            }
+        });
+
+        // listener for listButton on main page
+        listButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainContainer.setVisible(false);
+                container.remove(MainContainer);
+
+                listContainer.add(labelName);
+                listContainer.add(name);
+
+
+                mainLabel.setText("Please enter the name of the shape to list!");
+                listContainer.add(mainLabel);
+
+
+                container.add(listContainer);
+                listContainer.setVisible(true);
+
+            }
+        });
+
+        // listener for intersectionButton on main page
+        intersectionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainContainer.setVisible(false);
+                container.remove(MainContainer);
+
+                labelName.setText("Shape1: ");
+                intersectContainer.add(labelName);
+                intersectContainer.add(name); // shape1
+
+
+                mainLabel.setText("Please enter the name of shapes to check!");
+                intersectContainer.add(mainLabel);
+
+
+                container.add(intersectContainer);
+                intersectContainer.setVisible(true);
 
             }
         });
@@ -625,8 +865,12 @@ public class ClevisView extends JFrame{
                 drawContainer.setVisible(false);
                 container.remove(drawContainer);
 
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
+
                 MainContainer.setVisible(true);
                 container.add(MainContainer);
+
 
                 drawArea.repaint();
 
@@ -645,6 +889,9 @@ public class ClevisView extends JFrame{
                 deleteContainer.setVisible(false);
                 container.remove(deleteContainer);
 
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
+
                 MainContainer.setVisible(true);
                 container.add(MainContainer);
             }
@@ -662,6 +909,9 @@ public class ClevisView extends JFrame{
 
                 boundingBoxContainer.setVisible(false);
                 container.remove(boundingBoxContainer);
+
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
 
                 MainContainer.setVisible(true);
                 container.add(MainContainer);
@@ -682,6 +932,9 @@ public class ClevisView extends JFrame{
 
                 groupContainer.setVisible(false);
                 container.remove(groupContainer);
+
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
 
                 MainContainer.setVisible(true);
                 container.add(MainContainer);
@@ -705,6 +958,55 @@ public class ClevisView extends JFrame{
 
                 moveContainer.setVisible(false);
                 container.remove(moveContainer);
+
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
+
+                MainContainer.setVisible(true);
+                container.add(MainContainer);
+                drawArea.repaint();
+            }
+        });
+
+        // listener for backListButton on moveContainer page
+        backListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                name.setText("");
+                textFieldP1.setText("");
+                textFieldP2.setText("");
+                textFieldP3.setText("");
+                textFieldP4.setText("");
+                listAllArea.setText("");
+
+                listContainer.setVisible(false);
+                container.remove(listContainer);
+
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
+
+                MainContainer.setVisible(true);
+                container.add(MainContainer);
+                drawArea.repaint();
+            }
+        });
+
+        // listener for backIntersectButton on moveContainer page
+        backIntersectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                name.setText("");
+                textFieldP1.setText("");
+                textFieldP2.setText("");
+                textFieldP3.setText("");
+                textFieldP4.setText("");
+                shape2Field.setText("");
+
+                intersectContainer.setVisible(false);
+                container.remove(intersectContainer);
+
+                mainLabel.setText("Please select function!");
+                MainContainer.add(mainLabel);
 
                 MainContainer.setVisible(true);
                 container.add(MainContainer);
