@@ -7,40 +7,53 @@ import hk.edu.polyu.comp.comp2021.clevis.model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /** the main GUI */
 public class ClevisView extends JFrame{
-    Clevis clevis = new Clevis();
+    private Clevis clevis = new Clevis();
 
     //all component' parameters
     private final int DIALOG_X = 100;
     private final int DIALOG_Y = 100;
 
-    private final int PANEL_X = 0;
-    private final int PANEL_Y = 300;
+    private final int PANEL_X = 30;
+    private final int DEF_PANEL_Y = 305;
+    private int PANEL_Y = DEF_PANEL_Y;
+
+
     private final int PANEL_HEIGHT = 300;
+    private final int DRAW_AREA_POS_X = 30;
+    private final int DRAW_AREA_POS_Y = 5;
+    private final int TWELVE = 12;
+    private final int TWO = 2;
+    private final int FF = 55;
+
+    private final float DASH_5 = 5.0f;
+    private final float LIM_10 = 10.0f;
+
+    private final int ADD330 = 330;
+    private final int ADD60 = 60;
 
 
+    private final int DEF_FRAME_WIDTH = 660;
+    private int FRAME_WIDTH = DEF_FRAME_WIDTH;
 
-    private final int WIDTH = 600;
-    private final int HEIGHT = 600;
-    private final int LocationX = 0;
+    private final int DEF_FRAME_HEIGHT = 630;
+    private int FRAME_HEIGHT = DEF_FRAME_HEIGHT;
 
     private final int BUTTON_WIDTH = 100;
     private final int BUTTON_HEIGHT = 50;
 
-    private final int DRAW_BTN_LOCATION_Y = 200;
-    private final int QUIT_BTN_LOCATION_Y = 200;
-    private final int QUIT_BTN_LOCATION_X = 500;
-    private final int DRAW_CIRCLE_BTN_LOCATION_Y = 100;
 
     // for main page buttons
     private final int TEXT_AREA_X = 100;
     private final int TEXT_AREA_Y = 10;
     private final int TEXT_AREA_W = 350;
     private final int TEXT_AREA_H = 40;
+    private final int LIST_AREA_R = 10;
+    private final int LIST_AREA_C = 25;
+
+
 
 
     private final int FIRST_CO_X = 150;
@@ -57,9 +70,11 @@ public class ClevisView extends JFrame{
     private final int DIALOG_WIDTH = 500;
     private final int DIALOG_HEIGHT = 500;
 
-    private final int DRAW_AREA_X = 600;
-    private final int DRAW_AREA_Y = 300;
+    private final int DEF_DRAW_AREA_X = 600;
+    private int DRAW_AREA_X = DEF_DRAW_AREA_X;
 
+    private final int DEF_DRAW_AREA_Y = 300;
+    private int DRAW_AREA_Y = DEF_DRAW_AREA_Y;
 
     private final int LIST_Y = 105;
     private final int LIST_WIDTH = 450;
@@ -98,30 +113,49 @@ public class ClevisView extends JFrame{
 
     private final int BTN_WIDTH = 100;
     private final int BTN_HEIGHT = 25;
-    private final int BTN_BACK_X = 400;
-    private final int BTN_BACK_Y = 425;
+
     private final int BTN_DRAW_X = 500;
     private final int BTN_DRAW_Y = 175;
-    private final int BTN_DELETE_X = 400;
-    private final int BTN_DELETE_Y = 400;
 
-    private final int DRAW_REC_BTN_LOCATION_X = 125;
-    private final int DRAW_REC_BTN_LOCATION_Y = 400;
     private final int BACK_BTN_LOCATION_Y = 200;
     private final int BACK_BTN_LOCATION_X = 500;
+
+    private final int UNDO_BTN_LOCATION_X = 500;
+    private final int REDO_BTN_LOCATION_X = 500;
+    private final int UNDO_BTN_LOCATION_Y = 225;
+    private final int REDO_BTN_LOCATION_Y = 250;
+
+
 
 
     private MyCanvas drawArea;
     private Rectangle boundingBoxShape;
     private boolean boundingBoxFlag = false;
 
+    private float[] dash1 = {DASH_5};
+    private BasicStroke s = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, LIM_10, dash1, 0.0f);
+
     private class MyCanvas extends JPanel {
         //重写paint以绘制图形
         @Override
         public void paint(Graphics g) {
             g.setColor(Color.black);
-            g.drawRect(0,0,600,300);
+            g.drawRect(0,0,drawArea.getWidth(),drawArea.getHeight());
+            g.setColor(Color.lightGray);
+            g.drawString("(0,0)",0,TWELVE);
+            g.drawString("(0,"+drawArea.getHeight()+")",0,drawArea.getHeight()-TWO);
+            g.drawString("("+drawArea.getWidth()+",0)",drawArea.getWidth()-FF,TWELVE);
+
             for(Shape shape : clevis.getShapeLevel()){
+
+                if (shape.getRightBounding() > DRAW_AREA_X) {
+                    DRAW_AREA_X = (int) (shape.getRightBounding());
+                    drawArea.setSize(DRAW_AREA_X, DRAW_AREA_Y);
+                }
+                if (shape.getBottomBounding() > DRAW_AREA_Y) {
+                    DRAW_AREA_Y = (int) (shape.getBottomBounding());
+                    drawArea.setSize(DRAW_AREA_X, DRAW_AREA_Y);
+                }
 
                 g.setColor(Color.red);
                 if (shape.getSHAPE_TYPE().equals("REC")) {
@@ -144,24 +178,40 @@ public class ClevisView extends JFrame{
                 }
 
                 else if (shape.getSHAPE_TYPE().equals("GRP")) {
-                    g.setColor(Color.darkGray);
+                    Graphics2D g2d = (Graphics2D) g;
+                    g2d.setColor(Color.gray);
+                    g2d.setStroke(s);
                     Rectangle grpBound = new BoundingBox(shape);
-                    g.drawRect((int) (grpBound.getTopLeftCorner().getX()),(int) grpBound.getTopLeftCorner().getY(),
+                    g2d.drawRect((int) (grpBound.getTopLeftCorner().getX()),(int) grpBound.getTopLeftCorner().getY(),
                             (int)(grpBound.getWidth()),(int)(grpBound.getHeight()));
                     g.drawString(shape.getName(),(int) (shape.getRightBounding()),(int) shape.getTopBounding());
                 }
             }
             if (boundingBoxFlag) {
-                g.setColor(Color.gray);
+                g.setColor(Color.blue);
                 g.drawRect((int) (boundingBoxShape.getTopLeftCorner().getX()),
                         (int) boundingBoxShape.getTopLeftCorner().getY(),(int)(boundingBoxShape.getWidth()),
                         (int)(boundingBoxShape.getHeight()));
                 boundingBoxFlag = false;
             }
-            //绘制所有圆
         }
     }
 
+    /** refresh the size of the frame*/
+    public void refreshSize() {
+        for(Shape shape : clevis.getShapeLevel()) {
+
+            if (shape.getBottomBounding() > DRAW_AREA_Y) {
+                FRAME_HEIGHT = (int) shape.getBottomBounding() + ADD330;
+                this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+                PANEL_Y = (int) shape.getBottomBounding() + 5;
+            }
+            if (shape.getRightBounding() > DRAW_AREA_X) {
+                FRAME_WIDTH = (int) shape.getRightBounding() + ADD60;
+                this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            }
+        }
+    }
 
 
     /** main function
@@ -174,12 +224,15 @@ public class ClevisView extends JFrame{
     /** constructor */
     public ClevisView(){
         //主界面
-        //JFrame mainGUI = new JFrame();
+        //this.setPreferredSize(new Dimension(660, 630));
         this.setVisible(true);
-        this.setBounds(DIALOG_X,DIALOG_Y,WIDTH,HEIGHT);
+        //this.setLocation(DIALOG_X,DIALOG_Y);
+        this.setBounds(DIALOG_X,DIALOG_Y,FRAME_WIDTH,FRAME_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //pack();
         //container
         Container container = this.getContentPane();
+
         //绝对布局
         container.setLayout(null);
         //设置背景颜色
@@ -188,15 +241,16 @@ public class ClevisView extends JFrame{
         //创建画布对象
         drawArea = new MyCanvas();
         // 绘图区域
-        drawArea.setBounds(0,0,DRAW_AREA_X,DRAW_AREA_Y);// 必须设置大小及坐标，因为当前layout为null
+        drawArea.setBounds(DRAW_AREA_POS_X,DRAW_AREA_POS_Y,DRAW_AREA_X,DRAW_AREA_Y);// 必须设置大小及坐标，因为当前layout为null
 
         drawArea.setVisible(true);
+
 
         /** -----------------------------panels on container--------------------------------------------*/
         /** Panel for Main page*/
         JPanel MainContainer = new JPanel();
         MainContainer.setVisible(true);
-        MainContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        MainContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         MainContainer.setLayout(null);
 
 
@@ -212,54 +266,52 @@ public class ClevisView extends JFrame{
         drawArea.repaint();
 
 
-
-
         /** Panel for Draw page for all shapes */
         JPanel drawContainer = new JPanel();
         drawContainer.setVisible(false);
-        drawContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        drawContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         drawContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
         /** Panel for Delete page for all shapes */
         JPanel deleteContainer = new JPanel();
         deleteContainer.setVisible(false);
-        deleteContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        deleteContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         deleteContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
         /** Panel for Boundingbox page for all shapes */
         JPanel boundingBoxContainer = new JPanel();
         boundingBoxContainer.setVisible(false);
-        boundingBoxContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        boundingBoxContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         boundingBoxContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
         /** Panel for groupContainer page for all shapes */
         JPanel groupContainer = new JPanel();
         groupContainer.setVisible(false);
-        groupContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        groupContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         groupContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
         /** Panel for moveContainer page for all shapes */
         JPanel moveContainer = new JPanel();
         moveContainer.setVisible(false);
-        moveContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        moveContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         moveContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
         /** Panel for listContainer page for all shapes */
         JPanel listContainer = new JPanel();
         listContainer.setVisible(false);
-        listContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        listContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         listContainer.setLayout(null);
         //container.add(drawSelectionContainer);
         //
         // /** Panel for listContainer page for all shapes */
         JPanel intersectContainer = new JPanel();
         intersectContainer.setVisible(false);
-        intersectContainer.setBounds(PANEL_X,PANEL_Y,WIDTH,PANEL_HEIGHT);
+        intersectContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         intersectContainer.setLayout(null);
         //container.add(drawSelectionContainer);
 
@@ -299,6 +351,14 @@ public class ClevisView extends JFrame{
         quitButton.setBackground(Color.red);
         quitButton.setBounds(SECOND_CO_X,FOURTH_RO_Y,BUTTON_WIDTH,BUTTON_HEIGHT);
         MainContainer.add(quitButton);
+
+        JButton undoButton = new JButton("[Undo]");
+        undoButton.setBounds(UNDO_BTN_LOCATION_X,UNDO_BTN_LOCATION_Y,BTN_WIDTH,BTN_HEIGHT);
+        MainContainer.add(undoButton);
+
+        JButton redoButton = new JButton("[Redo]");
+        redoButton.setBounds(REDO_BTN_LOCATION_X,REDO_BTN_LOCATION_Y,BTN_WIDTH,BTN_HEIGHT);
+        MainContainer.add(redoButton);
 
 
         // elements on drawContainer page for all shapes
@@ -392,6 +452,7 @@ public class ClevisView extends JFrame{
         backDeleteButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         deleteContainer.add(backDeleteButton);
 
+
         //-----boundingBoxContainer element--
         JButton boundingBoxButton = new JButton("Bounding");
         boundingBoxButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
@@ -467,7 +528,7 @@ public class ClevisView extends JFrame{
         backListButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         listContainer.add(backListButton);
 
-        JTextArea listAllArea = new JTextArea(10,25);
+        JTextArea listAllArea = new JTextArea(LIST_AREA_R,LIST_AREA_C);
         JScrollPane jsp = new JScrollPane(listAllArea);
         jsp.setBounds(LOCATION_X,LIST_Y,LIST_WIDTH,LIST_HEIGHT);
         jsp.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -496,593 +557,629 @@ public class ClevisView extends JFrame{
         /** ----------------------------listener---------------------------------------------*/
 
         // listener for drawShapeButton on drawContainer page
-        drawShapeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    if (radioButtonRec.isSelected()) {
-                        clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
-                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
-                                Double.parseDouble(textFieldP4.getText()));
-                    }
-                    else if (radioButtonLine.isSelected()) {
-                        clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
-                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
-                                Double.parseDouble(textFieldP4.getText()));
-                    }
-                    else if (radioButtonCircle.isSelected()) {
-                        clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
-                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
-                    }
-                    else if (radioButtonSquare.isSelected()) {
-                        clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
-                                Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
-                    }
-                    mainLabel.setText("Draw successfully!");
+        drawShapeButton.addActionListener(e -> {
+            try{
+                if (radioButtonRec.isSelected()) {
+                    clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                            Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
+                            Double.parseDouble(textFieldP4.getText()));
                 }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
+                else if (radioButtonLine.isSelected()) {
+                    clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                            Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
+                            Double.parseDouble(textFieldP4.getText()));
                 }
-
-                drawArea.repaint();
+                else if (radioButtonCircle.isSelected()) {
+                    clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                            Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+                }
+                else if (radioButtonSquare.isSelected()) {
+                    clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                            Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+                }
+                mainLabel.setText("Draw successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
+
         });
 
         // listener for deleteShapeButton on delete page
-        deleteShapeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    clevis.deleteShapeWithName(name.getText());
-                    mainLabel.setText("Delete successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-
-                drawArea.repaint();
-
-                //new drawDialog();
+        deleteShapeButton.addActionListener(e -> {
+            try{
+                clevis.deleteShapeWithName(name.getText());
+                mainLabel.setText("Delete successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
+
+            //new drawDialog();
         });
 
         // listener for deleteShapeButton on bounding page
-        boundingBoxButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
-                    boundingBoxFlag = true;
-                    mainLabel.setText("Bounding box generated successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
-
+        boundingBoxButton.addActionListener(e -> {
+            try{
+                boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
+                boundingBoxFlag = true;
+                listAllArea.setText(boundingBoxShape.listInfo());
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+
         });
 
         // listener for groupButton on group page
-        createGroupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String[] shapeList = shapeListField.getText().split(",");
-                    clevis.createGroup(name.getText(),shapeList);
-                    mainLabel.setText("Group created successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
+        createGroupButton.addActionListener(e -> {
+            try {
+                String[] shapeList = shapeListField.getText().split(",");
+                clevis.createGroup(name.getText(),shapeList);
+                mainLabel.setText("Group created successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
         });
 
         // listener for unGroupButton on group page
-        unGroupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    clevis.unGroup(name.getText());
-                    mainLabel.setText("Ungroup successfully!");
+        unGroupButton.addActionListener(e -> {
+            try{
+                clevis.unGroup(name.getText());
+                mainLabel.setText("Ungroup successfully!");
 
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
-
-                //new drawDialog();
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+
+            //new drawDialog();
         });
 
         // listener for moveShapeButton on group page
-        moveShapeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),Double.parseDouble(pointDYField.getText()));
-                    mainLabel.setText("Shape moved successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
-
+        moveShapeButton.addActionListener(e -> {
+            try {
+                clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),Double.parseDouble(pointDYField.getText()));
+                mainLabel.setText("Shape moved successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
+
         });
 
         // listener for moveShapeButton on group page
-        pickMoveShapeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
-                            Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
-                            Double.parseDouble(pointDYField.getText()));
-                    mainLabel.setText("Shape moved successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
+        pickMoveShapeButton.addActionListener(e -> {
+            try {
+                clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
+                        Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
+                        Double.parseDouble(pointDYField.getText()));
+                mainLabel.setText("Shape moved successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
         });
 
         // listener for listShapeButton on group page
-        listShapeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    listAllArea.setText(clevis.listShape(name.getText()));
-                    mainLabel.setText("Shape listed successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-                drawArea.repaint();
-
+        listShapeButton.addActionListener(e -> {
+            try {
+                listAllArea.setText(clevis.listShape(name.getText()));
+                mainLabel.setText("Shape listed successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+
         });
 
         // listener for listShapeButton on group page
-        listAllButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    listAllArea.setText(clevis.listAllShape());
-                    mainLabel.setText("All shapes listed successfully!");
-                }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
-                }
-
-                drawArea.repaint();
-
+        listAllButton.addActionListener(e -> {
+            try {
+                listAllArea.setText(clevis.listAllShape());
+                mainLabel.setText("All shapes listed successfully!");
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+
+            drawArea.repaint();
+
         });
 
         // listener for intersectButton on group page
-        intersectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (clevis.isIntersected(name.getText(),shape2Field.getText())) {
-                        mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is intersected!");
-                    }
-                    else {
-                        mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is NOT intersected!");
-                    }
-
+        intersectButton.addActionListener(e -> {
+            try {
+                if (clevis.isIntersected(name.getText(),shape2Field.getText())) {
+                    mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is intersected!");
                 }
-                catch (Exception e1) {
-                    mainLabel.setText("Illegal input, please try again!");
+                else {
+                    mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is NOT intersected!");
                 }
-                drawArea.repaint();
 
             }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal input, please try again!");
+            }
+            drawArea.repaint();
+
+        });
+
+        // listener for undoButton on each page
+        undoButton.addActionListener(e -> {
+            try {
+                clevis.UndoControl();
+                mainLabel.setText("Undo successfully!");
+            }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal undo, please try again later!");
+            }
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
+        });
+
+        // listener for redoButton on each page
+        redoButton.addActionListener(e -> {
+            try {
+                clevis.RedoControl();
+                mainLabel.setText("Redo successfully!");
+            }
+            catch (Exception e1) {
+                mainLabel.setText("Illegal redo, please try again later!");
+            }
+            drawArea.repaint();
+            refreshSize();
+            MainContainer.setLocation(PANEL_X,PANEL_Y);
+            drawContainer.setLocation(PANEL_X,PANEL_Y);
+            deleteContainer.setLocation(PANEL_X,PANEL_Y);
+            groupContainer.setLocation(PANEL_X,PANEL_Y);
+            boundingBoxContainer.setLocation(PANEL_X,PANEL_Y);
+            moveContainer.setLocation(PANEL_X,PANEL_Y);
+            intersectContainer.setLocation(PANEL_X,PANEL_Y);
+            listContainer.setLocation(PANEL_X,PANEL_Y);
         });
 
 
 
 
         // listener for drawButton on main page
-        drawButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        drawButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                drawContainer.add(labelName);
-                drawContainer.add(name);
+            drawContainer.add(labelName);
+            drawContainer.add(name);
 
-                mainLabel.setText("Please select the shape to draw!");
-                drawContainer.add(mainLabel);
+            drawContainer.add(undoButton);
+            drawContainer.add(redoButton);
 
-                container.add(drawContainer);
-                drawContainer.setVisible(true);
-                //new drawDialog();
-            }
+            mainLabel.setText("Please select the shape to draw!");
+            drawContainer.add(mainLabel);
+
+            container.add(drawContainer);
+            drawContainer.setVisible(true);
+            //new drawDialog();
         });
 
         // listener for deleteButton on main page
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        deleteButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                deleteContainer.add(labelName);
-                deleteContainer.add(name);
+            deleteContainer.add(labelName);
+            deleteContainer.add(name);
 
-                mainLabel.setText("Please enter the name of the shape to delete!");
-                deleteContainer.add(mainLabel);
+            deleteContainer.add(undoButton);
+            deleteContainer.add(redoButton);
 
-                container.add(deleteContainer);
-                deleteContainer.setVisible(true);
+            mainLabel.setText("Please enter the name of the shape to delete!");
+            deleteContainer.add(mainLabel);
+
+            container.add(deleteContainer);
+            deleteContainer.setVisible(true);
 
 
-                //new drawDialog();
-            }
+            //new drawDialog();
         });
 
         // listener for boundBoxButton on main page
-        boundBoxButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        boundBoxButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                boundingBoxContainer.add(labelName);
-                boundingBoxContainer.add(name);
+            boundingBoxContainer.add(labelName);
+            boundingBoxContainer.add(name);
 
-                mainLabel.setText("Please enter the name of the shape to bound!");
-                boundingBoxContainer.add(mainLabel);
+            mainLabel.setText("Please enter the name of the shape to bound!");
+            boundingBoxContainer.add(mainLabel);
 
-                container.add(boundingBoxContainer);
-                boundingBoxContainer.setVisible(true);
+            boundingBoxContainer.add(jsp);
+
+            container.add(boundingBoxContainer);
+            boundingBoxContainer.setVisible(true);
 
 
-                //new drawDialog();
-            }
+            //new drawDialog();
         });
 
         // listener for groupButton on main page
-        groupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        groupButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                groupContainer.add(labelName);
-                groupContainer.add(name);
+            groupContainer.add(labelName);
+            groupContainer.add(name);
 
-                groupContainer.add(shapeListLabel);
-                groupContainer.add(shapeListField);
-                groupContainer.add(shapeListNoteLabel);
+            groupContainer.add(undoButton);
+            groupContainer.add(redoButton);
 
-                mainLabel.setText("Please enter the Group name to group or ungroup!");
-                groupContainer.add(mainLabel);
+            groupContainer.add(shapeListLabel);
+            groupContainer.add(shapeListField);
+            groupContainer.add(shapeListNoteLabel);
 
-                container.add(groupContainer);
-                groupContainer.setVisible(true);
+            mainLabel.setText("Please enter the Group name to group or ungroup!");
+            groupContainer.add(mainLabel);
 
-            }
+            container.add(groupContainer);
+            groupContainer.setVisible(true);
+
         });
 
         // listener for moveButton on main page
-        moveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        moveButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                moveContainer.add(labelName);
-                moveContainer.add(name);
+            moveContainer.add(labelName);
+            moveContainer.add(name);
 
-                moveContainer.add(pointXYLabel);
-                moveContainer.add(pointXField);
-                moveContainer.add(pointYField);
-                moveContainer.add(dXdYLabel);
-                moveContainer.add(moveNoticeLabel);
+            moveContainer.add(pointXYLabel);
+            moveContainer.add(pointXField);
+            moveContainer.add(pointYField);
+            moveContainer.add(dXdYLabel);
+            moveContainer.add(moveNoticeLabel);
 
-                moveContainer.add(pointDXField);
-                moveContainer.add(pointDYField);
+            moveContainer.add(undoButton);
+            moveContainer.add(redoButton);
 
-                mainLabel.setText("Please enter the name of the shape to move!");
-                moveContainer.add(mainLabel);
+            moveContainer.add(pointDXField);
+            moveContainer.add(pointDYField);
+
+            mainLabel.setText("Please enter the name of the shape to move!");
+            moveContainer.add(mainLabel);
 
 
-                container.add(moveContainer);
-                moveContainer.setVisible(true);
+            container.add(moveContainer);
+            moveContainer.setVisible(true);
 
-            }
         });
 
         // listener for listButton on main page
-        listButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        listButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                listContainer.add(labelName);
-                listContainer.add(name);
+            listContainer.add(labelName);
+            listContainer.add(name);
 
 
-                mainLabel.setText("Please enter the name of the shape to list!");
-                listContainer.add(mainLabel);
+            mainLabel.setText("Please enter the name of the shape to list!");
+            listContainer.add(mainLabel);
 
+            listContainer.add(jsp);
 
-                container.add(listContainer);
-                listContainer.setVisible(true);
+            container.add(listContainer);
+            listContainer.setVisible(true);
 
-            }
         });
 
         // listener for intersectionButton on main page
-        intersectionButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainContainer.setVisible(false);
-                container.remove(MainContainer);
+        intersectionButton.addActionListener(e -> {
+            MainContainer.setVisible(false);
+            container.remove(MainContainer);
 
-                labelName.setText("Shape1: ");
-                intersectContainer.add(labelName);
-                intersectContainer.add(name); // shape1
+            labelName.setText("Shape1: ");
+            intersectContainer.add(labelName);
+            intersectContainer.add(name); // shape1
 
 
-                mainLabel.setText("Please enter the name of shapes to check!");
-                intersectContainer.add(mainLabel);
+            mainLabel.setText("Please enter the name of shapes to check!");
+            intersectContainer.add(mainLabel);
 
 
-                container.add(intersectContainer);
-                intersectContainer.setVisible(true);
+            container.add(intersectContainer);
+            intersectContainer.setVisible(true);
 
-            }
         });
 
 
         // listener for quitButton on main page
-        quitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+        quitButton.addActionListener(e -> {
+            //setVisible(false);
+            JDialog quitDio = new JDialog();
+            quitDio.setTitle("Confirm Quit?");
+            quitDio.setBounds(PANEL_HEIGHT,PANEL_HEIGHT,SHAPE_LIST_TEXT_WIDTH,RADIO_WIDTH);
+            JButton conBut = new JButton("QUIT");
+            JButton canBut = new JButton("CANCEL");
+            quitDio.setLayout(new FlowLayout());
+            quitDio.add(conBut);
+            quitDio.add(canBut);
+            conBut.addActionListener(e1 -> {
                 System.exit(0);
-            }
+            });
+            quitDio.setVisible(true);
+            canBut.addActionListener(e1 -> {
+                quitDio.setVisible(false);
+            });
+
         });
 
+
         // listener for backDrawButton on drawContainer page
-        backDrawButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                drawContainer.setVisible(false);
-                container.remove(drawContainer);
+        backDrawButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            drawContainer.setVisible(false);
+            container.remove(drawContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
 
+            drawArea.repaint();
 
-                drawArea.repaint();
-
-            }
         });
 
         // listener for backDeleteButton on deleteContainer page
-        backDeleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                deleteContainer.setVisible(false);
-                container.remove(deleteContainer);
+        backDeleteButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            deleteContainer.setVisible(false);
+            container.remove(deleteContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-            }
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
         });
 
         // listener for backBoundingButton on boundingBoxContainer page
-        backBoundingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
+        backBoundingButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            listAllArea.setText("");
 
-                boundingBoxContainer.setVisible(false);
-                container.remove(boundingBoxContainer);
+            boundingBoxContainer.setVisible(false);
+            container.remove(boundingBoxContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-                drawArea.repaint();
-            }
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
+            drawArea.repaint();
         });
 
         // listener for backGroupButton on groupContainer page
-        backGroupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                shapeListField.setText("");
+        backGroupButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            shapeListField.setText("");
 
-                groupContainer.setVisible(false);
-                container.remove(groupContainer);
+            groupContainer.setVisible(false);
+            container.remove(groupContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-                drawArea.repaint();
-            }
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
+            drawArea.repaint();
         });
 
         // listener for backMoveButton on moveContainer page
-        backMoveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                pointXField.setText("");
-                pointYField.setText("");
-                pointDXField.setText("");
-                pointDYField.setText("");
+        backMoveButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            pointXField.setText("");
+            pointYField.setText("");
+            pointDXField.setText("");
+            pointDYField.setText("");
 
-                moveContainer.setVisible(false);
-                container.remove(moveContainer);
+            moveContainer.setVisible(false);
+            container.remove(moveContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-                drawArea.repaint();
-            }
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
+            drawArea.repaint();
         });
 
         // listener for backListButton on moveContainer page
-        backListButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                listAllArea.setText("");
+        backListButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            listAllArea.setText("");
+            listAllArea.setText("");
 
-                listContainer.setVisible(false);
-                container.remove(listContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            listContainer.setVisible(false);
+            container.remove(listContainer);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-                drawArea.repaint();
-            }
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
+
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
+            drawArea.repaint();
         });
 
         // listener for backIntersectButton on moveContainer page
-        backIntersectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                shape2Field.setText("");
+        backIntersectButton.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            shape2Field.setText("");
 
-                intersectContainer.setVisible(false);
-                container.remove(intersectContainer);
+            intersectContainer.setVisible(false);
+            container.remove(intersectContainer);
 
-                mainLabel.setText("Please select function!");
-                MainContainer.add(mainLabel);
+            mainLabel.setText("Please select function!");
+            MainContainer.add(mainLabel);
+            MainContainer.add(redoButton);
+            MainContainer.add(undoButton);
 
-                MainContainer.setVisible(true);
-                container.add(MainContainer);
-                drawArea.repaint();
-            }
+            MainContainer.setVisible(true);
+            container.add(MainContainer);
+            drawArea.repaint();
         });
 
         // 4 radioButton
-        radioButtonRec.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                labelP1.setText("LocationX:");
-                labelP2.setText("LocationY:");
-                labelP3.setText("Width:");
-                labelP4.setVisible(true);
-                labelP4.setText("Height:");
-                textFieldP4.setVisible(true);
-            }
+        radioButtonRec.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            labelP1.setText("LocationX:");
+            labelP2.setText("LocationY:");
+            labelP3.setText("Width:");
+            labelP4.setVisible(true);
+            labelP4.setText("Height:");
+            textFieldP4.setVisible(true);
         });
 
-        radioButtonLine.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                labelP1.setText("LocationX1:");
-                labelP2.setText("LocationY1:");
-                labelP3.setText("LocationX2:");
-                labelP4.setVisible(true);
-                labelP4.setText("LocationY2:");
-                textFieldP4.setVisible(true);
-            }
+        radioButtonLine.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            labelP1.setText("LocationX1:");
+            labelP2.setText("LocationY1:");
+            labelP3.setText("LocationX2:");
+            labelP4.setVisible(true);
+            labelP4.setText("LocationY2:");
+            textFieldP4.setVisible(true);
         });
 
-        radioButtonCircle.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                labelP1.setText("LocationX:");
-                labelP2.setText("LocationY:");
-                labelP3.setText("Radius:");
-                labelP4.setVisible(false);
-                textFieldP4.setVisible(false);
-            }
+        radioButtonCircle.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            labelP1.setText("LocationX:");
+            labelP2.setText("LocationY:");
+            labelP3.setText("Radius:");
+            labelP4.setVisible(false);
+            textFieldP4.setVisible(false);
         });
 
-        radioButtonSquare.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                name.setText("");
-                textFieldP1.setText("");
-                textFieldP2.setText("");
-                textFieldP3.setText("");
-                textFieldP4.setText("");
-                labelP1.setText("LocationX:");
-                labelP2.setText("LocationY:");
-                labelP3.setText("Length:");
-                labelP4.setVisible(false);
-                textFieldP4.setVisible(false);
-            }
+        radioButtonSquare.addActionListener(e -> {
+            name.setText("");
+            textFieldP1.setText("");
+            textFieldP2.setText("");
+            textFieldP3.setText("");
+            textFieldP4.setText("");
+            labelP1.setText("LocationX:");
+            labelP2.setText("LocationY:");
+            labelP3.setText("Length:");
+            labelP4.setVisible(false);
+            textFieldP4.setVisible(false);
         });
         // 4 radioButton end
-
     }
 }
-
-

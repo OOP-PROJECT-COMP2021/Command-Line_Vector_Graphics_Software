@@ -12,7 +12,8 @@ public class BoundingBox extends Rectangle {
     /** get bounding box
      * @return String of information of the bounding box*/
     public String getBoundingBox() {
-        return (this.getLeftBounding()+" "+this.getTopBounding()+" "+ (this.getRightBounding()-this.getLeftBounding())+" "+(this.getTopBounding()-this.getBottomBounding()));
+        return (this.getLeftBounding()+", "+this.getTopBounding()+", "+ (this.getRightBounding()-this.getLeftBounding())
+                +", "+(this.getBottomBounding()-this.getTopBounding()));
     }
 
     @Override

@@ -10,6 +10,8 @@ public class Clevis {
     //private ArrayList<String> shapeLevel = new ArrayList<String>();
     private LinkedListDeque<Shape> shapeLevel = new LinkedListDeque<>();
 
+    /** return the shapeLevel
+     * @return : shapeLevel*/
     public LinkedListDeque<Shape> getShapeLevel() {
         return shapeLevel;
     }
