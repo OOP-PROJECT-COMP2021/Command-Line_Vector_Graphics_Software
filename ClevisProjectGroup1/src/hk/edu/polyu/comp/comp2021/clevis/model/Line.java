@@ -71,9 +71,8 @@ public class Line implements Shape{
 
     @Override
     public void removeRefer() {
-        Line ptr = this;
-        ptr.getLeft().setRight(ptr.getRight());
-        ptr.getRight().setLeft(ptr.getLeft());
+        getLeft().setRight(getRight());
+        getRight().setLeft(getLeft());
         //parent = this;
     }
 

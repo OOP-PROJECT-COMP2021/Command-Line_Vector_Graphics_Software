@@ -81,10 +81,10 @@ public class Rectangle implements Shape{
 
     @Override
     public void removeRefer() {
-        Rectangle ptr = this;
-        ptr.getLeft().setRight(ptr.getRight());
-        ptr.getRight().setLeft(ptr.getLeft());
-        //parent = this;
+//        Rectangle ptr = this;
+        getLeft().setRight(getRight());
+        getRight().setLeft(getLeft());
+        // parent = this;
     }
 
     @Override

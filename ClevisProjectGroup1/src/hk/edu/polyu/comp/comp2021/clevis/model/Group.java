@@ -65,11 +65,10 @@ class Group implements Shape {
         for (Shape item : shapeList) {
             item.removeRefer();
         }
-        Group ptr = this;
-        ptr.getLeft().setRight(ptr.getRight());
-        ptr.getRight().setLeft(ptr.getLeft());
-        //parent = this;
-        //shapeList = null;
+        getLeft().setRight(getRight());
+        getRight().setLeft(getLeft());
+        // parent = this;
+        // shapeList = null;
     }
 
     @Override

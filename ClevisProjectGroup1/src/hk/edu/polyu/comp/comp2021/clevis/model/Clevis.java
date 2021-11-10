@@ -263,8 +263,9 @@ public class Clevis {
             cmdStr[1][0] = inName;
 
             if (storage.get(inName) instanceof Group) {
-                String [] shapeList = new String[((Group) storage.get(inName)).getShapeList().length];
-                for (int i=0;i<((Group) storage.get(inName)).getShapeList().length;i++) {
+                int n = ((Group) storage.get(inName)).getShapeList().length;
+                String [] shapeList = new String[n];
+                for (int i = 0 ; i < n ;i++) {
                     shapeList[i] = ((Group) storage.get(inName)).getShapeList()[i].getName();
                 }
                 cmdStr[2] = shapeList;
@@ -278,12 +279,15 @@ public class Clevis {
         /** ---------------*/
 
         (storage.get(inName)).removeRefer();
+        removeGroup(storage.get(inName));
+    }
 
+    private void removeGroup(Shape inName) {
         if (storage.get(inName) instanceof Group) {
             Group tmp = (Group) storage.get(inName);
             Shape[] container = tmp.getShapeList();
             for (Shape a : container) {
-                storage.remove(a.getName());
+                removeGroup(a);
             }
         }
         storage.remove(inName);

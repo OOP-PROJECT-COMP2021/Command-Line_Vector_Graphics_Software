@@ -291,8 +291,6 @@ public class ClevisTest {
         clevis.RedoControl();
         System.out.println(clevis.listAllShape());
         clevis.deleteShapeWithName("G_EFG");
-
-
     }
 
     @Test

@@ -72,9 +72,8 @@ public class Circle implements Shape{
     /** Removes the left reference and right reference. */
     @Override
     public void removeRefer() {
-        Circle ptr = this;
-        ptr.getLeft().setRight(ptr.getRight());
-        ptr.getRight().setLeft(ptr.getLeft());
+        getLeft().setRight(getRight());
+        getRight().setLeft(getLeft());
         //parent = this;
     }
 
@@ -129,7 +128,7 @@ public class Circle implements Shape{
         double RAddr = this.getRadius() + other.getRadius();
         double RSubr = Math.abs(this.getRadius() - other.getRadius());
 
-        if (d - RSubr > 0 - EPS && d - RAddr < 0 + EPS){return true;}
+        if (d - RSubr > 0 - EPS && d - RAddr < 0 + EPS) {return true;}
         return false;
     }
 
