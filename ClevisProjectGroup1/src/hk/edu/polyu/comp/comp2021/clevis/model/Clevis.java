@@ -287,7 +287,7 @@ public class Clevis {
      * @param inName the name of the shape to be deleted.
      */
     private void removeGroup(Shape inName) {
-        if (storage.get(inName) instanceof Group) {
+        if (storage.get(inName.getName()) instanceof Group) {
             Group tmp = (Group) storage.get(inName);
             Shape[] container = tmp.getShapeList();
             for (Shape a : container) {
