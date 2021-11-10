@@ -270,7 +270,7 @@ public class ClevisTest {
         clevis.drawLine("LineTestD",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
         String[] shapeListGAB_CD = {"GAB","LineTestC","LineTestD"};
         clevis.createGroup("G_GAB_CD",shapeListGAB_CD);
-
+        System.out.println();
         clevis.drawSquare("SquareTestH",4.344563454234696d,2.324738463657d,10.3472384987652397d);
 
         clevis.drawCircle("CircleTestE",0.0d,2.0d,4d);
@@ -280,6 +280,7 @@ public class ClevisTest {
         clevis.createGroup("G_EFG",shapeListEFG);
         System.out.println(clevis.listAllShape());
 
+        clevis.deleteShapeWithName("G_GAB_CD");
         clevis.deleteShapeWithName("SquareTestH");
         clevis.deleteShapeWithName("G_GAB_CD");
         System.out.println(clevis.listAllShape());

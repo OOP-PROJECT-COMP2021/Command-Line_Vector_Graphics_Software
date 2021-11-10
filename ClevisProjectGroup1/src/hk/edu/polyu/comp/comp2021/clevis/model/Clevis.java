@@ -294,7 +294,7 @@ public class Clevis {
                 removeGroup(a);
             }
         }
-        storage.remove(inName);
+        storage.remove(inName.getName());
     }
 
     /** [REQ9] boundingbox n
