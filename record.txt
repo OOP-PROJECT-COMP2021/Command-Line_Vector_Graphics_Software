@@ -1,6 +1,6 @@
 rectangle n 1 2 3 4
-circle m 2 3 4
-intersect m n 
-undo
-undo
-undo
+circle m 2 3 4 
+group a m n
+intersect m n
+quit'
+quit

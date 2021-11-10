@@ -6,42 +6,55 @@ import java.util.Random;
 import java.util.Scanner;
 /** Application Class to run the CLI*/
 public class Application{
-
     /** main() method
      * @param args : intake parameter
      * @throws Exception : exception thrown from main()*/
     public static void main(String[] args) throws Exception {
+        String line;
+        int position = 0;
         Clevis clevis = new Clevis();
-        System.out.println("Welcome to use our graphics function");
         File writeF = new File("record.txt");
-        writeF.createNewFile();
         BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
-        File readF = new File("record.txt");
-        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
-        BufferedReader br = new BufferedReader(reader);
+//        File readF = new File("record.txt");
+//        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
+        FileReader fr = new FileReader("record.txt");
+        BufferedReader br = new BufferedReader(fr);
+        PrintStream printStream = new PrintStream(new FileOutputStream("log.html"));
+        StringBuilder outStr = new StringBuilder();
+        System.out.println("Welcome to use our graphics function");
         System.out.println("Input record store in the \"record.txt\"");
-        int lineCount = 0;
-        int times = 0;
-        int undoCount = 0;
-        String line = br.readLine();
+//        int lineCount = 0;
+//        int times = 0;
+//        int undoCount = 0;
+        outStr.append("<html>");
+        outStr.append("<head>");
+        outStr.append("<title>htmlTest</title>");
+        outStr.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /></title>");
+        outStr.append("<body>");
+        outStr.append("<table border=\"1\">");
+        outStr.append("<tr>" + "<th>Index</th>" + "<th>cmd</th>" + "</tr>"); // table head
+        outStr.append("<table></body></html>");
+
         while (true) {
             System.out.println("Please type your code:");
             Scanner scanner = new Scanner(System.in);
             out.write(scanner.nextLine()+"\n");
             out.flush();
-            lineCount++;
+//            lineCount++;
             line = br.readLine();
             Scanner scan = new Scanner(line);
+            outStr.insert(outStr.length() - "<table></body></html>".length(), "<tr>" + "<td>" + position + "</td>" + "<td>" +line+ "</td>" + "</tr>"); // table row 0 (table data:0; table data: rectangle A 1 1 2 2)
+            position++;
+
             if (scan.hasNext()) {
                 String str = scan.next();
-
                 /** [Rectangle]*/
                 if (str.equals("rectangle")) {
                     String name = scan.next();
-                    Double inX = Double.parseDouble(scan.next());
-                    Double inY = Double.parseDouble(scan.next());
-                    Double inW = Double.parseDouble(scan.next());
-                    Double inH = Double.parseDouble(scan.next());
+                    double inX = Double.parseDouble(scan.next());
+                    double inY = Double.parseDouble(scan.next());
+                    double inW = Double.parseDouble(scan.next());
+                    double inH = Double.parseDouble(scan.next());
                     try{
                         clevis.drawRectangle(name,inX,inY,inW,inH);
                     }catch(IllegalArgumentException e){
@@ -53,10 +66,10 @@ public class Application{
                 /** [Line]*/
                 else if (str.equals("line")) {
                     String name = scan.next();
-                    Double X1 = Double.parseDouble(scan.next());
-                    Double Y1 = Double.parseDouble(scan.next());
-                    Double X2 = Double.parseDouble(scan.next());
-                    Double Y2 = Double.parseDouble(scan.next());
+                    double X1 = Double.parseDouble(scan.next());
+                    double Y1 = Double.parseDouble(scan.next());
+                    double X2 = Double.parseDouble(scan.next());
+                    double Y2 = Double.parseDouble(scan.next());
                     try{
                         clevis.drawLine(name,X1,Y1,X2,Y2);
                         System.out.println("Successfully add new "+str+" called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2+")");
@@ -68,9 +81,9 @@ public class Application{
                 /** [Circle]*/
                 else if (str.equals("circle")) {
                     String name = scan.next();
-                    Double inX = Double.parseDouble(scan.next());
-                    Double inY = Double.parseDouble(scan.next());
-                    Double inR = Double.parseDouble(scan.next());
+                    double inX = Double.parseDouble(scan.next());
+                    double inY = Double.parseDouble(scan.next());
+                    double inR = Double.parseDouble(scan.next());
                     try{
                         clevis.drawCircle(name,inX,inY,inR);
                         System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
@@ -82,9 +95,9 @@ public class Application{
                 /** [Square]*/
                 else if (str.equals("square")) {
                     String name = scan.next();
-                    Double inX = Double.parseDouble(scan.next());
-                    Double inY = Double.parseDouble(scan.next());
-                    Double inL = Double.parseDouble(scan.next());
+                    double inX = Double.parseDouble(scan.next());
+                    double inY = Double.parseDouble(scan.next());
+                    double inL = Double.parseDouble(scan.next());
                     try{
                         clevis.drawSquare(name,inX,inY,inL);
                         System.out.println("Successfully add new "+str+" called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
@@ -99,7 +112,7 @@ public class Application{
                     String[] strList = scan.nextLine().trim().split(" ");
                     StringBuilder sb = new StringBuilder();
                     for (String s : strList) {
-                        sb.append(s + " ");
+                        sb.append(s).append(" ");
                     }
                         try {
                             clevis.createGroup(name, strList);
@@ -127,7 +140,7 @@ public class Application{
                         clevis.deleteShapeWithName(name);
                         System.out.println("Successfully delete the shape called "+name);
                     }catch(IllegalArgumentException e){
-                        System.out.println("Unsuccessfully delete because can't find the name in storage!");
+                        System.out.println("Unsuccessfully delete because can't find the name independently in storage!");
                     }
                 }
 
@@ -140,7 +153,7 @@ public class Application{
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully create boundingbox of "+name+"!");
+                    System.out.println("Successfully create boundingbox of "+name);
                 }
 
                 /** [move]*/
@@ -177,7 +190,7 @@ public class Application{
                     String shape2 = scan.next();
                     try{
                         clevis.isIntersected(shape1,shape2);
-                        if (clevis.isIntersected(shape1,shape2)==true){
+                        if (clevis.isIntersected(shape1,shape2)){
                             System.out.println("They are intersected!");
                         }
                         else{
@@ -213,30 +226,30 @@ public class Application{
                 /** [Undo]*/
                 else if(str.equals("undo")){
                     try{
-                        lineCount-=undoCount;
-                        FileReader fr = new FileReader("record.txt");
-                        BufferedReader BR = new BufferedReader(fr);
-                        int count= 0;
-                        String targetLine = "";
-                        String Line = "";
-                        while(count < lineCount-1){
-                            if (count >= lineCount-1) {
-                                Line = BR.readLine();
-                            }
-                            else{
-                                targetLine = BR.readLine();
-                                Line = targetLine;
-                            }
-                            count++;
-                        }
-                        undoCount +=2;
-                        if (Line.split(" ")[0].equals("boundingbox")||Line.split(" ")[0].equals("intersect")||Line.split(" ")[0].equals("list")||Line.equals("listAll")||Line.equals("quit")){
-                            System.out.println("Can't undo!");
-                        }
-                        else {
-                            System.out.println("Already undo to the process \"" + targetLine + "\"");
+//                        lineCount-=undoCount;
+//                        FileReader fr = new FileReader("record.txt");
+//                        BufferedReader BR = new BufferedReader(fr);
+//                        int count= 0;
+//                        String targetLine = "";
+//                        String Line = "";
+//                        while(count < lineCount-1){
+//                            if (count >= lineCount-1) {
+//                                Line = BR.readLine();
+//                            }
+//                            else{
+//                                targetLine = BR.readLine();
+//                                Line = targetLine;
+//                            }
+//                            count++;
+//                        }
+//                        undoCount +=2;
+//                        if (Line.split(" ")[0].equals("boundingbox")||Line.split(" ")[0].equals("intersect")||Line.split(" ")[0].equals("list")||Line.equals("listAll")||Line.equals("quit")){
+//
+//                        }
+//                        else {
+                            System.out.println("Already undo!");
                             clevis.UndoControl();
-                        }
+//                        }
                     }catch (IllegalArgumentException e){
                         System.out.println("No operation for undo！");
                     }
@@ -252,7 +265,9 @@ public class Application{
                     }
                 }
 
+                /** [quit]*/
                 else if (str.equalsIgnoreCase("quit")){
+                    printStream.println(outStr.toString());
                     break;
                 }
             }
