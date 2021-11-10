@@ -82,9 +82,8 @@ class Group implements Shape {
         for (Shape item : shapeList) {
             item.pointToMe();
         }
-        Group ptr = this;
-        ptr.getLeft().setRight(ptr.getRight());
-        ptr.getRight().setLeft(ptr.getLeft());
+        getLeft().setRight(getRight());
+        getRight().setLeft(getLeft());
         parent = this;
         //shapeList = null;
     }
@@ -116,7 +115,7 @@ class Group implements Shape {
      * @return is intersected or not */
     public boolean Intersected(Line other){
         for (Shape s: this.getShapeList()){
-            if (s.isIntersected(other)){return true;}
+            if (s.isIntersected(other)) {return true;}
         }
         return false;
     }

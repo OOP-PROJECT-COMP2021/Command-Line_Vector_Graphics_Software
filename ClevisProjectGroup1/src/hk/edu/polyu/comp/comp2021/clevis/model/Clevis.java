@@ -521,20 +521,33 @@ public class Clevis {
     public void UndoDelete(String inName) {
         Shape inShape = delTargets.peek();
         if (inShape.getName().equals(inName)) {
-            storage.put(inName,inShape);
-            if (! (inShape instanceof Group)) {
+//            storage.put(inName,inShape);
+            if (!(inShape instanceof Group)) {
+                storage.put(inName,inShape);
                 inShape.getLeft().setRight(inShape);
                 inShape.getRight().setLeft(inShape);
             }
             else {
                 recursionDel(inShape);
-                Shape[] inShapeList = ((Group) inShape).getShapeList();
-                for (Shape innerShape : inShapeList) {
-                    storage.put(innerShape.getName(),innerShape);
-                }
+                recursionAdd(inShape);
+//                Shape[] inShapeList = ((Group) inShape).getShapeList();
+//                for (Shape innerShape : inShapeList) {
+//                    storage.put(innerShape.getName(),innerShape);
+//                }
             }
         }
     }
+    
+    private void recursionAdd(Shape inShape) {
+        storage.put(inShape.getName(), inShape);
+        if (inShape instanceof Group) {
+            Shape[] container = ((Group) inShape).getShapeList();
+            for (Shape a : container) {
+                recursionAdd(a);
+            }
+        }
+    }
+
     private void recursionDel(Shape inShape) {
         inShape.getLeft().setRight(inShape);
         inShape.getRight().setLeft(inShape);
