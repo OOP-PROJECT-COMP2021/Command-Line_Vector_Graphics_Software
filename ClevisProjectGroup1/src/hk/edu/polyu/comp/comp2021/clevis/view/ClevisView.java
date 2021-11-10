@@ -7,45 +7,48 @@ import hk.edu.polyu.comp.comp2021.clevis.model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.Arrays;
 
 /** the main GUI */
 public class ClevisView extends JFrame{
     private Clevis clevis = new Clevis();
 
-    //all component' parameters
-    private final int DIALOG_X = 100;
-    private final int DIALOG_Y = 100;
+    // all component parameters
+    // for main frame location
+    private final int DIALOG_X = 200;
+    private final int DIALOG_Y = 200;
+    private final int DEF_FRAME_WIDTH = 660;
+    private int FRAME_WIDTH = DEF_FRAME_WIDTH;
+    private final int DEF_FRAME_HEIGHT = 630;
+    private int FRAME_HEIGHT = DEF_FRAME_HEIGHT;
 
+    // for each function panel
     private final int PANEL_X = 30;
     private final int DEF_PANEL_Y = 305;
     private int PANEL_Y = DEF_PANEL_Y;
-
-
     private final int PANEL_HEIGHT = 300;
+
+    // for draw area
     private final int DRAW_AREA_POS_X = 30;
     private final int DRAW_AREA_POS_Y = 5;
     private final int TWELVE = 12;
     private final int TWO = 2;
     private final int FF = 55;
-
     private final float DASH_5 = 5.0f;
     private final float LIM_10 = 10.0f;
-
     private final int ADD330 = 330;
     private final int ADD60 = 60;
+    private final int DEF_DRAW_AREA_X = 600;
+    private int DRAW_AREA_X = DEF_DRAW_AREA_X;
+    private final int DEF_DRAW_AREA_Y = 300;
+    private int DRAW_AREA_Y = DEF_DRAW_AREA_Y;
 
-
-    private final int DEF_FRAME_WIDTH = 660;
-    private int FRAME_WIDTH = DEF_FRAME_WIDTH;
-
-    private final int DEF_FRAME_HEIGHT = 630;
-    private int FRAME_HEIGHT = DEF_FRAME_HEIGHT;
-
+    // for each button on function page
     private final int BUTTON_WIDTH = 100;
     private final int BUTTON_HEIGHT = 50;
 
-
-    // for main page buttons
+    // for main label on each page
     private final int TEXT_AREA_X = 100;
     private final int TEXT_AREA_Y = 10;
     private final int TEXT_AREA_W = 350;
@@ -53,35 +56,20 @@ public class ClevisView extends JFrame{
     private final int LIST_AREA_R = 10;
     private final int LIST_AREA_C = 25;
 
-
-
-
+    // for main page buttons
     private final int FIRST_CO_X = 150;
     private final int SECOND_CO_X = 350;
-
     private final int FIRST_RO_Y = 70;
     private final int SECOND_RO_Y = 120;
     private final int THIRD_RO_Y = 170;
     private final int FOURTH_RO_Y =220;
 
-
-
-    //----
-    private final int DIALOG_WIDTH = 500;
-    private final int DIALOG_HEIGHT = 500;
-
-    private final int DEF_DRAW_AREA_X = 600;
-    private int DRAW_AREA_X = DEF_DRAW_AREA_X;
-
-    private final int DEF_DRAW_AREA_Y = 300;
-    private int DRAW_AREA_Y = DEF_DRAW_AREA_Y;
-
+    // for list textArea
     private final int LIST_Y = 105;
     private final int LIST_WIDTH = 450;
     private final int LIST_HEIGHT = 150;
 
-
-
+    // for 4 labels and 4 text field on each function  page
     private final int LABEL_WIDTH = 80;
     private final int LABEL_HEIGHT = 30;
     private final int NAME_LOCATION_Y = 75;
@@ -90,6 +78,7 @@ public class ClevisView extends JFrame{
     private final int P3_LOCATION_Y = 180;
     private final int P4_LOCATION_Y = 215;
 
+    // for radio button position on draw page
     private final int LOCATION_X = 50;
     private final int RADIO_LOCATION_Y = 30;
     private final int RADIO_WIDTH = 100;
@@ -98,7 +87,7 @@ public class ClevisView extends JFrame{
     private final int RADIO_CIR_X = 310;
     private final int RADIO_SQU_X = 440;
 
-
+    // for list page
     private final int TEXT_WIDTH = 150;
     private final int SHAPE_LIST_TEXT_WIDTH = 250;
     private final int POINT_XY_TEXT_WIDTH = 75;
@@ -106,27 +95,23 @@ public class ClevisView extends JFrame{
     private final int MOVE_NOTICE_Y = 112;
     private final int MOVE_NOTICE_WIDTH = 350;
 
-
-
+    // for each text field
     private final int TEXT_HEIGHT = 30;
     private final int TEXT_LOCATION_X = 130;
 
-    private final int BTN_WIDTH = 100;
-    private final int BTN_HEIGHT = 25;
-
+    // for each "go" button
     private final int BTN_DRAW_X = 500;
     private final int BTN_DRAW_Y = 175;
-
+    private final int BTN_WIDTH = 100;
+    private final int BTN_HEIGHT = 25;
     private final int BACK_BTN_LOCATION_Y = 200;
     private final int BACK_BTN_LOCATION_X = 500;
 
+    // for undo redo button
     private final int UNDO_BTN_LOCATION_X = 500;
     private final int REDO_BTN_LOCATION_X = 500;
     private final int UNDO_BTN_LOCATION_Y = 225;
     private final int REDO_BTN_LOCATION_Y = 250;
-
-
-
 
     private MyCanvas drawArea;
     private Rectangle boundingBoxShape;
@@ -135,8 +120,16 @@ public class ClevisView extends JFrame{
     private float[] dash1 = {DASH_5};
     private BasicStroke s = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, LIM_10, dash1, 0.0f);
 
+    private StringBuilder outStrTxt = new StringBuilder();
+    private StringBuilder outStrHtml = new StringBuilder();
+
+    private static String txtName;
+    private static String htmlName;
+
+    private int position = 0;
+
     private class MyCanvas extends JPanel {
-        //重写paint以绘制图形
+        //override paint() method
         @Override
         public void paint(Graphics g) {
             g.setColor(Color.black);
@@ -213,51 +206,57 @@ public class ClevisView extends JFrame{
         }
     }
 
-
     /** main function
      * @param args : args*/
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        if(!args[1].isEmpty()) {htmlName = args[1];}
+        else {htmlName = "log.html";}
+        if(!args[3].isEmpty()) {txtName = args[3];}
+        else {txtName = "log.txt";}
+
         new ClevisView();
     }
-    // 初始化
 
     /** constructor */
-    public ClevisView(){
-        //主界面
-        //this.setPreferredSize(new Dimension(660, 630));
+    public ClevisView() throws IOException {
+
+        File writeF = new File(txtName);
+        PrintWriter pw = new PrintWriter(writeF);
+        PrintStream printStream = new PrintStream(new FileOutputStream(htmlName));
+
+        outStrHtml.append("<html>");
+        outStrHtml.append("<head>");
+        outStrHtml.append("<title>htmlTest</title>");
+        outStrHtml.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /></title>");
+        outStrHtml.append("<body>");
+        outStrHtml.append("<table border=\"1\">");
+        outStrHtml.append("<tr>" + "<th>Index</th>" + "<th>cmd</th>" + "</tr>"); // table head
+        outStrHtml.append("<table></body></html>");
+        //main frame
         this.setVisible(true);
-        //this.setLocation(DIALOG_X,DIALOG_Y);
         this.setBounds(DIALOG_X,DIALOG_Y,FRAME_WIDTH,FRAME_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //pack();
         //container
         Container container = this.getContentPane();
-
-        //绝对布局
+        //set layout
         container.setLayout(null);
-        //设置背景颜色
-        //container.setBackground(Color.gray);
-
-        //创建画布对象
+        //create a MayCanvas object
         drawArea = new MyCanvas();
-        // 绘图区域
-        drawArea.setBounds(DRAW_AREA_POS_X,DRAW_AREA_POS_Y,DRAW_AREA_X,DRAW_AREA_Y);// 必须设置大小及坐标，因为当前layout为null
-
+        // set draw area
+        drawArea.setBounds(DRAW_AREA_POS_X,DRAW_AREA_POS_Y,DRAW_AREA_X,DRAW_AREA_Y);
         drawArea.setVisible(true);
 
-
         /** -----------------------------panels on container--------------------------------------------*/
-        /** Panel for Main page*/
+            /** Panel for Main page*/
         JPanel MainContainer = new JPanel();
         MainContainer.setVisible(true);
         MainContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         MainContainer.setLayout(null);
 
-
         JLabel mainLabel = new JLabel();
         mainLabel.setBounds(TEXT_AREA_X,TEXT_AREA_Y,TEXT_AREA_W,TEXT_AREA_H);
         mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        mainLabel.setText("Welcome to Clevis! Click Draw to start!");
+        mainLabel.setText("Welcome to Clevis Group1! Click Draw to start!");
 
         MainContainer.add(mainLabel,BorderLayout.CENTER);
         container.add(MainContainer);
@@ -265,60 +264,51 @@ public class ClevisView extends JFrame{
         container.add(drawArea);
         drawArea.repaint();
 
-
-        /** Panel for Draw page for all shapes */
+            /** Panel for Draw page for all shapes */
         JPanel drawContainer = new JPanel();
         drawContainer.setVisible(false);
         drawContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         drawContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
 
-        /** Panel for Delete page for all shapes */
+            /** Panel for Delete page for all shapes */
         JPanel deleteContainer = new JPanel();
         deleteContainer.setVisible(false);
         deleteContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         deleteContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
 
-        /** Panel for Boundingbox page for all shapes */
+            /** Panel for Boundingbox page for all shapes */
         JPanel boundingBoxContainer = new JPanel();
         boundingBoxContainer.setVisible(false);
         boundingBoxContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         boundingBoxContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
 
-        /** Panel for groupContainer page for all shapes */
+            /** Panel for groupContainer page for all shapes */
         JPanel groupContainer = new JPanel();
         groupContainer.setVisible(false);
         groupContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         groupContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
 
-        /** Panel for moveContainer page for all shapes */
+            /** Panel for moveContainer page for all shapes */
         JPanel moveContainer = new JPanel();
         moveContainer.setVisible(false);
         moveContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         moveContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
 
-        /** Panel for listContainer page for all shapes */
+            /** Panel for listContainer page for all shapes */
         JPanel listContainer = new JPanel();
         listContainer.setVisible(false);
         listContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         listContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
-        //
-        // /** Panel for listContainer page for all shapes */
+
+            /** Panel for intersectContainer page for all shapes */
         JPanel intersectContainer = new JPanel();
         intersectContainer.setVisible(false);
         intersectContainer.setBounds(PANEL_X,PANEL_Y,FRAME_WIDTH,PANEL_HEIGHT);
         intersectContainer.setLayout(null);
-        //container.add(drawSelectionContainer);
-
 
 
         /** -----------------------------elements on each page--------------------------------------------*/
-        //Button Draw, Quit on MainContainer
+            //Button Draw, Quit on MainContainer
         JButton drawButton = new JButton("Draw");
         drawButton.setBounds(FIRST_CO_X,FIRST_RO_Y,BUTTON_WIDTH,BUTTON_HEIGHT);
         MainContainer.add(drawButton);
@@ -360,10 +350,8 @@ public class ClevisView extends JFrame{
         redoButton.setBounds(REDO_BTN_LOCATION_X,REDO_BTN_LOCATION_Y,BTN_WIDTH,BTN_HEIGHT);
         MainContainer.add(redoButton);
 
-
-        // elements on drawContainer page for all shapes
-
-        // Radio Button
+            // elements on drawContainer page for all shapes
+                // Radio Button
         JRadioButton radioButtonRec = new JRadioButton("Rectangle",true);
         JRadioButton radioButtonLine = new JRadioButton("Line",false);
         JRadioButton radioButtonCircle = new JRadioButton("Circle",false);
@@ -384,13 +372,12 @@ public class ClevisView extends JFrame{
         drawContainer.add(radioButtonCircle);
         drawContainer.add(radioButtonSquare);
 
-        // 标签
+        // labels
         JLabel labelName = new JLabel();
         JLabel labelP1 = new JLabel();
         JLabel labelP2 = new JLabel();
         JLabel labelP3 = new JLabel();
         JLabel labelP4 = new JLabel();
-
 
         labelName.setText("Name:");
         labelP1.setText("LocationX:");
@@ -410,7 +397,7 @@ public class ClevisView extends JFrame{
         drawContainer.add(labelP3);
         drawContainer.add(labelP4);
 
-        // 文本框
+        // text field
         JTextField name = new JTextField("");
         JTextField textFieldP1,textFieldP2,textFieldP3,textFieldP4;
         textFieldP1 = new JTextField("");
@@ -418,32 +405,28 @@ public class ClevisView extends JFrame{
         textFieldP3 = new JTextField("");
         textFieldP4 = new JTextField("");
 
-        // 设置输入文本框的位置信息
         name.setBounds(TEXT_LOCATION_X,NAME_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
         textFieldP1.setBounds(TEXT_LOCATION_X,P1_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
         textFieldP2.setBounds(TEXT_LOCATION_X,P2_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
         textFieldP3.setBounds(TEXT_LOCATION_X,P3_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
         textFieldP4.setBounds(TEXT_LOCATION_X,P4_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
-        // 添加输入文本框
+
         drawContainer.add(name);
         drawContainer.add(textFieldP1);
         drawContainer.add(textFieldP2);
         drawContainer.add(textFieldP3);
         drawContainer.add(textFieldP4);
 
-        // drawShapeButton on the drawContainer page
+            // drawShapeButton on the drawContainer page
         JButton drawShapeButton = new JButton("DrawShape");
         drawShapeButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         drawContainer.add(drawShapeButton);
-
 
         JButton backDrawButton = new JButton("Back");
         backDrawButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         drawContainer.add(backDrawButton);
 
-
-        //-----deleteContainer element--
-
+            //-----deleteContainer element--
         JButton deleteShapeButton = new JButton("Delete");
         deleteShapeButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         deleteContainer.add(deleteShapeButton);
@@ -452,8 +435,7 @@ public class ClevisView extends JFrame{
         backDeleteButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         deleteContainer.add(backDeleteButton);
 
-
-        //-----boundingBoxContainer element--
+            //-----boundingBoxContainer element--
         JButton boundingBoxButton = new JButton("Bounding");
         boundingBoxButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         boundingBoxContainer.add(boundingBoxButton);
@@ -462,7 +444,7 @@ public class ClevisView extends JFrame{
         backBoundingButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         boundingBoxContainer.add(backBoundingButton);
 
-        //-----groupContainer element--
+            //-----groupContainer element--
         JButton createGroupButton = new JButton("Group");
         createGroupButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         groupContainer.add(createGroupButton);
@@ -484,7 +466,7 @@ public class ClevisView extends JFrame{
         shapeListField.setBounds(TEXT_LOCATION_X,BTN_DRAW_Y,SHAPE_LIST_TEXT_WIDTH,TEXT_HEIGHT);
         shapeListNoteLabel.setBounds(LOCATION_X,BACK_BTN_LOCATION_Y,SHAPE_LIST_TEXT_WIDTH,LABEL_HEIGHT);
 
-        //-----moveContainer element--
+            //-----moveContainer element--
         JButton pickMoveShapeButton = new JButton("Pick&Move");
         pickMoveShapeButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         moveContainer.add(pickMoveShapeButton);
@@ -504,7 +486,6 @@ public class ClevisView extends JFrame{
         pointXField.setBounds(TEXT_LOCATION_X,BTN_DRAW_Y,POINT_XY_TEXT_WIDTH,LABEL_HEIGHT);
         pointYField.setBounds(POINT_Y_X,BTN_DRAW_Y,POINT_XY_TEXT_WIDTH,LABEL_HEIGHT);
 
-
         JLabel dXdYLabel = new JLabel("dX, dY: ");
         dXdYLabel.setBounds(LOCATION_X,BACK_BTN_LOCATION_Y,LABEL_WIDTH,LABEL_HEIGHT);
         JTextField pointDXField = new JTextField();
@@ -515,7 +496,7 @@ public class ClevisView extends JFrame{
         moveNoticeLabel.setBounds(LOCATION_X,MOVE_NOTICE_Y,MOVE_NOTICE_WIDTH,TEXT_HEIGHT);
         moveNoticeLabel.setText("Enter name to move or enter point to pick-and-move");
 
-        //-----listContainer element--
+            //-----listContainer element--
         JButton listShapeButton = new JButton("List");
         listShapeButton.setBounds(BTN_DRAW_X, NAME_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         listContainer.add(listShapeButton);
@@ -534,7 +515,7 @@ public class ClevisView extends JFrame{
         jsp.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         listContainer.add(jsp);
 
-        //-----intersectContainer element--
+            //-----intersectContainer element--
         JButton intersectButton = new JButton("Check");
         intersectButton.setBounds(BTN_DRAW_X, BTN_DRAW_Y, BTN_WIDTH, BTN_HEIGHT);
         intersectContainer.add(intersectButton);
@@ -543,39 +524,73 @@ public class ClevisView extends JFrame{
         backIntersectButton.setBounds(BACK_BTN_LOCATION_X, BACK_BTN_LOCATION_Y, BTN_WIDTH, BTN_HEIGHT);
         intersectContainer.add(backIntersectButton);
 
+        JLabel shape1Label = new JLabel("Shape1: ");
+        JTextField shape1Field = new JTextField();
+
         JLabel shape2Label = new JLabel("Shape2: ");
         JTextField shape2Field = new JTextField();
+
+        shape1Label.setBounds(LOCATION_X,NAME_LOCATION_Y,LABEL_WIDTH,LABEL_HEIGHT);
+        shape1Field.setBounds(TEXT_LOCATION_X,NAME_LOCATION_Y,TEXT_WIDTH,TEXT_HEIGHT);
 
         shape2Label.setBounds(LOCATION_X,BTN_DRAW_Y,LABEL_WIDTH,LABEL_HEIGHT);
         shape2Field.setBounds(TEXT_LOCATION_X,BTN_DRAW_Y,TEXT_WIDTH,TEXT_HEIGHT);
 
+        intersectContainer.add(shape1Label);
+        intersectContainer.add(shape1Field);
+
         intersectContainer.add(shape2Label);
         intersectContainer.add(shape2Field);
 
-
-
-        /** ----------------------------listener---------------------------------------------*/
-
-        // listener for drawShapeButton on drawContainer page
+        /** ----------------------------listener of buttons on each function page-------------------------------------*/
+            // listener for drawShapeButton on drawContainer page
         drawShapeButton.addActionListener(e -> {
             try{
                 if (radioButtonRec.isSelected()) {
                     clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
                             Double.parseDouble(textFieldP4.getText()));
+
+                    String inStr = "rectangle"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
+                            +" "+textFieldP3.getText()+" "+textFieldP4.getText();
+                    outStrTxt.append(inStr).append("\n");
+                    outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                            position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                    position++;
                 }
                 else if (radioButtonLine.isSelected()) {
                     clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
                             Double.parseDouble(textFieldP4.getText()));
+
+                    String inStr = "line"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
+                            +" "+textFieldP3.getText()+" "+textFieldP4.getText();
+                    outStrTxt.append(inStr).append("\n");
+                    outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                            position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                    position++;
                 }
                 else if (radioButtonCircle.isSelected()) {
                     clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+
+                    String inStr = "circle"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
+                            +" "+textFieldP3.getText();
+                    outStrTxt.append(inStr).append("\n");
+                    outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                            position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                    position++;
                 }
                 else if (radioButtonSquare.isSelected()) {
                     clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
+
+                    String inStr = "square"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
+                            +" "+textFieldP3.getText();
+                    outStrTxt.append(inStr).append("\n");
+                    outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                            position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                    position++;
                 }
                 mainLabel.setText("Draw successfully!");
             }
@@ -601,11 +616,16 @@ public class ClevisView extends JFrame{
             try{
                 clevis.deleteShapeWithName(name.getText());
                 mainLabel.setText("Delete successfully!");
+
+                String inStr = "delete"+" "+name.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
-
             drawArea.repaint();
             refreshSize();
             MainContainer.setLocation(PANEL_X,PANEL_Y);
@@ -616,8 +636,6 @@ public class ClevisView extends JFrame{
             moveContainer.setLocation(PANEL_X,PANEL_Y);
             intersectContainer.setLocation(PANEL_X,PANEL_Y);
             listContainer.setLocation(PANEL_X,PANEL_Y);
-
-            //new drawDialog();
         });
 
         // listener for deleteShapeButton on bounding page
@@ -626,12 +644,17 @@ public class ClevisView extends JFrame{
                 boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
                 boundingBoxFlag = true;
                 listAllArea.setText(boundingBoxShape.listInfo());
+
+                String inStr = "boundingbox"+" "+name.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
             drawArea.repaint();
-
         });
 
         // listener for groupButton on group page
@@ -640,6 +663,15 @@ public class ClevisView extends JFrame{
                 String[] shapeList = shapeListField.getText().split(",");
                 clevis.createGroup(name.getText(),shapeList);
                 mainLabel.setText("Group created successfully!");
+
+                StringBuilder inList = new StringBuilder();
+                for (String i : shapeList) {inList.append(i).append(" ");}
+
+                String inStr = "group"+" "+name.getText()+" ";
+                outStrTxt.append(inStr).append(inList).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr + inList + "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
@@ -653,20 +685,31 @@ public class ClevisView extends JFrame{
                 clevis.unGroup(name.getText());
                 mainLabel.setText("Ungroup successfully!");
 
+                String inStr = "ungroup"+" "+name.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
+
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
             drawArea.repaint();
-
-            //new drawDialog();
         });
 
         // listener for moveShapeButton on group page
         moveShapeButton.addActionListener(e -> {
             try {
-                clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),Double.parseDouble(pointDYField.getText()));
+                clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),
+                        Double.parseDouble(pointDYField.getText()));
                 mainLabel.setText("Shape moved successfully!");
+
+                String inStr = "move"+" "+name.getText()+" "+pointDXField.getText()+" "+pointDYField.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
@@ -681,7 +724,6 @@ public class ClevisView extends JFrame{
             moveContainer.setLocation(PANEL_X,PANEL_Y);
             intersectContainer.setLocation(PANEL_X,PANEL_Y);
             listContainer.setLocation(PANEL_X,PANEL_Y);
-
         });
 
         // listener for moveShapeButton on group page
@@ -691,6 +733,13 @@ public class ClevisView extends JFrame{
                         Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
                         Double.parseDouble(pointDYField.getText()));
                 mainLabel.setText("Shape moved successfully!");
+
+                String inStr = "pick-and-move"+" "+pointXField.getText()+" "+pointYField.getText()+" "
+                        +pointDXField.getText()+" "+pointDYField.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
@@ -712,12 +761,17 @@ public class ClevisView extends JFrame{
             try {
                 listAllArea.setText(clevis.listShape(name.getText()));
                 mainLabel.setText("Shape listed successfully!");
+
+                String inStr = "list"+" "+name.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
             drawArea.repaint();
-
         });
 
         // listener for listShapeButton on group page
@@ -725,31 +779,39 @@ public class ClevisView extends JFrame{
             try {
                 listAllArea.setText(clevis.listAllShape());
                 mainLabel.setText("All shapes listed successfully!");
+
+                String inStr = "listAll";
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
 
             drawArea.repaint();
-
         });
 
         // listener for intersectButton on group page
         intersectButton.addActionListener(e -> {
             try {
-                if (clevis.isIntersected(name.getText(),shape2Field.getText())) {
-                    mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is intersected!");
+                if (clevis.isIntersected(shape1Field.getText(),shape2Field.getText())) {
+                    mainLabel.setText(shape1Field.getText()+" and "+ shape2Field.getText()+" is intersected!");
                 }
                 else {
-                    mainLabel.setText(name.getText()+" and "+ shape2Field.getText()+" is NOT intersected!");
+                    mainLabel.setText(shape1Field.getText()+" and "+ shape2Field.getText()+" is NOT intersected!");
                 }
-
+                String inStr = "intersect"+" "+shape1Field.getText()+" "+shape2Field.getText();
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal input, please try again!");
             }
             drawArea.repaint();
-
         });
 
         // listener for undoButton on each page
@@ -757,6 +819,12 @@ public class ClevisView extends JFrame{
             try {
                 clevis.UndoControl();
                 mainLabel.setText("Undo successfully!");
+
+                String inStr = "undo";
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal undo, please try again later!");
@@ -778,6 +846,11 @@ public class ClevisView extends JFrame{
             try {
                 clevis.RedoControl();
                 mainLabel.setText("Redo successfully!");
+                String inStr = "redo";
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
             }
             catch (Exception e1) {
                 mainLabel.setText("Illegal redo, please try again later!");
@@ -794,8 +867,7 @@ public class ClevisView extends JFrame{
             listContainer.setLocation(PANEL_X,PANEL_Y);
         });
 
-
-
+        /** -------------------listener of buttons on main page and back buttons on each page------------------*/
 
         // listener for drawButton on main page
         drawButton.addActionListener(e -> {
@@ -813,7 +885,6 @@ public class ClevisView extends JFrame{
 
             container.add(drawContainer);
             drawContainer.setVisible(true);
-            //new drawDialog();
         });
 
         // listener for deleteButton on main page
@@ -832,9 +903,6 @@ public class ClevisView extends JFrame{
 
             container.add(deleteContainer);
             deleteContainer.setVisible(true);
-
-
-            //new drawDialog();
         });
 
         // listener for boundBoxButton on main page
@@ -852,9 +920,6 @@ public class ClevisView extends JFrame{
 
             container.add(boundingBoxContainer);
             boundingBoxContainer.setVisible(true);
-
-
-            //new drawDialog();
         });
 
         // listener for groupButton on main page
@@ -877,7 +942,6 @@ public class ClevisView extends JFrame{
 
             container.add(groupContainer);
             groupContainer.setVisible(true);
-
         });
 
         // listener for moveButton on main page
@@ -903,10 +967,8 @@ public class ClevisView extends JFrame{
             mainLabel.setText("Please enter the name of the shape to move!");
             moveContainer.add(mainLabel);
 
-
             container.add(moveContainer);
             moveContainer.setVisible(true);
-
         });
 
         // listener for listButton on main page
@@ -917,7 +979,6 @@ public class ClevisView extends JFrame{
             listContainer.add(labelName);
             listContainer.add(name);
 
-
             mainLabel.setText("Please enter the name of the shape to list!");
             listContainer.add(mainLabel);
 
@@ -925,7 +986,6 @@ public class ClevisView extends JFrame{
 
             container.add(listContainer);
             listContainer.setVisible(true);
-
         });
 
         // listener for intersectionButton on main page
@@ -933,24 +993,16 @@ public class ClevisView extends JFrame{
             MainContainer.setVisible(false);
             container.remove(MainContainer);
 
-            labelName.setText("Shape1: ");
-            intersectContainer.add(labelName);
-            intersectContainer.add(name); // shape1
-
-
             mainLabel.setText("Please enter the name of shapes to check!");
             intersectContainer.add(mainLabel);
 
-
             container.add(intersectContainer);
             intersectContainer.setVisible(true);
-
         });
 
 
         // listener for quitButton on main page
         quitButton.addActionListener(e -> {
-            //setVisible(false);
             JDialog quitDio = new JDialog();
             quitDio.setTitle("Confirm Quit?");
             quitDio.setBounds(PANEL_HEIGHT,PANEL_HEIGHT,SHAPE_LIST_TEXT_WIDTH,RADIO_WIDTH);
@@ -960,15 +1012,22 @@ public class ClevisView extends JFrame{
             quitDio.add(conBut);
             quitDio.add(canBut);
             conBut.addActionListener(e1 -> {
+                String inStr = "quit";
+                outStrTxt.append(inStr).append("\n");
+                outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
+                        position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
+                position++;
+                printStream.println(outStrHtml.toString());
+
+                pw.println(outStrTxt.toString());
+                pw.flush();
                 System.exit(0);
             });
             quitDio.setVisible(true);
             canBut.addActionListener(e1 -> {
                 quitDio.setVisible(false);
             });
-
         });
-
 
         // listener for backDrawButton on drawContainer page
         backDrawButton.addActionListener(e -> {
@@ -989,7 +1048,6 @@ public class ClevisView extends JFrame{
             container.add(MainContainer);
 
             drawArea.repaint();
-
         });
 
         // listener for backDeleteButton on deleteContainer page
@@ -1090,7 +1148,6 @@ public class ClevisView extends JFrame{
             listAllArea.setText("");
             listAllArea.setText("");
 
-
             listContainer.setVisible(false);
             container.remove(listContainer);
 
@@ -1126,7 +1183,7 @@ public class ClevisView extends JFrame{
             drawArea.repaint();
         });
 
-        // 4 radioButton
+        /** -------------------listener of 4 radio buttons on draw page------------------*/
         radioButtonRec.addActionListener(e -> {
             name.setText("");
             textFieldP1.setText("");
@@ -1180,6 +1237,5 @@ public class ClevisView extends JFrame{
             labelP4.setVisible(false);
             textFieldP4.setVisible(false);
         });
-        // 4 radioButton end
     }
 }
