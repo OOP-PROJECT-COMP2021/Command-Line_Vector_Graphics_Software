@@ -207,7 +207,8 @@ public class ClevisView extends JFrame{
     }
 
     /** main function
-     * @param args : args*/
+     * @param args : args
+     * @throws IOException ：throw*/
     public static void main(String[] args) throws IOException {
         if(!args[1].isEmpty()) {htmlName = args[1];}
         else {htmlName = "log.html";}
@@ -217,7 +218,8 @@ public class ClevisView extends JFrame{
         new ClevisView();
     }
 
-    /** constructor */
+    /** constructor
+     * @throws IOException : throw*/
     public ClevisView() throws IOException {
 
         File writeF = new File(txtName);
