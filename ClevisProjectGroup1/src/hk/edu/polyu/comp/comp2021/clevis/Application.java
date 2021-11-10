@@ -56,11 +56,13 @@ public class Application{
                     double inW = Double.parseDouble(scan.next());
                     double inH = Double.parseDouble(scan.next());
                     try{
-                        clevis.drawRectangle(name,inX,inY,inW,inH);
+                        if (!scan.hasNext()) {
+                            clevis.drawRectangle(name, inX, inY, inW, inH);
+                            System.out.println("Successfully add new "+str+" called " + name+ ", whose top-left corner is at location (" + inX+ "," + inY+ "), and the width and height are " + inW + " and " + inH);
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully add new "+str+" called " + name+ ", whose top-left corner is at location (" + inX+ "," + inY+ "), and the width and height are " + inW + " and " + inH);
                 }
 
                 /** [Line]*/
@@ -71,8 +73,10 @@ public class Application{
                     double X2 = Double.parseDouble(scan.next());
                     double Y2 = Double.parseDouble(scan.next());
                     try{
-                        clevis.drawLine(name,X1,Y1,X2,Y2);
-                        System.out.println("Successfully add new "+str+" called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2+")");
+                        if (!scan.hasNext()) {
+                            clevis.drawLine(name, X1, Y1, X2, Y2);
+                            System.out.println("Successfully add new " + str + " called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2 + ")");
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
@@ -84,9 +88,12 @@ public class Application{
                     double inX = Double.parseDouble(scan.next());
                     double inY = Double.parseDouble(scan.next());
                     double inR = Double.parseDouble(scan.next());
+
                     try{
-                        clevis.drawCircle(name,inX,inY,inR);
-                        System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
+                        if (!scan.hasNext()){
+                            clevis.drawCircle(name,inX,inY,inR);
+                            System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
@@ -99,8 +106,10 @@ public class Application{
                     double inY = Double.parseDouble(scan.next());
                     double inL = Double.parseDouble(scan.next());
                     try{
-                        clevis.drawSquare(name,inX,inY,inL);
-                        System.out.println("Successfully add new "+str+" called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
+                        if (!scan.hasNext()) {
+                            clevis.drawSquare(name, inX, inY, inL);
+                            System.out.println("Successfully add new " + str + " called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
@@ -137,8 +146,10 @@ public class Application{
                 else if (str.equals("delete")){
                     String name = scan.next();
                     try{
-                        clevis.deleteShapeWithName(name);
-                        System.out.println("Successfully delete the shape called "+name);
+                        if (!scan.hasNext()) {
+                            clevis.deleteShapeWithName(name);
+                            System.out.println("Successfully delete the shape called " + name);
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Unsuccessfully delete because can't find the name independently in storage!");
                     }
@@ -147,13 +158,15 @@ public class Application{
                 /** [boudningbox]*/
                 else if (str.equals("boundingbox")){
                     String name = scan.next();
-                    try{
-                        System.out.println(clevis.createBoundingBox(name));
+                    try {
+                        if (!scan.hasNext()) {
+                            System.out.println(clevis.createBoundingBox(name));
+                            System.out.println("Successfully create boundingbox of " + name);
+                        }
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
-                    System.out.println("Successfully create boundingbox of "+name);
                 }
 
                 /** [move]*/
@@ -161,9 +174,11 @@ public class Application{
                     String name = scan.next();
                     double inX = Double.parseDouble(scan.next());
                     double inY = Double.parseDouble(scan.next());
-                    try{
-                        clevis.moveShape(name,inX,inY);
-                        System.out.println("Successfully move "+inX+" on X-axis and move "+inY+" on Y-axis");
+                    try {
+                        if (!scan.hasNext()) {
+                            clevis.moveShape(name, inX, inY);
+                            System.out.println("Successfully move " + inX + " on X-axis and move " + inY + " on Y-axis");
+                        }
                     }
                     catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
@@ -176,10 +191,12 @@ public class Application{
                     double inY = Double.parseDouble(scan.next());
                     double inDx = Double.parseDouble(scan.next());
                     double inDy = Double.parseDouble(scan.next());
-                    try{
-                        clevis.pickAndMoveShape(inX,inY,inDx,inDy);
-                        System.out.println("Successfully pick and move point ("+inX+","+inY+") to point ("+(inDx+inX)+","+(inDy+inY)+")");
-                    }catch(IllegalArgumentException e){
+                    try {
+                        if (!scan.hasNext()) {
+                            clevis.pickAndMoveShape(inX, inY, inDx, inDy);
+                            System.out.println("Successfully pick and move point (" + inX + "," + inY + ") to point (" + (inDx + inX) + "," + (inDy + inY) + ")");
+                        }
+                    } catch(IllegalArgumentException e){
                         System.out.println("Error for: "+e);
                     }
                 }
@@ -189,12 +206,13 @@ public class Application{
                     String shape1 = scan.next();
                     String shape2 = scan.next();
                     try{
-                        clevis.isIntersected(shape1,shape2);
-                        if (clevis.isIntersected(shape1,shape2)){
-                            System.out.println("They are intersected!");
-                        }
-                        else{
-                            System.out.println("They are not intersected");
+                        if (!scan.hasNext()) {
+                            clevis.isIntersected(shape1, shape2);
+                            if (clevis.isIntersected(shape1, shape2)) {
+                                System.out.println("They are intersected!");
+                            } else {
+                                System.out.println("They are not intersected");
+                            }
                         }
                     }
                     catch(IllegalArgumentException e){
@@ -206,9 +224,11 @@ public class Application{
                 /** [List]*/
                 else if (str.equals("list")){
                     String name = scan.next();
-                    try{
-                        System.out.println();
-                        System.out.println("Here is the information about "+clevis.listShape(name));
+                    try {
+                        if (!scan.hasNext()) {
+                            System.out.println();
+                            System.out.println("Here is the information about " + clevis.listShape(name));
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Unsuccessfully list "+name+" because can't find the name in storage!");
                     }
@@ -216,8 +236,10 @@ public class Application{
 
                 /** [ListAll]*/
                 else if (str.equalsIgnoreCase("listAll")){
-                    try{
-                        System.out.println(clevis.listAllShape());
+                    try {
+                        if (!scan.hasNext()) {
+                            System.out.println(clevis.listAllShape());
+                        }
                     }catch(IllegalArgumentException e){
                         System.out.println("Unsuccessfully listAll because can't find the name in storage!");
                     }
@@ -225,7 +247,8 @@ public class Application{
 
                 /** [Undo]*/
                 else if(str.equals("undo")){
-                    try{
+                    try {
+                        if (!scan.hasNext()) {
 //                        lineCount-=undoCount;
 //                        FileReader fr = new FileReader("record.txt");
 //                        BufferedReader BR = new BufferedReader(fr);
@@ -250,6 +273,7 @@ public class Application{
                             System.out.println("Already undo!");
                             clevis.UndoControl();
 //                        }
+                        }
                     }catch (IllegalArgumentException e){
                         System.out.println("No operation for undo！");
                     }
@@ -257,9 +281,11 @@ public class Application{
 
                 /** [Redo]*/
                 else if (str.equals("redo")){
-                    try{
-                        clevis.RedoControl();
-                        System.out.println("Already redo!");
+                    try {
+                        if (!scan.hasNext()) {
+                            clevis.RedoControl();
+                            System.out.println("Already redo!");
+                        }
                     }catch (IllegalArgumentException e){
                         System.out.println("No operation for undo！");
                     }
