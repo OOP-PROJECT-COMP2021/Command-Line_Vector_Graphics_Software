@@ -279,8 +279,7 @@ public class ClevisTest {
         String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
         clevis.createGroup("G_EFG",shapeListEFG);
         System.out.println(clevis.listAllShape());
-
-        clevis.deleteShapeWithName("G_GAB_CD");
+        
         clevis.deleteShapeWithName("SquareTestH");
         clevis.deleteShapeWithName("G_GAB_CD");
         System.out.println(clevis.listAllShape());

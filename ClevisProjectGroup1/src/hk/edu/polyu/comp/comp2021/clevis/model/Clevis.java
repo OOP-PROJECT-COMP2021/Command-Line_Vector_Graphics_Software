@@ -288,7 +288,8 @@ public class Clevis {
      */
     private void removeGroup(Shape inName) {
         if (storage.get(inName.getName()) instanceof Group) {
-            Group tmp = (Group) storage.get(inName);
+            Group tmp = (Group) storage.get(inName.getName());
+            System.out.println(tmp.getName());
             Shape[] container = tmp.getShapeList();
             for (Shape a : container) {
                 removeGroup(a);
