@@ -391,7 +391,7 @@ public class ClevisTest {
 
         clevis.pickAndMoveShape(4,5,1,1);
 
-        clevis.pickAndMoveShape(1,2,1,1);
+        //clevis.pickAndMoveShape(1,2,1,1);
         clevis.pickAndMoveShape(1,7,1,1);
 
 

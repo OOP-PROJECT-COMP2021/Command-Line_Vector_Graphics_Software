@@ -1182,6 +1182,8 @@ public class ClevisView extends JFrame{
             textFieldP2.setText("");
             textFieldP3.setText("");
             textFieldP4.setText("");
+            
+            shape1Field.setText("");
             shape2Field.setText("");
 
             intersectContainer.setVisible(false);
