@@ -9,12 +9,6 @@ public class BoundingBox extends Rectangle {
                 inShape.getRightBounding() - inShape.getLeftBounding(), Math.abs(inShape.getTopBounding() - inShape.getBottomBounding()));
     }
 
-    /** get bounding box
-     * @return String of information of the bounding box*/
-    public String getBoundingBox() {
-        return (this.getLeftBounding()+", "+this.getTopBounding()+", "+ (this.getRightBounding()-this.getLeftBounding())
-                +", "+(this.getBottomBounding()-this.getTopBounding()));
-    }
 
     @Override
     public String listInfo(){

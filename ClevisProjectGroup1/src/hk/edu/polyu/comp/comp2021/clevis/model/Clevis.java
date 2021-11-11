@@ -305,7 +305,6 @@ public class Clevis {
             throw new IllegalArgumentException();
         }
         BoundingBox inBoundingBox = new BoundingBox(storage.get(inName));
-        inBoundingBox.getBoundingBox();
         return inBoundingBox.listInfo();
     }
 
