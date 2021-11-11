@@ -1,9 +1,0 @@
-rectangle n 1 2 3 4
-circle m 2 3 4
-intersect m n a
-intersect m n
-pick-and-move 1 2 3 4 5
-pick-and-move 1 2 3 4
-                        if (!scan.hasNext()) {
-list m n
-listAll 2
