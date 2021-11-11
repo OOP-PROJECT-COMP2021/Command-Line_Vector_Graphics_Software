@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33cc1b99-3c1c-4ff7-9404-451082c0ee9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/-txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClevisProjectGroup1/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.html" beforeDir="false" afterPath="$PROJECT_DIR$/log.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/view/ClevisView$MyCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/view/ClevisView$MyCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/view/ClevisView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/view/ClevisView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Clevis_Project_Group1/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/record.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,15 +75,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClevisView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.view.ClevisView" />
+    <configuration name="ClevisTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Clevis_Project_Group1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.view.*" />
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.ClevisTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,18 +138,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
-      <item itemvalue="Application.ClevisView" />
       <item itemvalue="JUnit.HTMLTest" />
       <item itemvalue="JUnit.HTMLTest.htmlTest1" />
       <item itemvalue="JUnit.TestCircle" />
+      <item itemvalue="JUnit.ClevisTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.ClevisTest" />
         <item itemvalue="JUnit.HTMLTest" />
         <item itemvalue="JUnit.TestCircle" />
         <item itemvalue="JUnit.HTMLTest.htmlTest1" />
-        <item itemvalue="Application.ClevisView" />
       </list>
     </recent_temporary>
   </component>
@@ -161,6 +163,17 @@
       <updated>1634047518813</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -205,7 +218,7 @@
     <SUITE FILE_PATH="coverage/Clevis_Project_Group1$Application.ic" NAME="Application Coverage Results" MODIFIED="1636535016311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>hk.edu.polyu.comp.comp2021.clevis.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Clevis_Project_Group1$ClevisTest.ic" NAME="ClevisTest Coverage Results" MODIFIED="1636535026422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Clevis_Project_Group1$ClevisTest.ic" NAME="ClevisTest Coverage Results" MODIFIED="1636601038729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
     </SUITE>
   </component>

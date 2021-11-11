@@ -400,8 +400,8 @@ public class Clevis {
      * @return : true-intersected, false-not intersected*/
     public boolean isIntersected (String inString1, String inString2) {
         if (!containsName(inString1) || !containsName(inString2)||
-                storage.get(inString1).getParent().getName().equals(storage.get(inString1).getName())||
-                storage.get(inString2).getParent().getName().equals(storage.get(inString2).getName())) {
+                !storage.get(inString1).getParent().getName().equals(storage.get(inString1).getName())||
+                !storage.get(inString2).getParent().getName().equals(storage.get(inString2).getName())) {
             throw new IllegalArgumentException();
         }
         Shape inShape1 = storage.get(inString1);
