@@ -8,7 +8,6 @@ import hk.edu.polyu.comp.comp2021.clevis.model.Shape;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import java.util.Arrays;
 
 /** the main GUI */
 public class ClevisView extends JFrame{
@@ -117,6 +116,9 @@ public class ClevisView extends JFrame{
     private Rectangle boundingBoxShape;
     private boolean boundingBoxFlag = false;
 
+    private int[] pickPointList = new int[2];
+    private boolean pickFlag = false;
+
     private float[] dash1 = {DASH_5};
     private BasicStroke s = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, LIM_10, dash1, 0.0f);
 
@@ -186,6 +188,11 @@ public class ClevisView extends JFrame{
                         (int) boundingBoxShape.getTopLeftCorner().getY(),(int)(boundingBoxShape.getWidth()),
                         (int)(boundingBoxShape.getHeight()));
                 boundingBoxFlag = false;
+            }
+            if (pickFlag) {
+                g.setColor(Color.red);
+                g.drawOval(pickPointList[0]-1,pickPointList[1]-1,2,2);
+                pickFlag = false;
             }
         }
     }
@@ -462,7 +469,7 @@ public class ClevisView extends JFrame{
         JLabel shapeListLabel = new JLabel("Shapes: ");
         JTextField shapeListField = new JTextField();
 
-        JLabel shapeListNoteLabel = new JLabel("(Please enter names separated with \",\")");
+        JLabel shapeListNoteLabel = new JLabel("(Please enter names separated with \" \")");
 
         shapeListLabel.setBounds(LOCATION_X,BTN_DRAW_Y,LABEL_WIDTH,LABEL_HEIGHT);
         shapeListField.setBounds(TEXT_LOCATION_X,BTN_DRAW_Y,SHAPE_LIST_TEXT_WIDTH,TEXT_HEIGHT);
@@ -662,7 +669,7 @@ public class ClevisView extends JFrame{
         // listener for groupButton on group page
         createGroupButton.addActionListener(e -> {
             try {
-                String[] shapeList = shapeListField.getText().split(",");
+                String[] shapeList = shapeListField.getText().split(" ");
                 clevis.createGroup(name.getText(),shapeList);
                 mainLabel.setText("Group created successfully!");
 
@@ -731,9 +738,14 @@ public class ClevisView extends JFrame{
         // listener for moveShapeButton on group page
         pickMoveShapeButton.addActionListener(e -> {
             try {
+                pickPointList[0] = Integer.parseInt(pointXField.getText());
+                pickPointList[1] = Integer.parseInt(pointYField.getText());
+                pickFlag = true;
+
                 clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
                         Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
                         Double.parseDouble(pointDYField.getText()));
+
                 mainLabel.setText("Shape moved successfully!");
 
                 String inStr = "pick-and-move"+" "+pointXField.getText()+" "+pointYField.getText()+" "

@@ -22,7 +22,7 @@ public class Rectangle implements Shape{
         name = inName;
         w = inW;
         h = inH;
-        FourLines[0] = new Line(name+"LineLeft", inX,inY,inX,inY-inH); // set the left Line AB
+        FourLines[0] = new Line(name+"LineLeft", inX,inY,inX,inY+inH); // set the left Line AB
         FourLines[1] = new Line(name+"LineBottom", inX,inY+inH,inX+inW,inY+inH); // set the bottom Line BC
         FourLines[2] = new Line(name+"LineRight",inX+inW,inY+inH,inX+inW,inY); // set the right Line CD
         FourLines[3] = new Line(name+"LineTop", inX+inW,inY,inX,inY); // set the top Line DA

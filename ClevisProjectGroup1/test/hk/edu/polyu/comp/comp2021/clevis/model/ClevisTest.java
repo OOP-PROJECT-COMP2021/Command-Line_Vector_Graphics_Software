@@ -453,4 +453,14 @@ public class ClevisTest {
         System.out.println(clevis.isIntersected("G_GAB_CD","G_EFG"));
 
     }
+
+    @Test
+    public void pickTest() {
+        Clevis clevis = new Clevis();
+        clevis.drawRectangle("A",100,100,100,200);
+        System.out.println(clevis.listAllShape());
+        clevis.pickAndMoveShape(100,110,10,10);
+        System.out.println(clevis.listAllShape());
+
+    }
 }
