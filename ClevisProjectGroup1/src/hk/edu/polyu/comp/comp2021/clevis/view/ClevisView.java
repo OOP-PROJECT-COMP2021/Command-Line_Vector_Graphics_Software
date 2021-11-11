@@ -217,9 +217,9 @@ public class ClevisView extends JFrame{
      * @param args : args
      * @throws IOException ：throw*/
     public static void main(String[] args) throws IOException {
-        if(!args[1].isEmpty()) {htmlName = args[1];}
+        if(args.length != 0) {htmlName = args[1];}
         else {htmlName = "log.html";}
-        if(!args[3].isEmpty()) {txtName = args[3];}
+        if(args.length != 0) {txtName = args[3];}
         else {txtName = "log.txt";}
 
         new ClevisView();

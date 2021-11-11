@@ -47,7 +47,7 @@ public interface Shape{
     void removeRefer();
 
     /** isIntersected() method
-     * @param other: other
+     * @param other: other Shape to check
      * @return is intersected or not */
     boolean isIntersected(Shape other); // check Shape is intersected with other Line
 
