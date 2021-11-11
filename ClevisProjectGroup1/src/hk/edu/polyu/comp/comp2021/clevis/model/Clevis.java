@@ -301,7 +301,7 @@ public class Clevis {
      * @param inName: the name of the shape
      * @return : the information of the bounding box*/
     public String createBoundingBox (String inName){
-        if (!containsName(inName)) {
+        if (!containsName(inName) || !storage.get(inName).getParent().getName().equals(storage.get(inName).getName())) {
             throw new IllegalArgumentException();
         }
         BoundingBox inBoundingBox = new BoundingBox(storage.get(inName));
@@ -399,7 +399,9 @@ public class Clevis {
      * @param inString2: the second shape
      * @return : true-intersected, false-not intersected*/
     public boolean isIntersected (String inString1, String inString2) {
-        if (!containsName(inString1) || !containsName(inString2)) {
+        if (!containsName(inString1) || !containsName(inString2)||
+                storage.get(inString1).getParent().getName().equals(storage.get(inString1).getName())||
+                storage.get(inString2).getParent().getName().equals(storage.get(inString2).getName())) {
             throw new IllegalArgumentException();
         }
         Shape inShape1 = storage.get(inString1);

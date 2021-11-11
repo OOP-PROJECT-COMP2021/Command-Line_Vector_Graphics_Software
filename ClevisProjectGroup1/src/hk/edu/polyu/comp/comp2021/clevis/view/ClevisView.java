@@ -643,10 +643,10 @@ public class ClevisView extends JFrame{
         // listener for deleteShapeButton on bounding page
         boundingBoxButton.addActionListener(e -> {
             try{
+
+                listAllArea.setText(clevis.createBoundingBox(name.getText()));
                 boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
                 boundingBoxFlag = true;
-                listAllArea.setText(boundingBoxShape.listInfo());
-
                 String inStr = "boundingbox"+" "+name.getText();
                 outStrTxt.append(inStr).append("\n");
                 outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
