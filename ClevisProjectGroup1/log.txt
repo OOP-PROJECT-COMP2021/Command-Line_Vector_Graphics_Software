@@ -1,0 +1,3 @@
+rectangle n 1 2 3 4
+circle m 2 3 4 
+quit

@@ -19,8 +19,8 @@ public class Application{
 //        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
         FileReader fr = new FileReader(args[3]);
         BufferedReader br = new BufferedReader(fr);
-        PrintStream printStream = new PrintStream(new FileOutputStream(args[1]));
         StringBuilder outStr = new StringBuilder();
+        PrintStream printStream = new PrintStream(new FileOutputStream(args[1]));
         System.out.println("Welcome to use our graphics function");
         System.out.println("Input records are stored in the \""+args[3]+"\"");
 //        int lineCount = 0;
@@ -48,6 +48,7 @@ public class Application{
 
             if (scan.hasNext()) {
                 String str = scan.next();
+
                 /** [Rectangle]*/
                 if (str.equals("rectangle")) {
                     String name = scan.next();
