@@ -59,7 +59,7 @@ class Group implements Shape {
     @Override
     public void setRight(Shape r) { right = r; }
 
-    /** to ungroup */
+    /** to delete a Group Shape together with all its child */
     @Override
     public void removeRefer() {
         for (Shape item : shapeList) {
@@ -67,8 +67,6 @@ class Group implements Shape {
         }
         getLeft().setRight(getRight());
         getRight().setLeft(getLeft());
-        // parent = this;
-        // shapeList = null;
     }
 
     @Override
@@ -84,8 +82,6 @@ class Group implements Shape {
         }
         getLeft().setRight(getRight());
         getRight().setLeft(getLeft());
-        parent = this;
-        //shapeList = null;
     }
 
     /** method for get the name */

@@ -74,7 +74,6 @@ public class Circle implements Shape{
     public void removeRefer() {
         getLeft().setRight(getRight());
         getRight().setLeft(getLeft());
-        //parent = this;
     }
 
     @Override
