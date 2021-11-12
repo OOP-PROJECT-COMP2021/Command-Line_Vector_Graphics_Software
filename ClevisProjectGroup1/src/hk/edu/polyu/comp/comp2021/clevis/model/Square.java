@@ -15,6 +15,7 @@ class Square extends Rectangle{
     /** list out information of a shape*/
     @Override
     public String listInfo(){
-        return "[Square] Name:"+getName()+"; Top-left corner:"+"("+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+")"+"; Side length:"+getWidth();
+        return "[Square] Name:"+getName()+"; Top-left corner:"+"("+String.format("%.2f", getTopLeftCorner().getX())+","+
+                String.format("%.2f", getTopLeftCorner().getY())+")"+"; Side length:"+String.format("%.2f", getWidth());
     }
 }

@@ -221,7 +221,6 @@ public class ClevisView extends JFrame{
         else {htmlName = "log.html";}
         if(args.length != 0) {txtName = args[3];}
         else {txtName = "log.txt";}
-
         new ClevisView();
     }
 

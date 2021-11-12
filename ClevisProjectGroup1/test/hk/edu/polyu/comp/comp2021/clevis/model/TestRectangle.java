@@ -17,7 +17,7 @@ public class TestRectangle {
     public void testRectRectInter1() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle c = new Rectangle("RectTestD",3f,1f,2f,1f);
-        assertTrue(a.isIntersected(c));
+        assertFalse(a.isIntersected(c));
     }
     @Test
     public void testRectRectInter2() {
@@ -35,7 +35,7 @@ public class TestRectangle {
     public void testRectRectInter4() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle f = new Rectangle("RectTestE",1f,2f,2f,1f);
-        assertFalse(a.isIntersected(f));
+        assertTrue(a.isIntersected(f));
     }
     @Test
     public void testRectRectInter5() {
@@ -47,31 +47,31 @@ public class TestRectangle {
     public void testRectRectInter6() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle h = new Rectangle("RectTestE",2f,2.99684f,0.6f,0.2f);
-        assertFalse(a.isIntersected(h));
+        assertTrue(a.isIntersected(h));
     }
     @Test
     public void testRectRectInter7() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle i = new Rectangle("RectTestI",3.99993f,1.9f,0.5f,0.6f);
-        assertTrue(a.isIntersected(i));
+        assertFalse(a.isIntersected(i));
     }
     @Test
     public void testRectRectInter8() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle j = new Rectangle("RectTestJ",0.30006f,3.39966f,0.6f,0.4f);
-        assertTrue(a.isIntersected(j));
+        assertFalse(a.isIntersected(j));
     }
     @Test
     public void testRectRectInter9() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle k = new Rectangle("RectTestK",4f,1.95f,0.7f,0.8f);
-        assertTrue(a.isIntersected(k));
+        assertFalse(a.isIntersected(k));
     }
     @Test
     public void testRectRectInter10() {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         Rectangle l = new Rectangle("RectTestL",1f,0.4f,1.2f,0.4f);
-        assertTrue(a.isIntersected(l));
+        assertFalse(a.isIntersected(l));
     }
     @Test
     public void testRectRectInter11() {

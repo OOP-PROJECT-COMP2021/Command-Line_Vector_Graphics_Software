@@ -6,9 +6,44 @@ import java.util.*;
 public class Clevis {
     /**Clevis Constructor with empty body*/
     public Clevis(){}
-    private HashMap<String,Shape> storage = new HashMap<String,Shape>();
-    //private ArrayList<String> shapeLevel = new ArrayList<String>();
+
+    /** fields for internal storage*/
+    private HashMap<String,Shape> storage = new HashMap<>();
     private LinkedListDeque<Shape> shapeLevel = new LinkedListDeque<>();
+
+        /** fields for Undo & Redo*/
+    private Stack<String[][]> cmdStack = new Stack<>();
+    private Stack<String[][]> cmdRedoStack = new Stack<>();
+    private boolean undoFlag = false;
+    private boolean redoFlag = false;
+    private Stack<Shape> delTargets = new Stack<>();
+    private Stack<Shape> delRedoTargets = new Stack<>();
+        /** ---------------*/
+
+    /** --------------------basic methods --------------------*/
+    /** add a shape to storage
+     * @param inName: shape name
+     * @param inShape: the shape*/
+    public void addShape(String inName, Shape inShape) {
+        if (!containsName(inName)) {
+            storage.put(inName,inShape);
+            shapeLevel.addLast(inShape);
+        }
+    }
+
+    /** check if the storage contains the Name(key)
+     * @param inName: shape name
+     * @return : true-contained, false-not contained*/
+    public boolean containsName(String inName) {
+        return storage.containsKey(inName);
+    }
+
+    /** return the shape from name
+     * @param inName: shape name
+     * @return : the shape*/
+    public Shape getShape(String inName) {
+        return storage.get(inName);
+    }
 
     /** return the shapeLevel
      * @return : shapeLevel*/
@@ -16,21 +51,14 @@ public class Clevis {
         return shapeLevel;
     }
 
-    /** for Undo & Redo*/
-    private Stack<String[][]> cmdStack = new Stack<>();
-    private Stack<String[][]> cmdRedoStack = new Stack<>();
-    private boolean undoFlag = false;
-    private boolean redoFlag = false;
-    private Stack<Shape> delTargets = new Stack<>();
-    private Stack<Shape> delRedoTargets = new Stack<>();
-    /** ---------------*/
-
+    /** --------------------requirement methods --------------------*/
     /** [REQ2] rectangle n x y w h
      * @param inName: rectangle name n
      * @param inX: x
      * @param inY: y
      * @param inW: width
      * @param inH: height*/
+
     public void drawRectangle(String inName, double inX, double inY, double inW, double inH){
         if (containsName(inName)) {
             throw new IllegalArgumentException();
@@ -389,7 +417,6 @@ public class Clevis {
             /** ---------------*/
 
             storage.get(finalShape.getName()).move(inDx, inDy);
-
         }
     }
 
@@ -432,32 +459,7 @@ public class Clevis {
         return outStr.toString();
     }
 
-    /** add a shape to storage
-     * @param inName: shape name
-     * @param inShape: the shape*/
-    public void addShape(String inName, Shape inShape) {
-        if (!containsName(inName)) {
-            storage.put(inName,inShape);
-            shapeLevel.addLast(inShape);
-        }
-    }
-
-    /** check if the storage contains the Name(key)
-     * @param inName: shape name
-     * @return : true-contained, false-not contained*/
-    public boolean containsName(String inName) {
-        return storage.containsKey(inName);
-    }
-
-    /** return the shape from name
-     * @param inName: shape name
-     * @return : the shape*/
-    public Shape getShape(String inName) {
-        return storage.get(inName);
-    }
-
-
-    /** -----------Undo-----------*/
+    /** -----------[BON1] undo-----------*/
         /** Undo Control methods: */
     public void UndoControl() {
         if (cmdStack.isEmpty()) {
@@ -492,20 +494,20 @@ public class Clevis {
 
         /** Undo drawing = deleteShapeWithName
          * @param inName: shape name*/
-    public void UndoDraw(String inName) {
+    private void UndoDraw(String inName) {
         deleteShapeWithName(inName);
     }
 
         /** Undo group = unGroup
          * @param inName: shape name*/
-    public void UndoGroup(String inName) {
+    private void UndoGroup(String inName) {
         unGroup(inName);
     }
 
         /** Undo ungroup = Group
          * @param inName : shape name
          * @param inShapeString: the list of shapes contained in the group*/
-    public void UndoUnGroup(String inName, String[] inShapeString) {
+    private void UndoUnGroup(String inName, String[] inShapeString) {
        createGroup(inName,inShapeString);
     }
 
@@ -513,16 +515,15 @@ public class Clevis {
          * @param inName : shape name
          * @param inDx : shape moved by x
          * @param inDy : shape moved by y*/
-    public void UndoMove(String inName, double inDx, double inDy){
+    private void UndoMove(String inName, double inDx, double inDy){
         moveShape(inName,-inDx,-inDy);
     }
 
         /** Undo delete = add back
          * @param inName : shape name*/
-    public void UndoDelete(String inName) {
+    private void UndoDelete(String inName) {
         Shape inShape = delTargets.peek();
         if (inShape.getName().equals(inName)) {
-//            storage.put(inName,inShape);
             if (!(inShape instanceof Group)) {
                 storage.put(inName,inShape);
                 inShape.getLeft().setRight(inShape);
@@ -531,14 +532,9 @@ public class Clevis {
             else {
                 recursionDel(inShape);
                 recursionAdd(inShape);
-//                Shape[] inShapeList = ((Group) inShape).getShapeList();
-//                for (Shape innerShape : inShapeList) {
-//                    storage.put(innerShape.getName(),innerShape);
-//                }
             }
         }
     }
-    
     private void recursionAdd(Shape inShape) {
         storage.put(inShape.getName(), inShape);
         if (inShape instanceof Group) {
@@ -548,7 +544,6 @@ public class Clevis {
             }
         }
     }
-
     private void recursionDel(Shape inShape) {
         inShape.getLeft().setRight(inShape);
         inShape.getRight().setLeft(inShape);
@@ -561,7 +556,7 @@ public class Clevis {
     }
     /** ---------------*/
 
-    /** -----------Redo----------*/
+    /** -----------[BON2] redo----------*/
         /** Undo Control methods: */
     public void RedoControl() {
         if (cmdRedoStack.isEmpty()) {

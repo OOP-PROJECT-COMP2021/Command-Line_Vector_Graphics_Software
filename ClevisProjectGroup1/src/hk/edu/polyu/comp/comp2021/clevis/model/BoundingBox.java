@@ -12,6 +12,9 @@ public class BoundingBox extends Rectangle {
 
     @Override
     public String listInfo(){
-        return "[BoundingBox] Name: "+getName()+"; Top-left corner:"+"("+getTopLeftCorner().getX()+","+getTopLeftCorner().getY()+")"+"; Width, Height:"+getWidth()+","+getHeight();
+        return "[BoundingBox] Name: "+getName()+"; Top-left corner:"+"("
+                +String.format("%.2f", getTopLeftCorner().getX())+","
+                +String.format("%.2f", getTopLeftCorner().getY())+")"+"; Width, Height:"
+                +String.format("%.2f", getWidth())+","+String.format("%.2f", getHeight());
     }
 }

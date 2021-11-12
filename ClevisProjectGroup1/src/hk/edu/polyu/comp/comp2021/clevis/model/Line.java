@@ -204,6 +204,9 @@ public class Line implements Shape{
     /** list out information of a shape*/
     @Override
     public String listInfo(){
-        return "[Line] Name:"+getName()+"; x1, y1:"+"("+a.getX()+","+a.getY()+")"+"; x2, y2:"+"("+b.getX()+","+b.getY()+")";
+        return "[Line] Name:"+getName()+"; x1, y1:"+"("+ String.format("%.2f", a.getX())+","+
+                String.format("%.2f", a.getY())+")"+"; x2, y2:"+
+                "("+String.format("%.2f", b.getX())+","+
+                String.format("%.2f", b.getY())+")";
     }
 }
