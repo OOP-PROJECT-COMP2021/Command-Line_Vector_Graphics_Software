@@ -22,7 +22,7 @@ public interface Shape{
 
     /** get ancestor
      * @return ancestor*/
-    Shape getAncester();
+    Shape getAncestor();
 
     /** get left shape
      * @return left shape*/

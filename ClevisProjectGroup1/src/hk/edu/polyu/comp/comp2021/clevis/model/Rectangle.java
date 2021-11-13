@@ -61,7 +61,7 @@ public class Rectangle implements Shape{
     public void setParent(Shape father) { parent = father; }
 
     @Override
-    public Shape getAncester() {
+    public Shape getAncestor() {
         Shape ptr = this;
         while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
         return ptr;

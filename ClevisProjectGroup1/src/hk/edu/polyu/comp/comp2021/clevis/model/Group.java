@@ -41,7 +41,7 @@ class Group implements Shape {
     }
 
     @Override
-    public Shape getAncester() {
+    public Shape getAncestor() {
         Shape ptr = this;
         while (!ptr.getName().equals(ptr.getParent().getName())) ptr = ptr.getParent();
         return ptr;

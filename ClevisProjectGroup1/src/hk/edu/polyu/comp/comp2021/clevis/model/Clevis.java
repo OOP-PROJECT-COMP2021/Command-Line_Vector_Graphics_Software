@@ -383,8 +383,8 @@ public class Clevis {
 
         while (inShape != shapeLevel.getSentinel()) {
             if (inShape.isIntersected(xyPoint) && ! (inShape instanceof Group)) {
-                finalShape = inShape.getAncester();
-                inShape = inShape.getAncester().getRight();
+                finalShape = inShape.getAncestor();
+                inShape = inShape.getAncestor().getRight();
             }
             else {
                 inShape = inShape.getRight();
