@@ -9,19 +9,18 @@ import java.util.Scanner;
 public class Application {
     private String line;
     private int position = 0;
-//    private static File fw;
-//    private static Reader fr;
-//    private static PrintStream printStream;
     private static String txt;
     private static String html;
-    Clevis clevis = new Clevis();
-    StringBuilder outStr = new StringBuilder();
-    File fw = new File(txt);
-    BufferedWriter out = new BufferedWriter(new FileWriter(fw));
-    FileReader fr = new FileReader(txt);
-    BufferedReader br = new BufferedReader(fr);
-    PrintStream printStream = new PrintStream(new FileOutputStream(html));
-    public Application() throws Exception {
+    private Clevis clevis = new Clevis();
+    private StringBuilder outStr = new StringBuilder();
+    private File fw = new File(txt);
+    private BufferedWriter out = new BufferedWriter(new FileWriter(fw));
+    private FileReader fr = new FileReader(txt);
+    private BufferedReader br = new BufferedReader(fr);
+    private PrintStream printStream = new PrintStream(new FileOutputStream(html));
+    /** Constructor
+     * @throws Exception :throw*/
+    public Application() throws Exception{
         initialize();
     }
 
