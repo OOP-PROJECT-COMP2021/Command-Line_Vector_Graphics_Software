@@ -530,7 +530,7 @@ public class Clevis {
                 inShape.getRight().setLeft(inShape);
             }
             else {
-                recursionDel(inShape);
+                recursionUndoDel(inShape);
                 recursionAdd(inShape);
             }
         }
@@ -544,13 +544,13 @@ public class Clevis {
             }
         }
     }
-    private void recursionDel(Shape inShape) {
+    private void recursionUndoDel(Shape inShape) {
         inShape.getLeft().setRight(inShape);
         inShape.getRight().setLeft(inShape);
         if(inShape instanceof Group) {
             Shape[] inShapeList = ((Group) inShape).getShapeList();
             for (Shape innerShape : inShapeList) {
-                recursionDel(innerShape);
+                recursionUndoDel(innerShape);
             }
         }
     }
