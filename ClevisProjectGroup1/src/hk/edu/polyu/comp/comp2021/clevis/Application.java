@@ -330,7 +330,7 @@ public class Application{
                             }
                             if (!scan.hasNext()) {
                                 clevis.pickAndMoveShape(parameters[0], parameters[1], parameters[2], parameters[3]);
-                                System.out.println("Successfully pick and move point (" + parameters[0] + "," + parameters[1] + ") to point (" + (parameters[0] + parameters[2]) + "," + (parameters[1] + parameters[3]) + ")");
+                                System.out.println("Successfully pick point (" + parameters[0] + "," + parameters[1] + ") and move");
                             } else {
                                 throw new IllegalArgumentException();
                             }
