@@ -6,25 +6,29 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /** Application Class to run the CLI*/
-public class Application{
-    void initialize(){
-
+public class Application {
+    private String line;
+    private int position = 0;
+//    private static File fw;
+//    private static Reader fr;
+//    private static PrintStream printStream;
+    private static String txt;
+    private static String html;
+    Clevis clevis = new Clevis();
+    StringBuilder outStr = new StringBuilder();
+    File fw = new File(txt);
+    BufferedWriter out = new BufferedWriter(new FileWriter(fw));
+    FileReader fr = new FileReader(txt);
+    BufferedReader br = new BufferedReader(fr);
+    PrintStream printStream = new PrintStream(new FileOutputStream(html));
+    public Application() throws Exception {
+        initialize();
     }
-    /** main() method
-     * @param args : intake parameter
-     * @throws Exception : exception thrown from main()*/
-    public static void main(String[] args) throws Exception {
-        String line;
-        int position = 0;
-        Clevis clevis = new Clevis();
-        File writeF = new File(args[3]);
-        BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
-        FileReader fr = new FileReader(args[3]);
-        BufferedReader br = new BufferedReader(fr);
-        StringBuilder outStr = new StringBuilder();
-        PrintStream printStream = new PrintStream(new FileOutputStream(args[1]));
+
+    private void initialize() throws Exception {
+
         System.out.println("Welcome to use the graphics functions with CLI!");
-        System.out.println("All the Input records are stored in the \""+args[3]+"\"");
+        System.out.println("All the Input records are stored in the \"" + txt + "\"");
         outStr.append("<html>");
         outStr.append("<head>");
         outStr.append("<title>htmlTest</title>");
@@ -33,16 +37,14 @@ public class Application{
         outStr.append("<table border=\"1\">");
         outStr.append("<tr>" + "<th>Index</th>" + "<th>cmd</th>" + "</tr>"); // table head
         outStr.append("<table></body></html>");
-
         while (true) {
             System.out.println("Please type your code:");
             Scanner scanner = new Scanner(System.in);
-            out.write(scanner.nextLine()+"\n");
+            out.write(scanner.nextLine() + "\n");
             out.flush();
-//            lineCount++;
             line = br.readLine();
             Scanner scan = new Scanner(line);
-            outStr.insert(outStr.length() - "<table></body></html>".length(), "<tr>" + "<td>" + position + "</td>" + "<td>" +line+ "</td>" + "</tr>"); // table row 0 (table data:0; table data: rectangle A 1 1 2 2)
+            outStr.insert(outStr.length() - "<table></body></html>".length(), "<tr>" + "<td>" + position + "</td>" + "<td>" + line + "</td>" + "</tr>"); // table row 0 (table data:0; table data: rectangle A 1 1 2 2)
             position++;
 
             if (scan.hasNext()) {
@@ -50,15 +52,14 @@ public class Application{
 
                 /** [Rectangle]*/
                 if (str.equals("rectangle")) {
-                    try{
+                    try {
                         if (!scan.hasNext()) {
                             try {
                                 throw new NoSuchElementException();
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
-                        }
-                        else {
+                        } else {
                             String name = scan.next();
                             double[] parameters = new double[4];
                             for (int i = 0; i < parameters.length; i++) {
@@ -75,22 +76,21 @@ public class Application{
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Line]*/
                 else if (str.equals("line")) {
-                    try{
+                    try {
                         if (!scan.hasNext()) {
                             try {
                                 throw new NoSuchElementException();
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
-                        }
-                        else {
+                        } else {
                             String name = scan.next();
                             double[] parameters = new double[4];
                             for (int i = 0; i < parameters.length; i++) {
@@ -107,22 +107,21 @@ public class Application{
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Circle]*/
                 else if (str.equals("circle")) {
-                    try{
+                    try {
                         if (!scan.hasNext()) {
                             try {
                                 throw new NoSuchElementException();
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
-                        }
-                        else {
+                        } else {
                             String name = scan.next();
                             double[] parameters = new double[3];
                             for (int i = 0; i < parameters.length; i++) {
@@ -139,22 +138,21 @@ public class Application{
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Square]*/
                 else if (str.equals("square")) {
-                    try{
+                    try {
                         if (!scan.hasNext()) {
                             try {
                                 throw new NoSuchElementException();
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
-                        }
-                        else {
+                        } else {
                             String name = scan.next();
                             double[] parameters = new double[3];
                             for (int i = 0; i < parameters.length; i++) {
@@ -171,88 +169,13 @@ public class Application{
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Group]*/
                 else if (str.equals("group")) {
-                        try {
-                            if (!scan.hasNext()) {
-                                try {
-                                    throw new NoSuchElementException();
-                                } catch (NoSuchElementException e) {
-                                    System.out.println("Error for " + e + ". You need input data to realize the function!");
-                                }
-                            }
-                            else {
-                                String name = scan.next();
-                                String[] strList = scan.nextLine().trim().split(" ");
-                                StringBuilder sb = new StringBuilder();
-                                for (String s : strList) {
-                                    sb.append(s).append(" ");
-                                }
-                                clevis.createGroup(name, strList);
-                                System.out.println("Successfully create a new group called " + name + " which contains " + sb);
-                            }
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Error for: "+e+". Please find error situation in User Manual");
-                        }
-                }
-
-                /** [Ungroup]*/
-                else if (str.equals("ungroup")){
-                    try{
-                        if (!scan.hasNext()) {
-                            try {
-                                throw new NoSuchElementException();
-                            } catch (NoSuchElementException e) {
-                                System.out.println("Error for " + e + ". You need input data to realize the function!");
-                            }
-                        }
-                        else {
-                            String name = scan.next();
-                            if (!scan.hasNext()) {
-                                clevis.unGroup(name);
-                                System.out.println("Successfully ungroup the " + name);
-                            }
-                            else{
-                                throw new IllegalStateException();
-                            }
-                        }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
-                    }
-                }
-
-                /** [Delete]*/
-                else if (str.equals("delete")){
-                    try{
-                        if (!scan.hasNext()) {
-                            try {
-                                throw new NoSuchElementException();
-                            } catch (NoSuchElementException e) {
-                                System.out.println("Error for " + e + ". You need input data to realize the function!");
-                            }
-                        }
-                        else {
-                            String name = scan.next();
-                            if (!scan.hasNext()) {
-                                clevis.deleteShapeWithName(name);
-                                System.out.println("Successfully delete the shape called " + name);
-                            }
-                            else{
-                                throw new IllegalArgumentException();
-                            }
-                        }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
-                    }
-                }
-
-                /** [boundingbox]*/
-                else if (str.equals("boundingbox")){
                     try {
                         if (!scan.hasNext()) {
                             try {
@@ -260,25 +183,92 @@ public class Application{
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
+                        } else {
+                            String name = scan.next();
+                            String[] strList = scan.nextLine().trim().split(" ");
+                            StringBuilder sb = new StringBuilder();
+                            for (String s : strList) {
+                                sb.append(s).append(" ");
+                            }
+                            clevis.createGroup(name, strList);
+                            System.out.println("Successfully create a new group called " + name + " which contains " + sb);
                         }
-                        else {
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
+                    }
+                }
+
+                /** [Ungroup]*/
+                else if (str.equals("ungroup")) {
+                    try {
+                        if (!scan.hasNext()) {
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                clevis.unGroup(name);
+                                System.out.println("Successfully ungroup the " + name);
+                            } else {
+                                throw new IllegalStateException();
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
+                    }
+                }
+
+                /** [Delete]*/
+                else if (str.equals("delete")) {
+                    try {
+                        if (!scan.hasNext()) {
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                clevis.deleteShapeWithName(name);
+                                System.out.println("Successfully delete the shape called " + name);
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
+                    }
+                }
+
+                /** [boundingbox]*/
+                else if (str.equals("boundingbox")) {
+                    try {
+                        if (!scan.hasNext()) {
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
                             String name = scan.next();
                             if (!scan.hasNext()) {
                                 System.out.println(clevis.createBoundingBox(name));
                                 System.out.println("Successfully create boundingbox of " + name);
-                            }
-                            else{
+                            } else {
                                 throw new IllegalStateException();
                             }
                         }
-                    }
-                    catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [move]*/
-                else if (str.equals("move")){
+                else if (str.equals("move")) {
                     try {
                         if (!scan.hasNext()) {
                             try {
@@ -299,19 +289,17 @@ public class Application{
                             if (!scan.hasNext()) {
                                 clevis.moveShape(name, parameters[0], parameters[1]);
                                 System.out.println("Successfully move " + name + " " + parameters[0] + " on X-axis and move " + parameters[1] + " on Y-axis");
-                            }
-                            else{
+                            } else {
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }
-                    catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [pick-and-move]*/
-                else if (str.equals("pick-and-move")){
+                else if (str.equals("pick-and-move")) {
                     try {
                         if (!scan.hasNext()) {
                             try {
@@ -335,13 +323,13 @@ public class Application{
                                 throw new IllegalArgumentException();
                             }
                         }
-                    } catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [intersect]*/
-                else if (str.equals("intersect")){
+                else if (str.equals("intersect")) {
                     try {
                         if (!scan.hasNext()) {
                             try {
@@ -365,20 +353,18 @@ public class Application{
                                 } else {
                                     System.out.println("They are not intersected");
                                 }
-                            }
-                            else{
+                            } else {
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }
-                    catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
 
                 }
 
                 /** [List]*/
-                else if (str.equals("list")){
+                else if (str.equals("list")) {
                     try {
                         if (!scan.hasNext()) {
                             try {
@@ -386,71 +372,79 @@ public class Application{
                             } catch (NoSuchElementException e) {
                                 System.out.println("Error for " + e + ". You need input data to realize the function!");
                             }
-                        }
-                        else {
+                        } else {
                             String name = scan.next();
                             if (!scan.hasNext()) {
                                 System.out.println("Here is the information about " + clevis.listShape(name));
-                            }
-                            else{
+                            } else {
                                 throw new IllegalArgumentException();
                             }
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [ListAll]*/
-                else if (str.equalsIgnoreCase("listAll")){
+                else if (str.equalsIgnoreCase("listAll")) {
                     try {
                         if (!scan.hasNext()) {
                             System.out.println(clevis.listAllShape());
-                        }
-                        else{
+                        } else {
                             throw new IllegalArgumentException();
                         }
-                    }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Undo]*/
-                else if(str.equals("undo")){
+                else if (str.equals("undo")) {
                     try {
                         if (!scan.hasNext()) {
                             System.out.println("Already undo!");
                             clevis.UndoControl();
-                        }
-                        else{
+                        } else {
                             throw new IllegalArgumentException();
                         }
-                    }catch (IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Redo]*/
-                else if (str.equals("redo")){
+                else if (str.equals("redo")) {
                     try {
                         if (!scan.hasNext()) {
                             clevis.RedoControl();
                             System.out.println("Already redo!");
-                        }
-                        else{
+                        } else {
                             throw new IllegalArgumentException();
                         }
-                    }catch (IllegalArgumentException e){
-                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error for: " + e + ". Please find error situation in User Manual");
                     }
                 }
 
                 /** [quit]*/
-                else if (str.equalsIgnoreCase("quit")){
+                else if (str.equalsIgnoreCase("quit")) {
                     printStream.println(outStr.toString());
                     break;
                 }
             }
         }
+
+    }
+
+    /**
+     * main() method
+     *
+     * @param args : intake parameter
+     * @throws Exception : exception thrown from main()
+     */
+    public static void main(String[] args) throws Exception {
+        txt = args[3];
+        html = args[1];
+        new Application();
     }
 }
