@@ -2,10 +2,14 @@ package hk.edu.polyu.comp.comp2021.clevis;
 
 import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
 import java.io.*;
-import java.util.Random;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 /** Application Class to run the CLI*/
 public class Application{
+    void initialize(){
+
+    }
     /** main() method
      * @param args : intake parameter
      * @throws Exception : exception thrown from main()*/
@@ -15,17 +19,12 @@ public class Application{
         Clevis clevis = new Clevis();
         File writeF = new File(args[3]);
         BufferedWriter out=new BufferedWriter(new FileWriter(writeF));
-//        File readF = new File("record.txt");
-//        InputStreamReader reader = new InputStreamReader(new FileInputStream(readF));
         FileReader fr = new FileReader(args[3]);
         BufferedReader br = new BufferedReader(fr);
         StringBuilder outStr = new StringBuilder();
         PrintStream printStream = new PrintStream(new FileOutputStream(args[1]));
-        System.out.println("Welcome to use our graphics function");
-        System.out.println("Input records are stored in the \""+args[3]+"\"");
-//        int lineCount = 0;
-//        int times = 0;
-//        int undoCount = 0;
+        System.out.println("Welcome to use the graphics functions with CLI!");
+        System.out.println("All the Input records are stored in the \""+args[3]+"\"");
         outStr.append("<html>");
         outStr.append("<head>");
         outStr.append("<title>htmlTest</title>");
@@ -51,187 +50,354 @@ public class Application{
 
                 /** [Rectangle]*/
                 if (str.equals("rectangle")) {
-                    String name = scan.next();
-                    double inX = Double.parseDouble(scan.next());
-                    double inY = Double.parseDouble(scan.next());
-                    double inW = Double.parseDouble(scan.next());
-                    double inH = Double.parseDouble(scan.next());
                     try{
                         if (!scan.hasNext()) {
-                            clevis.drawRectangle(name, inX, inY, inW, inH);
-                            System.out.println("Successfully add new "+str+" called " + name+ ", whose top-left corner is at location (" + inX+ "," + inY+ "), and the width and height are " + inW + " and " + inH);
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            double[] parameters = new double[4];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.drawRectangle(name, parameters[0], parameters[1], parameters[2], parameters[3]);
+                                System.out.println("Successfully add new " + str + " called " + name + ", whose top-left corner is at location (" + parameters[0] + "," + parameters[1] + "), and the width and height are " + parameters[2] + " and " + parameters[3]);
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Line]*/
                 else if (str.equals("line")) {
-                    String name = scan.next();
-                    double X1 = Double.parseDouble(scan.next());
-                    double Y1 = Double.parseDouble(scan.next());
-                    double X2 = Double.parseDouble(scan.next());
-                    double Y2 = Double.parseDouble(scan.next());
                     try{
                         if (!scan.hasNext()) {
-                            clevis.drawLine(name, X1, Y1, X2, Y2);
-                            System.out.println("Successfully add new " + str + " called " + name + ", whose two ends are at locations (" + X1 + "," + Y1 + "), and (" + X2 + "," + Y2 + ")");
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            double[] parameters = new double[4];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.drawLine(name, parameters[0], parameters[1], parameters[2], parameters[3]);
+                                System.out.println("Successfully add new " + str + " called " + name + ", whose two ends are at locations (" + parameters[0] + "," + parameters[1] + "), and (" + parameters[2] + "," + parameters[3] + ")");
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Circle]*/
                 else if (str.equals("circle")) {
-                    String name = scan.next();
-                    double inX = Double.parseDouble(scan.next());
-                    double inY = Double.parseDouble(scan.next());
-                    double inR = Double.parseDouble(scan.next());
-
                     try{
-                        if (!scan.hasNext()){
-                            clevis.drawCircle(name,inX,inY,inR);
-                            System.out.println("Successfully add new "+str+" called " + name + ", whose center is at location (" + inX + "," + inY + "), and whose radius is " + inR);
+                        if (!scan.hasNext()) {
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            double[] parameters = new double[3];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.drawCircle(name, parameters[0], parameters[1], parameters[2]);
+                                System.out.println("Successfully add new " + str + " called " + name + ", whose center is at location (" + parameters[0] + "," + parameters[1] + "), and whose radius is " + parameters[2]);
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Square]*/
                 else if (str.equals("square")) {
-                    String name = scan.next();
-                    double inX = Double.parseDouble(scan.next());
-                    double inY = Double.parseDouble(scan.next());
-                    double inL = Double.parseDouble(scan.next());
                     try{
                         if (!scan.hasNext()) {
-                            clevis.drawSquare(name, inX, inY, inL);
-                            System.out.println("Successfully add new " + str + " called " + name + ", whose top-left corner is at location (" + inX + "," + inY + "), and whose side length is " + inL);
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            double[] parameters = new double[3];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.drawSquare(name, parameters[0], parameters[1], parameters[2]);
+                                System.out.println("Successfully add new " + str + " called " + name + ", whose top-left corner is at location (" + parameters[0] + "," + parameters[1] + "), and whose side length is " + parameters[2]);
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Group]*/
                 else if (str.equals("group")) {
-                    String name = scan.next();
-                    String[] strList = scan.nextLine().trim().split(" ");
-                    StringBuilder sb = new StringBuilder();
-                    for (String s : strList) {
-                        sb.append(s).append(" ");
-                    }
                         try {
-                            clevis.createGroup(name, strList);
-                            System.out.println("Successfully create a new group called " + name + " which contains " + sb);
+                            if (!scan.hasNext()) {
+                                try {
+                                    throw new NoSuchElementException();
+                                } catch (NoSuchElementException e) {
+                                    System.out.println("Error for " + e + ". You need input data to realize the function!");
+                                }
+                            }
+                            else {
+                                String name = scan.next();
+                                String[] strList = scan.nextLine().trim().split(" ");
+                                StringBuilder sb = new StringBuilder();
+                                for (String s : strList) {
+                                    sb.append(s).append(" ");
+                                }
+                                clevis.createGroup(name, strList);
+                                System.out.println("Successfully create a new group called " + name + " which contains " + sb);
+                            }
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Error for " + e);
+                            System.out.println("Error for: "+e+". Please find error situation in User Manual");
                         }
                 }
 
                 /** [Ungroup]*/
                 else if (str.equals("ungroup")){
-                    String name = scan.next();
                     try{
-                        clevis.unGroup(name);
-                        System.out.println("Successfully ungroup the "+name);
+                        if (!scan.hasNext()) {
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                clevis.unGroup(name);
+                                System.out.println("Successfully ungroup the " + name);
+                            }
+                            else{
+                                throw new IllegalStateException();
+                            }
+                        }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Unsuccessfully ungroup "+name+" because can't find the name in storage!");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [Delete]*/
                 else if (str.equals("delete")){
-                    String name = scan.next();
                     try{
                         if (!scan.hasNext()) {
-                            clevis.deleteShapeWithName(name);
-                            System.out.println("Successfully delete the shape called " + name);
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                clevis.deleteShapeWithName(name);
+                                System.out.println("Successfully delete the shape called " + name);
+                            }
+                            else{
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Unsuccessfully delete because can't find the name independently in storage!");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
-                /** [boudningbox]*/
+                /** [boundingbox]*/
                 else if (str.equals("boundingbox")){
-                    String name = scan.next();
                     try {
                         if (!scan.hasNext()) {
-                            System.out.println(clevis.createBoundingBox(name));
-                            System.out.println("Successfully create boundingbox of " + name);
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                System.out.println(clevis.createBoundingBox(name));
+                                System.out.println("Successfully create boundingbox of " + name);
+                            }
+                            else{
+                                throw new IllegalStateException();
+                            }
                         }
                     }
                     catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [move]*/
                 else if (str.equals("move")){
-                    String name = scan.next();
-                    double inX = Double.parseDouble(scan.next());
-                    double inY = Double.parseDouble(scan.next());
                     try {
                         if (!scan.hasNext()) {
-                            clevis.moveShape(name, inX, inY);
-                            System.out.println("Successfully move " + inX + " on X-axis and move " + inY + " on Y-axis");
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
+                            String name = scan.next();
+                            double[] parameters = new double[2];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.moveShape(name, parameters[0], parameters[1]);
+                                System.out.println("Successfully move " + name + " " + parameters[0] + " on X-axis and move " + parameters[1] + " on Y-axis");
+                            }
+                            else{
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }
                     catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [pick-and-move]*/
                 else if (str.equals("pick-and-move")){
-                    double inX = Double.parseDouble(scan.next());
-                    double inY = Double.parseDouble(scan.next());
-                    double inDx = Double.parseDouble(scan.next());
-                    double inDy = Double.parseDouble(scan.next());
                     try {
                         if (!scan.hasNext()) {
-                            clevis.pickAndMoveShape(inX, inY, inDx, inDy);
-                            System.out.println("Successfully pick and move point (" + inX + "," + inY + ") to point (" + (inDx + inX) + "," + (inDy + inY) + ")");
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
+                            double[] parameters = new double[4];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = Double.parseDouble(scan.next());
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.pickAndMoveShape(parameters[0], parameters[1], parameters[2], parameters[3]);
+                                System.out.println("Successfully pick and move point (" + parameters[0] + "," + parameters[1] + ") to point (" + (parameters[0] + parameters[2]) + "," + (parameters[1] + parameters[3]) + ")");
+                            } else {
+                                throw new IllegalArgumentException();
+                            }
                         }
                     } catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
                 /** [intersect]*/
                 else if (str.equals("intersect")){
-                    String shape1 = scan.next();
-                    String shape2 = scan.next();
-                    try{
+                    try {
                         if (!scan.hasNext()) {
-                            clevis.isIntersected(shape1, shape2);
-                            if (clevis.isIntersected(shape1, shape2)) {
-                                System.out.println("They are intersected!");
-                            } else {
-                                System.out.println("They are not intersected");
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        } else {
+                            String[] parameters = new String[2];
+                            for (int i = 0; i < parameters.length; i++) {
+                                if (scan.hasNext()) {
+                                    parameters[i] = scan.next();
+                                } else {
+                                    throw new IllegalArgumentException();
+                                }
+                            }
+                            if (!scan.hasNext()) {
+                                clevis.isIntersected(parameters[0], parameters[1]);
+                                if (clevis.isIntersected(parameters[0], parameters[1])) {
+                                    System.out.println("They are intersected!");
+                                } else {
+                                    System.out.println("They are not intersected");
+                                }
+                            }
+                            else{
+                                throw new IllegalArgumentException();
                             }
                         }
                     }
                     catch(IllegalArgumentException e){
-                        System.out.println("Error for: "+e);
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
 
                 }
 
                 /** [List]*/
                 else if (str.equals("list")){
-                    String name = scan.next();
                     try {
                         if (!scan.hasNext()) {
-                            System.out.println();
-                            System.out.println("Here is the information about " + clevis.listShape(name));
+                            try {
+                                throw new NoSuchElementException();
+                            } catch (NoSuchElementException e) {
+                                System.out.println("Error for " + e + ". You need input data to realize the function!");
+                            }
+                        }
+                        else {
+                            String name = scan.next();
+                            if (!scan.hasNext()) {
+                                System.out.println("Here is the information about " + clevis.listShape(name));
+                            }
+                            else{
+                                throw new IllegalArgumentException();
+                            }
                         }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Unsuccessfully list "+name+" because can't find the name in storage!");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
@@ -241,8 +407,11 @@ public class Application{
                         if (!scan.hasNext()) {
                             System.out.println(clevis.listAllShape());
                         }
+                        else{
+                            throw new IllegalArgumentException();
+                        }
                     }catch(IllegalArgumentException e){
-                        System.out.println("Unsuccessfully listAll because can't find the name in storage!");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
@@ -250,33 +419,14 @@ public class Application{
                 else if(str.equals("undo")){
                     try {
                         if (!scan.hasNext()) {
-//                        lineCount-=undoCount;
-//                        FileReader fr = new FileReader("record.txt");
-//                        BufferedReader BR = new BufferedReader(fr);
-//                        int count= 0;
-//                        String targetLine = "";
-//                        String Line = "";
-//                        while(count < lineCount-1){
-//                            if (count >= lineCount-1) {
-//                                Line = BR.readLine();
-//                            }
-//                            else{
-//                                targetLine = BR.readLine();
-//                                Line = targetLine;
-//                            }
-//                            count++;
-//                        }
-//                        undoCount +=2;
-//                        if (Line.split(" ")[0].equals("boundingbox")||Line.split(" ")[0].equals("intersect")||Line.split(" ")[0].equals("list")||Line.equals("listAll")||Line.equals("quit")){
-//
-//                        }
-//                        else {
                             System.out.println("Already undo!");
                             clevis.UndoControl();
-//                        }
+                        }
+                        else{
+                            throw new IllegalArgumentException();
                         }
                     }catch (IllegalArgumentException e){
-                        System.out.println("No operation for undo！");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
@@ -287,8 +437,11 @@ public class Application{
                             clevis.RedoControl();
                             System.out.println("Already redo!");
                         }
+                        else{
+                            throw new IllegalArgumentException();
+                        }
                     }catch (IllegalArgumentException e){
-                        System.out.println("No operation for undo！");
+                        System.out.println("Error for: "+e+". Please find error situation in User Manual");
                     }
                 }
 
@@ -301,85 +454,3 @@ public class Application{
         }
     }
 }
-/*        int quit = 0;
-        int i = 0;
-        System.out.println("Function List:\n1.Add graphics\n2.Delete graphics\n3.Graphics group\n4.Graphics boundary\n5.Move graphics\n6.Graphics intersection\n7.Graphics information\n8.Quit");
-        Scanner scan = new Scanner(System.in);
-            while (scan.hasNextInt()) {
-                while (quit==0) {
-                    if (i !=0){
-                        System.out.println("Function List:\n1.Add graphics\n2.Delete graphics\n3.Graphics group\n4.Graphics boundary\n5.Move graphics\n6.Graphics intersection\n7.Graphics information\n8.Quit");
-                    }
-                    i++;
-                    int choice = scan.nextInt();
-                switch (choice) {
-                    case 1:
-                        System.out.println("Please input the graphic that you want to add: ");
-                        break;
-                    case 2:
-                        System.out.println("Please input the graphic that you want to delete: ");
-                        break;
-                    case 3:
-                        System.out.println("Do you want to group or ungroup, Please input 1 or 2: ");
-                        choice = scan.nextInt();
-                        if (choice == 1) {
-                            System.out.println("Please input graphics that you want to group together: ");
-                            break;
-
-                        } else if (choice == 2) {
-                            System.out.println("Please input graphics that you want to ungroup: ");
-                            break;
-                        } else {
-                            System.out.println("please choose the correct choice");
-                            break;
-                        }
-
-                    case 4:
-                        System.out.println("Please input the graphics boundary that you want to calculate: ");
-                        break;
-
-                    case 5:
-                        System.out.println("Do you want to move the shape or the shape contains target point, Please input 1 or 2: ");
-                        choice = scan.nextInt();
-                        if (choice == 1) {
-                            System.out.println("Please input the shape that you want to move: ");
-                            break;
-                        } else if (choice == 2) {
-                            System.out.println("Please input the shape that contains the point that you want pick and move: ");
-                            break;
-                        } else {
-                            System.out.println("please choose the correct choice");
-                            break;
-                        }
-
-                    case 6:
-                        System.out.println("Please input two shapes for judging intersection: ");
-                        break;
-
-                    case 7:
-                        System.out.println("Do you want to print all information or a shape information, Please input 1 or 2: ");
-                        choice = scan.nextInt();
-                        if (choice == 1) {
-                                System.out.println("Layout of all current graphics information: ");
-                                break;
-                            }   else if (choice == 2) {
-                                System.out.println("Layout of target shape's information: ");
-                                break;
-                            }   else {
-                                System.out.println("please choose the correct choice");
-                                break;
-                        }
-
-                    case 8:
-                        System.out.println("Thanks for your using!");
-                        quit=1;
-                        break;
-
-                }
-            }
-                break;
-            }
-    }
-}
-
- */
