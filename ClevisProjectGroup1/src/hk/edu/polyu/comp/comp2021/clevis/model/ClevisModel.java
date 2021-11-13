@@ -3,9 +3,9 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 import java.util.*;
 
 /**Clevis Class*/
-public class Clevis {
+public class ClevisModel {
     /**Clevis Constructor with empty body*/
-    public Clevis(){}
+    public ClevisModel(){}
 
     /** fields for internal storage*/
     private HashMap<String,Shape> storage = new HashMap<>();

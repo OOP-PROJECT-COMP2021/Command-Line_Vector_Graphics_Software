@@ -1,6 +1,6 @@
 package hk.edu.polyu.comp.comp2021.clevis.view;
 
-import hk.edu.polyu.comp.comp2021.clevis.model.Clevis;
+import hk.edu.polyu.comp.comp2021.clevis.model.ClevisModel;
 import hk.edu.polyu.comp.comp2021.clevis.model.*;
 import hk.edu.polyu.comp.comp2021.clevis.model.Rectangle;
 import hk.edu.polyu.comp.comp2021.clevis.model.Shape;
@@ -10,8 +10,8 @@ import java.awt.*;
 import java.io.*;
 
 /** the main GUI */
-public class ClevisView extends JFrame{
-    private Clevis clevis = new Clevis();
+public class ClevisGUI extends JFrame{
+    private ClevisModel clevisModel = new ClevisModel();
 
     // all component parameters
     // for main frame location
@@ -141,7 +141,7 @@ public class ClevisView extends JFrame{
             g.drawString("(0,"+drawArea.getHeight()+")",0,drawArea.getHeight()-TWO);
             g.drawString("("+drawArea.getWidth()+",0)",drawArea.getWidth()-FF,TWELVE);
 
-            for(Shape shape : clevis.getShapeLevel()){
+            for(Shape shape : clevisModel.getShapeLevel()){
 
                 if (shape.getRightBounding() > DRAW_AREA_X) {
                     DRAW_AREA_X = (int) (shape.getRightBounding());
@@ -199,7 +199,7 @@ public class ClevisView extends JFrame{
 
     /** refresh the size of the frame*/
     public void refreshSize() {
-        for(Shape shape : clevis.getShapeLevel()) {
+        for(Shape shape : clevisModel.getShapeLevel()) {
 
             if (shape.getBottomBounding() > DRAW_AREA_Y) {
                 FRAME_HEIGHT = (int) shape.getBottomBounding() + ADD330;
@@ -221,16 +221,18 @@ public class ClevisView extends JFrame{
         else {htmlName = "log.html";}
         if(args.length != 0) {txtName = args[3];}
         else {txtName = "log.txt";}
-        new ClevisView();
+        new ClevisGUI(htmlName,txtName);
     }
 
     /** constructor
+     * @param inTxt : text name
+     * @param inHtml : html name
      * @throws IOException : throw*/
-    public ClevisView() throws IOException {
+    public ClevisGUI(String inHtml, String inTxt) throws IOException {
 
-        File writeF = new File(txtName);
+        File writeF = new File(inTxt);
         PrintWriter pw = new PrintWriter(writeF);
-        PrintStream printStream = new PrintStream(new FileOutputStream(htmlName));
+        PrintStream printStream = new PrintStream(new FileOutputStream(inHtml));
 
         outStrHtml.append("<html>");
         outStrHtml.append("<head>");
@@ -555,7 +557,7 @@ public class ClevisView extends JFrame{
         drawShapeButton.addActionListener(e -> {
             try{
                 if (radioButtonRec.isSelected()) {
-                    clevis.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                    clevisModel.drawRectangle(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
                             Double.parseDouble(textFieldP4.getText()));
 
@@ -567,7 +569,7 @@ public class ClevisView extends JFrame{
                     position++;
                 }
                 else if (radioButtonLine.isSelected()) {
-                    clevis.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                    clevisModel.drawLine(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()),
                             Double.parseDouble(textFieldP4.getText()));
 
@@ -579,7 +581,7 @@ public class ClevisView extends JFrame{
                     position++;
                 }
                 else if (radioButtonCircle.isSelected()) {
-                    clevis.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                    clevisModel.drawCircle(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
 
                     String inStr = "circle"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
@@ -590,7 +592,7 @@ public class ClevisView extends JFrame{
                     position++;
                 }
                 else if (radioButtonSquare.isSelected()) {
-                    clevis.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
+                    clevisModel.drawSquare(name.getText(),Double.parseDouble(textFieldP1.getText()),
                             Double.parseDouble(textFieldP2.getText()),Double.parseDouble(textFieldP3.getText()));
 
                     String inStr = "square"+" "+name.getText()+" "+textFieldP1.getText()+" "+textFieldP2.getText()
@@ -622,7 +624,7 @@ public class ClevisView extends JFrame{
         // listener for deleteShapeButton on delete page
         deleteShapeButton.addActionListener(e -> {
             try{
-                clevis.deleteShapeWithName(name.getText());
+                clevisModel.deleteShapeWithName(name.getText());
                 mainLabel.setText("Delete successfully!");
 
                 String inStr = "delete"+" "+name.getText();
@@ -650,8 +652,8 @@ public class ClevisView extends JFrame{
         boundingBoxButton.addActionListener(e -> {
             try{
 
-                listAllArea.setText(clevis.createBoundingBox(name.getText()));
-                boundingBoxShape = new BoundingBox(clevis.getShape(name.getText()));
+                listAllArea.setText(clevisModel.createBoundingBox(name.getText()));
+                boundingBoxShape = new BoundingBox(clevisModel.getShape(name.getText()));
                 boundingBoxFlag = true;
                 String inStr = "boundingbox"+" "+name.getText();
                 outStrTxt.append(inStr).append("\n");
@@ -669,7 +671,7 @@ public class ClevisView extends JFrame{
         createGroupButton.addActionListener(e -> {
             try {
                 String[] shapeList = shapeListField.getText().split(" ");
-                clevis.createGroup(name.getText(),shapeList);
+                clevisModel.createGroup(name.getText(),shapeList);
                 mainLabel.setText("Group created successfully!");
 
                 StringBuilder inList = new StringBuilder();
@@ -690,7 +692,7 @@ public class ClevisView extends JFrame{
         // listener for unGroupButton on group page
         unGroupButton.addActionListener(e -> {
             try{
-                clevis.unGroup(name.getText());
+                clevisModel.unGroup(name.getText());
                 mainLabel.setText("Ungroup successfully!");
 
                 String inStr = "ungroup"+" "+name.getText();
@@ -709,7 +711,7 @@ public class ClevisView extends JFrame{
         // listener for moveShapeButton on group page
         moveShapeButton.addActionListener(e -> {
             try {
-                clevis.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),
+                clevisModel.moveShape(name.getText(),Double.parseDouble(pointDXField.getText()),
                         Double.parseDouble(pointDYField.getText()));
                 mainLabel.setText("Shape moved successfully!");
 
@@ -741,7 +743,7 @@ public class ClevisView extends JFrame{
                 pickPointList[1] = Integer.parseInt(pointYField.getText());
                 pickFlag = true;
 
-                clevis.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
+                clevisModel.pickAndMoveShape(Double.parseDouble(pointXField.getText()),
                         Double.parseDouble(pointYField.getText()),Double.parseDouble(pointDXField.getText()),
                         Double.parseDouble(pointDYField.getText()));
 
@@ -772,7 +774,7 @@ public class ClevisView extends JFrame{
         // listener for listShapeButton on group page
         listShapeButton.addActionListener(e -> {
             try {
-                listAllArea.setText(clevis.listShape(name.getText()));
+                listAllArea.setText(clevisModel.listShape(name.getText()));
                 mainLabel.setText("Shape listed successfully!");
 
                 String inStr = "list"+" "+name.getText();
@@ -790,7 +792,7 @@ public class ClevisView extends JFrame{
         // listener for listShapeButton on group page
         listAllButton.addActionListener(e -> {
             try {
-                listAllArea.setText(clevis.listAllShape());
+                listAllArea.setText(clevisModel.listAllShape());
                 mainLabel.setText("All shapes listed successfully!");
 
                 String inStr = "listAll";
@@ -809,7 +811,7 @@ public class ClevisView extends JFrame{
         // listener for intersectButton on group page
         intersectButton.addActionListener(e -> {
             try {
-                if (clevis.isIntersected(shape1Field.getText(),shape2Field.getText())) {
+                if (clevisModel.isIntersected(shape1Field.getText(),shape2Field.getText())) {
                     mainLabel.setText(shape1Field.getText()+" and "+ shape2Field.getText()+" is intersected!");
                 }
                 else {
@@ -830,7 +832,7 @@ public class ClevisView extends JFrame{
         // listener for undoButton on each page
         undoButton.addActionListener(e -> {
             try {
-                clevis.UndoControl();
+                clevisModel.UndoControl();
                 mainLabel.setText("Undo successfully!");
 
                 String inStr = "undo";
@@ -857,7 +859,7 @@ public class ClevisView extends JFrame{
         // listener for redoButton on each page
         redoButton.addActionListener(e -> {
             try {
-                clevis.RedoControl();
+                clevisModel.RedoControl();
                 mainLabel.setText("Redo successfully!");
                 String inStr = "redo";
                 outStrTxt.append(inStr).append("\n");
