@@ -15,7 +15,6 @@ public class TestGroup {
         Shape[] shapeList = {a,b,c,d};
         Group g1 = new Group("GroupTest", shapeList);
         System.out.println(g1.listInfo());
-        //assertFalse(a.isIntersected(b));
     }
 
     @Test
@@ -40,11 +39,8 @@ public class TestGroup {
         Shape[] shapeList3 = {g1,g2,g3};
         Group g4 = new Group("GroupTest4", shapeList3);
 
-        // System.out.println(g1.listInfo());
-        //System.out.println(g2.listInfo());
-        //System.out.println(g3.listInfo());
         System.out.println(g4.listInfo());
-        assertFalse(g1.isIntersected(e));
+        assertTrue(g1.isIntersected(e));
         assertTrue(g1.isIntersected(g2));
         assertTrue(g3.isIntersected(g));
     }

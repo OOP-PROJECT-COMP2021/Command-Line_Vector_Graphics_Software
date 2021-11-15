@@ -4,102 +4,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+/** Test for the model package */
 public class ClevisModelTest {
-
-//    @Test
-//    public void testClevisConstructor(){
-//        Clevis clevis = new Clevis();
-//
-//        clevis.drawLine("LineTestA", 0d,4d,4d,0d);
-//        clevis.drawLine("LineTestB", 0d,2d,2d,4d);
-//        clevis.drawSquare("SquareTestC",1d,4d,2d);
-//
-//        String[] shapeList = {"LineTestA","LineTestB"};
-//        clevis.createGroup("GroupTestD",shapeList);
-//        clevis.drawCircle("E",0,0,1);
-//
-//        clevis.listAllShape();
-//        clevis.pickAndMoveShape(1,0,1,1);
-//        clevis.listAllShape();
-//
-//    }
-//    @Test
-//    public void testClevisUndo2(){
-//        Clevis clevis = new Clevis();
-//
-//        clevis.drawRectangle("RecTestA", 1d,2d,2d,2d);
-//        clevis.drawRectangle("RecTestB", 0d,2d,2d,4d);
-//        clevis.drawRectangle("RecTestC", 2d,2d,3d,3d);
-//
-//        System.out.println(clevis.listAllShape());
-//
-//        String[] shapeList = {"RecTestA","RecTestB"};
-//        clevis.createGroup("G1",shapeList);
-//        System.out.println(clevis.listAllShape());
-//
-//        clevis.unGroup("G1");
-//
-//        clevis.UndoControl();
-//
-//        System.out.println(clevis.listAllShape());
-//
-//    }
-//
-//    @Test
-//    public void testDel() {
-//        Clevis clevis = new Clevis();
-//
-//        clevis.drawLine("LineTestA", 1d,2d,2d,2d);
-//        clevis.drawRectangle("RecTestB", 0d,2d,2d,4d);
-//
-//        String[] shapeList = {"RecTestB","LineTestA"};
-//        clevis.createGroup("C",shapeList);
-//
-//        clevis.drawCircle("CircleTestD", 2d,2d,3d);
-//
-//        clevis.drawSquare("SquTestE", 0d,2d,4d);
-//
-//        String[] shapeList2 = {"SquTestE","CircleTestD"};
-//        clevis.createGroup("F",shapeList2);
-//
-//        clevis.drawLine("LineTestG", 3d,2d,4d,2d);
-//        System.out.println("-------original--------");
-//        System.out.println(clevis.listAllShape());
-//
-//        System.out.println("-------after move--------");
-//        clevis.moveShape("F",1,1);
-//        System.out.println(clevis.listAllShape());
-//
-//        System.out.println("-------after undo2--------");
-//        clevis.UndoControl();
-//        System.out.println(clevis.listAllShape());
-//    }
-//    @Test
-//    public void testRedo() {
-//        Clevis clevis = new Clevis();
-//
-//        clevis.drawLine("LineTestA", 1d,2d,2d,2d);
-//        clevis.drawRectangle("RecTestB", 0d,2d,2d,4d);
-//
-//        clevis.deleteShapeWithName("LineTestA");
-//        clevis.deleteShapeWithName("RecTestB");
-//
-//        System.out.println("-------original--------");
-//        System.out.println(clevis.listAllShape());
-//
-//        System.out.println("-------after undo twice--------");
-//        clevis.UndoControl();
-//        clevis.UndoControl();
-//        System.out.println(clevis.listAllShape());
-//
-//        System.out.println("-------after redo once--------");
-//        clevis.RedoControl();
-//        System.out.println(clevis.listAllShape());
-//
-//        System.out.println("-------after undo once--------");
-//        clevis.UndoControl();
-//        System.out.println(clevis.listAllShape());
-//    }
 
     @Test
     public void rectangleTest() {
@@ -115,8 +21,6 @@ public class ClevisModelTest {
         System.out.println(clevisModel.listAllShape());
         clevisModel.drawRectangle("RecTestC",0.0d,2.0d,4d,2d);
         System.out.println(clevisModel.listShape("RecTestC"));
-
-
     }
 
     @Test
@@ -132,7 +36,6 @@ public class ClevisModelTest {
         clevisModel.RedoControl();
         System.out.println(clevisModel.listAllShape());
         clevisModel.drawLine("LineTestE",0.0d,2.0d,4d,5d);
-
     }
 
     @Test
@@ -148,7 +51,6 @@ public class ClevisModelTest {
         clevisModel.RedoControl();
         System.out.println(clevisModel.listAllShape());
         clevisModel.drawCircle("CircleTestG",0.0d,2.0d,4d);
-
     }
 
     @Test
@@ -164,7 +66,6 @@ public class ClevisModelTest {
         clevisModel.RedoControl();
         System.out.println(clevisModel.listAllShape());
         clevisModel.drawSquare("SquareTestI",1.0d,2.0d,4d);
-
     }
 
     @Test
@@ -252,8 +153,6 @@ public class ClevisModelTest {
         clevisModel.RedoControl();
         System.out.println(clevisModel.listAllShape());
         clevisModel.unGroup("GAB2");
-
-
     }
 
     @Test
@@ -389,9 +288,7 @@ public class ClevisModelTest {
 
         clevisModel.pickAndMoveShape(4,5,1,1);
 
-        //clevis.pickAndMoveShape(1,2,1,1);
         clevisModel.pickAndMoveShape(1,7,1,1);
-
 
     }
 
@@ -432,7 +329,6 @@ public class ClevisModelTest {
         System.out.println(clevisModel.isIntersected("SquareTestG","CircleTestE"));
         System.out.println(clevisModel.isIntersected("SquareTestG","LineTestD"));
 
-
         String[] shapeListAB = {"RecTestA","RecTestB"};
         clevisModel.createGroup("GAB",shapeListAB);
 
@@ -461,8 +357,5 @@ public class ClevisModelTest {
         System.out.println(clevisModel.listAllShape());
 
     }
-    @Test
-    public void launchTest() throws IOException {
-        //new ClevisView();
-    }
+
 }

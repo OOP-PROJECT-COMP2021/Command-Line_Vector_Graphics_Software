@@ -84,8 +84,4 @@ public class TestRectangle {
         Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
         assertTrue(a.isIntersected(a));
     }
-    /**----------------------------------Rectangle and Line intersection test-----------------------*/
-
-
-
 }
