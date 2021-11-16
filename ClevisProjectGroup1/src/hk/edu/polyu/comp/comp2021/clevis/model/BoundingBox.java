@@ -5,8 +5,10 @@ public class BoundingBox extends Rectangle {
     /** Bounding box constructor
      * @param inShape : shape*/
     public BoundingBox(Shape inShape) {
-        super("Bounded " + inShape.getName(), inShape.getLeftBounding(), inShape.getTopBounding(),
-                inShape.getRightBounding() - inShape.getLeftBounding(), Math.abs(inShape.getTopBounding() - inShape.getBottomBounding()));
+        super("Bounded " + inShape.getName(),
+                inShape.getLeftBounding(), inShape.getTopBounding(),
+                inShape.getRightBounding() - inShape.getLeftBounding(),
+                Math.abs(inShape.getTopBounding() - inShape.getBottomBounding()));
     }
 
 

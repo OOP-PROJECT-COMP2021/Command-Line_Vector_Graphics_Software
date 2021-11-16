@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Clevis {
     private String line;
     private int position = 0;
-    private static String txt;
-    private static String html;
+    private String txt;
+    private String html;
     private ClevisModel clevisModel = new ClevisModel();
     private StringBuilder outStr = new StringBuilder();
     //private File fw = new File(txt);
@@ -28,12 +28,10 @@ public class Clevis {
      * @param inHtml : html name
      * @throws Exception :throw*/
     public Clevis(String inHtml, String inTxt) throws Exception{
-        fr = new FileReader(inTxt);
-        br = new BufferedReader(fr);
-
         fw = new File(inTxt);
         out = new BufferedWriter(new FileWriter(fw));
-
+        fr = new FileReader(inTxt);
+        br = new BufferedReader(fr);
         printStream = new PrintStream(new FileOutputStream(inHtml));
         txt = inTxt;
         html = inHtml;
@@ -43,7 +41,7 @@ public class Clevis {
     private void initialize() throws Exception {
 
         System.out.println("Welcome to use the graphics functions with CLI!");
-        System.out.println("All the Input records are stored in the \"" + txt + "\"");
+        System.out.println("All the Input records are stored in the \"" + txt + "\" and \"" + html +"\"");
         outStr.append("<html>");
         outStr.append("<head>");
         outStr.append("<title>htmlTest</title>");
@@ -458,10 +456,12 @@ public class Clevis {
      * @throws Exception : exception thrown from main()
      */
     public static void main(String[] args) throws Exception {
-        if(args.length != 0) {html = args[1];}
-        else {html = "log.html";}
-        if(args.length != 0) {txt = args[3];}
-        else {txt = "log.txt";}
-        new Clevis(html,txt);
+        String strHtml;
+        String strTxt;
+        if(args.length != 0) {strHtml = args[1];}
+        else {strHtml = "log.html";}
+        if(args.length != 0) {strTxt = args[3];}
+        else {strTxt = "log.txt";}
+        new Clevis(strHtml,strTxt);
     }
 }
