@@ -358,4 +358,13 @@ public class ClevisModelTest {
 
     }
 
+    @Test
+    public void test2() {
+        ClevisModel clevisModel = new ClevisModel();
+        clevisModel.drawRectangle("A",100,100,100,200);
+        clevisModel.UndoControl();
+        clevisModel.drawRectangle("A",100,100,100,200);
+
+    }
+
 }

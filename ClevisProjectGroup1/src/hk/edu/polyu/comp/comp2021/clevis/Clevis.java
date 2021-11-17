@@ -13,15 +13,10 @@ public class Clevis {
     private String html;
     private ClevisModel clevisModel = new ClevisModel();
     private StringBuilder outStr = new StringBuilder();
-    //private File fw = new File(txt);
     private File fw;
-    //private BufferedWriter out = new BufferedWriter(new FileWriter(fw));
     private BufferedWriter out;
-    //private FileReader fr = new FileReader(txt);
     private FileReader fr;
-    //private BufferedReader br = new BufferedReader(fr);
     private BufferedReader br;
-    //private PrintStream printStream = new PrintStream(new FileOutputStream(html));
     private PrintStream printStream;
     /** Constructor
      * @param inTxt : txt name

@@ -66,7 +66,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -102,7 +102,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -137,7 +137,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -171,7 +171,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -209,7 +209,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -242,7 +242,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -280,7 +280,7 @@ public class ClevisModel {
 
         /** for Undo & Redo*/
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear(); delRedoTargets.clear();
             undoFlag = false;
             redoFlag = false;
@@ -349,7 +349,7 @@ public class ClevisModel {
         /** for Undo & Redo*/
 
         if ((undoFlag || redoFlag) &&
-                (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
             cmdRedoStack.clear();
             undoFlag = false;
             redoFlag = false;
@@ -398,7 +398,7 @@ public class ClevisModel {
         else {
             /** for Undo & Redo*/
             if ((undoFlag || redoFlag) &&
-                    (!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo")))) {
+                    (cmdStack.isEmpty()||(!cmdStack.peek()[0][0].equals("undo") && (!cmdStack.peek()[0][0].equals("redo"))))) {
                 cmdRedoStack.clear();
                 undoFlag = false;
                 redoFlag = false;
