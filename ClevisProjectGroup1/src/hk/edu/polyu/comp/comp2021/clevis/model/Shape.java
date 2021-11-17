@@ -2,7 +2,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 /** Shape interface */
 public interface Shape{
     /** EPS */
-    public static final double EPS = 1E-6;
+    double EPS = 1E-6;
 
     /** get the name
      * @return name */

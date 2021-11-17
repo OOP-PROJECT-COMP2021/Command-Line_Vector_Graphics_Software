@@ -107,16 +107,14 @@ public class Circle implements Shape{
      * @param other:other
      * @return is intersected or not */
     public boolean Intersected(Line other){
-        if (other.isIntersected(this)){return true;}
-        return false;
+        return other.isIntersected(this);
     }
 
     /** check Circle is intersected with other Rectangle(and its subclass Square)
      * @param other:other
      * @return is intersected or not */
     public boolean Intersected(Rectangle other){
-        if (other.isIntersected(this)){return true;}
-        return false;
+        return other.isIntersected(this);
     }
 
     /** check Circle is intersected with other Circle

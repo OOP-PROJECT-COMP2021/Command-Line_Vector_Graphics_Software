@@ -211,7 +211,7 @@ class Group implements Shape {
         StringBuilder outInfo = new StringBuilder();
         inFour();
         for (int i = 0; i < this.getShapeList().length; i++){
-            outInfo.append("\n"+spaceGen(levelCount) + this.getShapeList()[i].listInfo());
+            outInfo.append("\n").append(spaceGen(levelCount)).append(this.getShapeList()[i].listInfo());
         }
         deFour();
         return ("[Group] Name: "+getName()+"; Contained shapes: "+ outInfo);

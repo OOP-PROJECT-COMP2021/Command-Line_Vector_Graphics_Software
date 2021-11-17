@@ -1,6 +1,5 @@
 package hk.edu.polyu.comp.comp2021.clevis.view;
 
-import hk.edu.polyu.comp.comp2021.clevis.model.ClevisModel;
 import hk.edu.polyu.comp.comp2021.clevis.model.*;
 import hk.edu.polyu.comp.comp2021.clevis.model.Rectangle;
 import hk.edu.polyu.comp.comp2021.clevis.model.Shape;
@@ -1032,7 +1031,7 @@ public class ClevisGUI extends JFrame{
                 outStrHtml.insert(outStrHtml.length() - "<table></body></html>".length(), "<tr>" + "<td>" +
                         position + "</td>" + "<td>" +inStr+ "</td>" + "</tr>");
                 position++;
-                printStream.println(outStrHtml.toString());
+                printStream.println(outStrHtml);
 
                 pw.println(outStrTxt.toString());
                 pw.flush();
