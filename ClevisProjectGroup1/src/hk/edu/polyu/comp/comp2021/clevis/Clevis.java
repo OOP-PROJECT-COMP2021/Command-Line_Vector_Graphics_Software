@@ -415,8 +415,8 @@ public class Clevis {
                 else if (str.equals("undo")) {
                     try {
                         if (!scan.hasNext()) {
-                            System.out.println("Already undo!");
                             clevisModel.UndoControl();
+                            System.out.println("Already undo!");
                         } else {
                             throw new IllegalArgumentException();
                         }
