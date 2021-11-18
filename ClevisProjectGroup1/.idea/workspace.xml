@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8a3aaae-73a1-4bdb-b5aa-5d9bd33ff1d3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SampleProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clevis.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-4.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-4.13.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/Clevis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/BoundingBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Calculate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Circle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/ClevisModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Deque.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Line.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque$DequeIterator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Shape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Square.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/model/Vec.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/view/ClevisGUI$MyCanvas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/clevis/hk/edu/polyu/comp/comp2021/clevis/view/ClevisGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/clevis/hk/edu/polyu/comp/comp2021/clevis/model/ClevisModelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/clevis/hk/edu/polyu/comp/comp2021/clevis/model/TestCircle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/clevis/hk/edu/polyu/comp/comp2021/clevis/model/TestGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/clevis/hk/edu/polyu/comp/comp2021/clevis/model/TestLine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/clevis/hk/edu/polyu/comp/comp2021/clevis/model/TestRectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Clevis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/BoundingBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Calculate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Circle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/ClevisModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Deque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Line.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/LinkedListDeque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Rectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Shape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Square.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Vec.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/view/ClevisGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/TestCircle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/TestGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/TestLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/TestRectangle.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/clevis$hk_edu_polyu_comp_comp2021_test_in_clevis.coverage" NAME="hk.edu.polyu.comp.comp2021.test in clevis Coverage Results" MODIFIED="1476112387741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/clevis$hk_edu_polyu_comp_comp2021_test.coverage" NAME="hk.edu.polyu.comp.comp2021.test Coverage Results" MODIFIED="1476114198846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="clevis" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/test/ClevisTest.java" />
+        <option value="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Clevis.java" />
+        <option value="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/test/ApplicationTest.java" />
+        <option value="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/test/ClevisTest.java" />
+        <option value="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/model/ClevisTest.java" />
+        <option value="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/VirtualDisk.java" />
+        <option value="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" />
+        <option value="$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Application.java" />
+        <option value="$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="groupByToolId" value="true" />
+    <option name="selectedIndex" value="2" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="2475" />
+    <option name="height" value="1458" />
+  </component>
+  <component name="ProjectId" id="1y5C1olHaP7G5TIx4q2YpN2azcZ" />
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clevis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SampleProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clevis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.3759191" />
+    <property name="run.code.analysis.last.selected.profile" value="aCOMP2021_PROJECT" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="hk.edu.polyu.comp.comp2021.test" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Cloud\GoogleDrive\Courses\2016.09\COMP_2021\Assignments\clevis\test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.hk.edu.polyu.comp.comp2021.clevis.model in clevis">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="GAPID_DISABLE_PCS" value="false" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="WIDTH" value="0" />
+      <option name="HEIGHT" value="0" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.Application" />
+      <module name="clevis" />
+      <option name="PROGRAM_PARAMETERS" value="-html log.html -txt log.txt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGroup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="clevis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.TestGroup" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="clevis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.TestLine" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRectangle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="clevis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="MAIN_CLASS_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model.TestRectangle" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Whole project" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.model" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="hk.edu.polyu.comp.comp2021.clevis.model in clevis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="clevis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hk.edu.polyu.comp.comp2021.clevis.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="hk.edu.polyu.comp.comp2021.clevis.model" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.Whole project" />
+      <item itemvalue="JUnit.hk.edu.polyu.comp.comp2021.clevis.model in clevis" />
+      <item itemvalue="JUnit.TestGroup" />
+      <item itemvalue="JUnit.TestLine" />
+      <item itemvalue="JUnit.TestRectangle" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.hk.edu.polyu.comp.comp2021.clevis.model in clevis" />
+        <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.TestRectangle" />
+        <item itemvalue="JUnit.TestLine" />
+        <item itemvalue="JUnit.TestGroup" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8a3aaae-73a1-4bdb-b5aa-5d9bd33ff1d3" name="Default" comment="" />
+      <created>1476112020536</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1476112020536</updated>
+      <workItem from="1631531854887" duration="559000" />
+      <workItem from="1632662570521" duration="62000" />
+      <workItem from="1633484849046" duration="36000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="All_in_clevis - 2018.09.06 at 21h 51m 35s.xml">
+      <configuration name="All in clevis" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_clevis - 2020.09.07 at 18h 48m 56s.xml">
+      <configuration name="All in clevis" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="clevisTest - 2018.09.06 at 21h 50m 40s.xml">
+      <configuration name="clevisTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 15m 28s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 16m 29s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 17m 31s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 19m 34s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 19m 54s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test - 2016.10.10 at 23h 43m 20s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="hk_edu_polyu_comp_comp2021_test_in_clevis - 2016.10.10 at 23h 13m 09s.xml">
+      <configuration name="hk.edu.polyu.comp.comp2021.test in clevis" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="2475" height="1458" extended-state="6" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24968737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869297" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.AssertionError" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$hk_edu_polyu_comp_comp2021_clevis_model_in_clevis.ic" NAME="hk.edu.polyu.comp.comp2021.clevis.model in clevis Coverage Results" MODIFIED="1637219535951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$TestRectangle.ic" NAME="TestRectangle Coverage Results" MODIFIED="1634219931197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$ClevisTest.ic" NAME="ClevisTest Coverage Results" MODIFIED="1636361442293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$TestCircle.ic" NAME="TestCircle Coverage Results" MODIFIED="1634111154074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$TestLine.ic" NAME="TestLine Coverage Results" MODIFIED="1634049310437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$ClevisModelTest.ic" NAME="ClevisModelTest Coverage Results" MODIFIED="1637197955695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$All_in_clevis.ic" NAME="All in clevis Coverage Results" MODIFIED="1636956835323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ClevisProjectGroup1$ClevisTest_testClevisConstructor.ic" NAME="ClevisTest.testClevisConstructor Coverage Results" MODIFIED="1636278995396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>hk.edu.polyu.comp.comp2021.clevis.model.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java" />
+    <entry file="file://$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/JungleGameTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="43" lean-forward="true" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/hk/edu/polyu/comp/comp2021/clevis/model/ClevisTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hk/edu/polyu/comp/comp2021/clevis/model/Clevis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.3759191" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.3759191" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>clevis</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.3759191" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.3759191" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.3759191" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
