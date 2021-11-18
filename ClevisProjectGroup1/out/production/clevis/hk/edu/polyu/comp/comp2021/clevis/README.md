@@ -10,10 +10,10 @@ CHEN Derun 21098424d
 
 YE Haowen 21098829d
 
-> Run **Application** class,
+> Run **Application** class first,
 > 
-> Enter **0** to launch Clevis 
+> Then enter **0** to launch Clevis 
 > 
 > or enter **1** to launch the GUI
 
-> The _**test**_ file includes all tests with line coverage of 
+> The _**test**_ file includes all tests with line coverage of 98% in total

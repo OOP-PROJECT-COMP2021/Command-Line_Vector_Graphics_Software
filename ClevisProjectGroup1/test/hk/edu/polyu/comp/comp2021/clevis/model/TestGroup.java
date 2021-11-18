@@ -8,10 +8,10 @@ import static org.junit.Assert.assertFalse;
 public class TestGroup {
     @Test
     public void testGroupConstructor0() {
-        Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
-        Line b = new Line("LineTestB", 4f,5f,6f,2);
-        Circle c = new Circle("CircleTestC",2f,5f,1f);
-        Square d = new Square("SquareTestD",6f,4f,1f);
+        Rectangle a = new Rectangle("RectTestA",0d,3d,4d,3d);
+        Line b = new Line("LineTestB", 4d,5d,6d,2d);
+        Circle c = new Circle("CircleTestC",2d,5d,1d);
+        Square d = new Square("SquareTestD",6d,4d,1d);
         Shape[] shapeList = {a,b,c,d};
         Group g1 = new Group("GroupTest", shapeList);
         System.out.println(g1.listInfo());
@@ -19,13 +19,13 @@ public class TestGroup {
 
     @Test
     public void testGroupLineIntersected0() {
-        Rectangle a = new Rectangle("RectTestA",0f,3f,4f,3f);
-        Line b = new Line("LineTestB", 4f,5f,6f,2f);
-        Circle c = new Circle("CircleTestC",2f,5f,1f);
-        Square d = new Square("SquareTestD",6f,4f,1f);
-        Line e = new Line("LineTestE", 5f,5f,7f,5f);
-        Circle f = new Circle("CircleTestF",5f,0f,2);
-        Rectangle g = new Rectangle("RectTestG", 6f,1f,2f,1f);
+        Rectangle a = new Rectangle("RectTestA",0d,3d,4d,3d);
+        Line b = new Line("LineTestB", 4d,5d,6d,2d);
+        Circle c = new Circle("CircleTestC",2d,5d,1d);
+        Square d = new Square("SquareTestD",6d,4d,1d);
+        Line e = new Line("LineTestE", 5d,5d,7d,5d);
+        Circle f = new Circle("CircleTestF",5d,0d,2d);
+        Rectangle g = new Rectangle("RectTestG", 6d,1d,2d,1d);
 
         Shape[] shapeList = {a,b,c,d};
         Group g1 = new Group("GroupTest", shapeList);
