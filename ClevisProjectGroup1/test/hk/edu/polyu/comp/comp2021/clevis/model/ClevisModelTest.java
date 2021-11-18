@@ -3,6 +3,7 @@ package hk.edu.polyu.comp.comp2021.clevis.model;
 import org.junit.Test;
 
 import java.io.IOException;
+import static org.junit.Assert.*;
 
 /** Test for the model package */
 public class ClevisModelTest {
@@ -13,6 +14,12 @@ public class ClevisModelTest {
         clevisModel.drawRectangle("RecTestA",0.0d,2.0d,4d,2d);
         clevisModel.drawRectangle("RecTestB",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
         System.out.println(clevisModel.listAllShape());
+        try{
+            clevisModel.drawRectangle("RecTestA",0.0d,2.0d,4d,2d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.UndoControl();
         clevisModel.UndoControl();
@@ -29,6 +36,12 @@ public class ClevisModelTest {
         clevisModel.drawLine("LineTestC",0.0d,2.0d,4d,5d);
         clevisModel.drawLine("LineTestD",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
         System.out.println(clevisModel.listAllShape());
+        try{
+            clevisModel.drawLine("LineTestD",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.UndoControl();
         clevisModel.UndoControl();
@@ -44,6 +57,12 @@ public class ClevisModelTest {
         clevisModel.drawCircle("CircleTestE",0.0d,2.0d,4d);
         clevisModel.drawCircle("CircleTestF",4.344563454234696d,3.324738463657d,10.3472384987652397d);
         System.out.println(clevisModel.listAllShape());
+        try{
+            clevisModel.drawCircle("CircleTestF",4.344563454234696d,3.324738463657d,10.3472384987652397d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.UndoControl();
         clevisModel.UndoControl();
@@ -59,6 +78,12 @@ public class ClevisModelTest {
         clevisModel.drawSquare("SquareTestG",1.0d,2.0d,4d);
         clevisModel.drawSquare("SquareTestH",4.344563454234696d,2.324738463657d,10.3472384987652397d);
         System.out.println(clevisModel.listAllShape());
+        try{
+            clevisModel.drawSquare("SquareTestH",4.344563454234696d,2.324738463657d,10.3472384987652397d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.UndoControl();
         clevisModel.UndoControl();
@@ -96,6 +121,13 @@ public class ClevisModelTest {
         clevisModel.drawRectangle("RecTestB",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
         String[] shapeListAB = {"RecTestA","RecTestB"};
         clevisModel.createGroup("GAB",shapeListAB);
+
+        try{
+            clevisModel.createGroup("GAB",shapeListAB);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.drawLine("LineTestC",0.0d,2.0d,4d,5d);
         clevisModel.drawLine("LineTestD",4.344563454234696d,3.324738463657d,10.3472384987652397d,2.2370138476523d);
@@ -146,6 +178,13 @@ public class ClevisModelTest {
         clevisModel.unGroup("GAB");
         System.out.println(clevisModel.listAllShape());
 
+        try{
+            clevisModel.unGroup("G_ABCD");
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
+
         clevisModel.UndoControl();
         clevisModel.UndoControl();
         System.out.println(clevisModel.listAllShape());
@@ -176,6 +215,20 @@ public class ClevisModelTest {
         String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
         clevisModel.createGroup("G_EFG",shapeListEFG);
         System.out.println(clevisModel.listAllShape());
+
+        try{
+            clevisModel.deleteShapeWithName("RecTestA");
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
+
+        try{
+            clevisModel.deleteShapeWithName("Rec");
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.deleteShapeWithName("SquareTestH");
         clevisModel.deleteShapeWithName("G_GAB_CD");
@@ -210,6 +263,14 @@ public class ClevisModelTest {
         clevisModel.createGroup("G_EFG",shapeListEFG);
 
         clevisModel.drawSquare("SquareTestH",4.344563454234696d,2.324738463657d,10.3472384987652397d);
+
+        try{
+            clevisModel.createBoundingBox("RecTestA");
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
+
         System.out.println(clevisModel.createBoundingBox("G_GAB_CD"));
         System.out.println(clevisModel.createBoundingBox("G_EFG"));
         System.out.println(clevisModel.createBoundingBox("SquareTestH"));
@@ -236,6 +297,13 @@ public class ClevisModelTest {
         String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
         clevisModel.createGroup("G_EFG",shapeListEFG);
         System.out.println(clevisModel.listAllShape());
+
+        try{
+            clevisModel.moveShape("RecTestA",1d,2d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.moveShape("G_GAB_CD",1d,1d);
         clevisModel.moveShape("G_EFG",1d,1d);
@@ -273,6 +341,13 @@ public class ClevisModelTest {
         String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
         clevisModel.createGroup("G_EFG",shapeListEFG);
         System.out.println(clevisModel.listAllShape());
+
+        try{
+            clevisModel.pickAndMoveShape(100d,200d,1d,2d);
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
 
         clevisModel.pickAndMoveShape(4.344563454234696d,2.324738463657d,1,1);
         System.out.println(clevisModel.listAllShape());
@@ -344,6 +419,13 @@ public class ClevisModelTest {
         String[] shapeListEFG = {"CircleTestE","CircleTestF","SquareTestG"};
         clevisModel.createGroup("G_EFG",shapeListEFG);
 
+        try{
+            clevisModel.isIntersected("LineTestC","CircleTestE");
+        }
+        catch (Exception e){
+            System.out.println("Caught!");
+        }
+
         System.out.println(clevisModel.isIntersected("G_GAB_CD","G_EFG"));
 
     }
@@ -357,13 +439,37 @@ public class ClevisModelTest {
         System.out.println(clevisModel.listAllShape());
 
     }
-
     @Test
-    public void test2() {
+    public void groupAncestorTest() {
         ClevisModel clevisModel = new ClevisModel();
-        clevisModel.drawRectangle("A",100,100,100,200);
-        clevisModel.UndoControl();
-        clevisModel.drawRectangle("A",100,100,100,200);
+        clevisModel.drawRectangle("RectTestA",0d,3d,4d,3d);
+        clevisModel.drawLine("LineTestB", 4d,5d,6d,2d);
+        clevisModel.drawCircle("CircleTestC",2d,5d,1d);
+        clevisModel.drawSquare("SquareTestD",6f,4f,1f);
+        clevisModel.drawLine("LineTestE", 5d,5d,7d,5d);
+        clevisModel.drawCircle("CircleTestF",5d,0d,2d);
+        clevisModel.drawRectangle("RectTestG", 6d,1d,2d,1d);
+
+        String[] shapeListABCD = {"RectTestA","LineTestB","CircleTestC","SquareTestD"};
+        clevisModel.createGroup("G1",shapeListABCD);
+
+        String[] shapeListEF = {"LineTestE","CircleTestF"};
+        clevisModel.createGroup("G2",shapeListEF);
+
+        String[] shapeListG12 = {"G1","G2"};
+        clevisModel.createGroup("G12",shapeListG12);
+
+
+        String[] shapeListG12G = {"G12","RectTestG"};
+        clevisModel.createGroup("Ancestor",shapeListG12G);
+
+        for (Shape shape: clevisModel.getShapeLevel()){
+            System.out.println(shape.getAncestor().getName());
+        }
+        assertEquals("Ancestor",clevisModel.getShape("G1").getAncestor().getName());
+        assertEquals("Ancestor",clevisModel.getShape("G2").getAncestor().getName());
+        assertEquals("Ancestor",clevisModel.getShape("G12").getAncestor().getName());
+        assertEquals("Ancestor",clevisModel.getShape("Ancestor").getAncestor().getName());
 
     }
 

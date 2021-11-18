@@ -24,7 +24,7 @@ public class TestGroup {
         Circle c = new Circle("CircleTestC",2f,5f,1f);
         Square d = new Square("SquareTestD",6f,4f,1f);
         Line e = new Line("LineTestE", 5f,5f,7f,5f);
-        Circle f = new Circle("CirclrTestF",5f,0f,2);
+        Circle f = new Circle("CircleTestF",5f,0f,2);
         Rectangle g = new Rectangle("RectTestG", 6f,1f,2f,1f);
 
         Shape[] shapeList = {a,b,c,d};
