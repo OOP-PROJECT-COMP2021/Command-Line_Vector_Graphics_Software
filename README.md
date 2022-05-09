@@ -32,7 +32,7 @@ Users is able to **create and manipulate** vector graphics containing shapes lik
 
 ## User Manual
 
-> Run **`Application.java`** class first,
+> Run **`src/hk/edu/polyu/comp/comp2021/clevis/Application.java`** class first,
 > 
 > Then enter **0** to launch Clevis 
 > 
