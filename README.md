@@ -42,6 +42,8 @@ Users is able to **create and manipulate** vector graphics containing shapes lik
 > 
 > or enter **1** to launch the GUI
 
+For detailed user manual, please refer to [Project Report](/#Project-Report)
+
 ---
 
 Copyright © [ZHANG Wengyu](https://github.com/zhangwengyu999), [XU Le](https://github.com/yoshino-polyu), [CHEN Derun](https://github.com/ShanpooO), [YE Haowen](https://github.com/ShanYu0205). All rights reserved.
