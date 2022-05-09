@@ -42,7 +42,7 @@ Users is able to **create and manipulate** vector graphics containing shapes lik
 > 
 > or enter **1** to launch the GUI
 
-For detailed user manual, please refer to [Project Report](/#Project-Report)
+For detailed user manual, please refer to [Project Report](/#project-report)
 
 ---
 
