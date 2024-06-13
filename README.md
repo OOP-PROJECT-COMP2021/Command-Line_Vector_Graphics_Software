@@ -16,6 +16,10 @@ Users is able to **create and manipulate** vector graphics containing shapes lik
 
 **YE Haowen [(https://github.com/ShanYu0205)](https://github.com/ShanYu0205)**
 
+## Group Presentation
+
+https://github.com/OOP-PROJECT-COMP2021/Command-Line_Vector_Graphics_Software/assets/68627255/585d2b29-6330-42ae-86bf-142014a9be44
+
 ## Project Report
 
 [https://doi.org/10.6084/m9.figshare.19733350.v1](https://doi.org/10.6084/m9.figshare.19733350.v1)
